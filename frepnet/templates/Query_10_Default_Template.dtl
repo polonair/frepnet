@@ -24,17 +24,17 @@
 			<td>{{currentFund.fundName}}</td>
 			<td>{{currentFund.valueResearchRating}}</td>
 			<td>{{currentFund.totalBondSales}}</td>
-			<td>{{currentFund.fundLaunchDate|date('Y-m-d')}}</td>
+			<td>{{currentFund.fundLaunchDate|Date:"d MMMM yyyy"}}</td>
 			<td>{{currentFund.daysSinceLaunch}}</td>
-			<td>{{currentFund.performanceScore}}</td>
+			<td>{{currentFund.performanceScore|Round:2}}</td>
 			<td>{{currentFund.performanceScoreRank}}</td>
-			<td>{{currentFund.performanceImprovementPercentage}}</td>
+			<td>{{currentFund.performanceImprovementPercentage|Round:2}}</td>
 			<td>{{currentFund.todayNAV}}</td>
 			<td>{{currentFund.note2}}</td>
 		{% endfor %}
 		</tr>
 	</table>
 	<p>Page {{currentPage}} of {{totalPages}}</p>
-	<p>Generated on {{date|date('Y-m-d')}}</p>
+	<p>Generated on {{date|Date:"d MMMM yyyy"}}</p>
 </body>
 </html>
