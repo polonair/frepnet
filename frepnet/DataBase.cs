@@ -138,7 +138,7 @@ namespace frepnet
 			this._PerformanceScoreRankOverall.Sort((string x, string y) =>
 			{
 				if (x == y) return 0;
-				return (this._Data[x].PerformanceScore >= this._Data[y].PerformanceScore) ? 1 : -1;
+				return (this._Data[x].PerformanceScore <= this._Data[y].PerformanceScore) ? 1 : -1;
 			});
 			for (int i = 0; i < this._PerformanceScoreRankOverall.Count; i++)
 			{
@@ -262,7 +262,7 @@ namespace frepnet
 			this._HighestRatingRankOverall.Sort((string x, string y) =>
 			{
 				if (x == y) return 0;
-				return (this._Data[x].ValueResearchRating >= this._Data[y].ValueResearchRating) ? 1 : -1;
+				return (this._Data[x].ValueResearchRating <= this._Data[y].ValueResearchRating) ? 1 : -1;
 			});
 			for (int i = 0; i< this._HighestRatingRankOverall.Count; i++)
 			{
@@ -316,7 +316,7 @@ namespace frepnet
 			this._PerformanceImprovementPercentageRankOverall.Sort((string x, string y) =>
 			{
 				if (x == y) return 0;
-				return (this._Data[x].PerformanceImprovementPercentage >= this._Data[y].PerformanceImprovementPercentage) ? 1 : -1;
+				return (this._Data[x].PerformanceImprovementPercentage <= this._Data[y].PerformanceImprovementPercentage) ? 1 : -1;
 			});
 			for (int i = 0; i< this._PerformanceImprovementPercentageRankOverall.Count; i++)
 			{

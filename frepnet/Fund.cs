@@ -258,7 +258,8 @@ namespace frepnet
 		{
 			get
 			{
-				return this.TodayNav - this.YesterdayNav;
+				//return this.TodayNav - this.YesterdayNav;
+				return this.YesterdayNav - this.TodayNav;
 			}
 		}
 		public double PerformanceScore
