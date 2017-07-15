@@ -37,7 +37,7 @@ namespace frepnet
 
 		public string FundID { get { return this._Id; } }
 		public string FundName { get { return this._Name; } }
-		public string FundLaunchDate { get { return string.Format("{0:dd MMMM yyyy}", this._LaunchDate); } }
+		public DateTime FundLaunchDate { get { return this._LaunchDate; } }
 		public double previousNAV { get { return this.PreviousNav; } }
 		public double lowestNAV { get { return this.LowestNAV; } }
 		public double highestNAV { get { return this.HighestNAV; } }
@@ -49,26 +49,26 @@ namespace frepnet
 		public double navChangeLongPercentage { get { return this.PercentageChangeInNAVLong; } }
 		public double overallScoreRank { get { return this.OverallScoreRank; } }
 
-		public string day1date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now); } }
-		public string day2date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(1))); } }
-		public string day3date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(2))); } }
-		public string day4date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(3))); } }
-		public string day5date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(4))); } }
-		public string day6date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(5))); } }
-		public string day7date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(6))); } }
-		public string day8date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(7))); } }
-		public string day9date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(8))); } }
-		public string day10date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(9))); } }
-		public string day11date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(10))); } }
-		public string day12date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(11))); } }
-		public string day13date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(12))); } }
-		public string day14date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(13))); } }
-		public string day15date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(14))); } }
-		public string day16date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(15))); } }
-		public string day17date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(16))); } }
-		public string day18date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(17))); } }
-		public string day19date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(18))); } }
-		public string day20date { get { return string.Format("{0:dd MMMM yyyy}", DateTime.Now.Subtract(TimeSpan.FromDays(19))); } }
+		public DateTime day1date { get { return DateTime.Now; } }
+		public DateTime day2date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(1)); } }
+		public DateTime day3date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(2)); } }
+		public DateTime day4date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(3)); } }
+		public DateTime day5date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(4)); } }
+		public DateTime day6date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(5)); } }
+		public DateTime day7date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(6)); } }
+		public DateTime day8date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(7)); } }
+		public DateTime day9date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(8)); } }
+		public DateTime day10date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(9)); } }
+		public DateTime day11date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(10)); } }
+		public DateTime day12date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(11)); } }
+		public DateTime day13date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(12)); } }
+		public DateTime day14date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(13)); } }
+		public DateTime day15date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(14)); } }
+		public DateTime day16date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(15)); } }
+		public DateTime day17date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(16)); } }
+		public DateTime day18date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(17)); } }
+		public DateTime day19date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(18)); } }
+		public DateTime day20date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(19)); } }
 
 		private string __getDayNav(int shift)
 		{

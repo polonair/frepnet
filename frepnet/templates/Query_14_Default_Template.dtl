@@ -25,7 +25,7 @@
 			<td>{{currentFund.fundName}}</td>
 			<td>{{currentFund.valueResearchRating}}</td>
 			<td>{{currentFund.totalBondSales}}</td>
-			<td>{{currentFund.fundLaunchDate|date('Y-m-d')}}</td>
+			<td>{{currentFund.fundLaunchDate|Date:"d MMMM yyyy"}}</td>
 			<td>{{currentFund.daysSinceLaunch}}</td>
 			<td>{{currentFund.overallScore}}</td>
 			<td>{{currentFund.performanceScoreRank}}</td>
@@ -37,6 +37,6 @@
 		</tr>
 	</table>
 	<p>Page {{currentPage}} of {{totalPages}}</p>
-	<p>Generated on {{date|date('Y-m-d')}}</p>
+	<p>Generated on {{date|Date:"d MMMM yyyy"}}</p>
 </body>
 </html>

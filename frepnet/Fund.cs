@@ -14,14 +14,14 @@ namespace frepnet
 		private string _Header;
 		private string _Id;
 		private History[] _History;
-		private string _Category;
+		private List<string> _Category;
 		private string _Name;
 		private DateTime _LaunchDate;
 		private string[] _Notes;
 		private bool[] _IncludeIn;
 
 		public string Id { get { return this._Id; } }
-		public string Category { get { return this._Category; } }
+		public List<string> Category { get { return this._Category; } }
 		public double ValueResearchRating
 		{
 			get
@@ -258,7 +258,8 @@ namespace frepnet
 		{
 			get
 			{
-				return this.TodayNav - this.YesterdayNav;
+				//return this.TodayNav - this.YesterdayNav;
+				return this.YesterdayNav - this.TodayNav;
 			}
 		}
 		public double PerformanceScore
@@ -468,8 +469,8 @@ namespace frepnet
 			if (result._Id.Length < 1) return null;
 			result._Name = data[1].Trim();
 			if (result._Name.Length < 1) return null;
-			result._Category = data[2].Trim();
-			if (result._Category.Length < 1) return null;
+			if (data[2].Trim().Length < 1) return null;
+			result._Category = new List<string>(new string[] { data[2].Trim() });
 			try { result._LaunchDate = DateTime.Parse(data[3].Trim()); }
 			catch { return null; }
 			result._Notes = new string[7];
@@ -494,6 +495,8 @@ namespace frepnet
 				if (this._History[i] == null) history += "[null]";
 				else history += this._History[i].PrintDump();
 			}
+			string categories = "";
+			foreach (string c in this._Category) categories += c + ", ";
 			return string.Format(
 @"
 --------------------
@@ -507,7 +510,7 @@ namespace frepnet
 	history: {5}
 --------------------
 ", 
-			this._Id, this._Type, this._Category, _Name, this._LaunchDate, history);
+			this._Id, this._Type, categories, _Name, this._LaunchDate, history);
 		}
 	}
 }
