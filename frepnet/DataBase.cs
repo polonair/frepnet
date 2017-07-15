@@ -9,6 +9,7 @@ namespace frepnet
 	class DataBase
 	{
 		private Settings _Settings;
+		private string _Category = null;
 		private Dictionary<string, Fund> _Data = new Dictionary<string, Fund>();
 		private Dictionary<string, List<string>> _DataByCategory = new Dictionary<string, List<string>>();
 
@@ -29,9 +30,11 @@ namespace frepnet
 					if (f != null)
 					{
 						if (this._Data.ContainsKey(f.Id))
-							Console.WriteLine("Fund id '{0}' duplicated at line {1}", f.Id, i);
-						else
-							this._Data.Add(f.Id, f);
+						{
+							if (!this.Data[f.Id].Category.Contains(f.Category[0]))
+								this.Data[f.Id].Category.Add(f.Category[0]);
+						}
+						else this._Data.Add(f.Id, f);
 					}
 				}
 			}
@@ -66,7 +69,16 @@ namespace frepnet
 				}
 			}
 			else throw new Exception(string.Format("Directory \"{0}\" doesn't exist", this._Settings.DateWiseDirectory));
-}
+			this._Ranking();
+		}
+		void _Ranking()
+		{
+            /*this.Sort_HighestRatingRank();
+            this.Sort_PerformanceScoreRank();
+            this.Sort_PerformanceImprovementPercentageRank();
+			ths.Sort_OverallScoreRank();*/
+		}
+
 		public static DateTime ParseOrdinalDateTime(string dt)
 		{
 			dt = dt.Replace("0th", "0")
@@ -86,6 +98,17 @@ namespace frepnet
 			try { return DateTime.Parse(dt, null, DateTimeStyles.None); }
 			catch (Exception e) { throw new InvalidOperationException("Not a valid DateTime string", e); }
 		}
+		private Stack<string> _CategoryStack = new Stack<string>();
+		internal void SetCategory(string category)
+		{
+			this._CategoryStack.Push(this._Category);
+			this._Category = category;
+		}
+		internal void ResetCategory()
+		{
+			if (this._CategoryStack.Count > 0) this._Category = this._CategoryStack.Pop();
+			else this._Category = null;
+		}
 		internal IEnumerable<QueryResult> Query(QueryType queryType)
 		{
             int iqt = (int)queryType;
@@ -100,18 +123,25 @@ namespace frepnet
 			{
 				if (this._Data[fid].IsConsidered(queryType))
 				{
-					if (splitted.ContainsKey(this._Data[fid].Category)) splitted[this._Data[fid].Category].Add(fid);
-					else splitted.Add(this._Data[fid].Category, new List<string>());
+					foreach (string category in this._Data[fid].Category)
+					{
+						if (splitted.ContainsKey(category)) splitted[category].Add(fid);
+						else splitted.Add(category, new List<string>(new string[] { fid }));
+					}
+					//if (splitted.ContainsKey(this._Data[fid].Category)) splitted[this._Data[fid].Category].Add(fid);
+					//else splitted.Add(this._Data[fid].Category, new List<string>());
 				}
 			}
 			List<QueryResult> result = new List<QueryResult>();
 			foreach (string category in splitted.Keys)
 			{
+				this.SetCategory(category);
 				splitted[category].Sort((string a, string b) => 
 				{ 
 					return Fund.Comparise(this._Data[a], this._Data[b]); 
 				});
 				result.Add(new QueryResult(queryType, category, splitted[category]));
+				this.ResetCategory();
 			}
 			return result;
 		}
@@ -121,7 +151,7 @@ namespace frepnet
 			foreach (string fid in this._Data.Keys) if (this._Data[fid].IsConsidered(queryType)) splitted.Add(fid);
 			List<QueryResult> result = new List<QueryResult>();
 			splitted.Sort((string a, string b) => { return Fund.Comparise(this._Data[a], this._Data[b]); });
-			result.Add(new QueryResult(queryType, "All", splitted));
+			result.Add(new QueryResult(queryType, null, splitted));
 			return result;
 		}
         #region PerformanceScoreRank
@@ -148,20 +178,38 @@ namespace frepnet
 			this._PerformanceScoreRankByCategory_dict = new Dictionary<string, Dictionary<string, int>>();
 			foreach (string id in this._PerformanceScoreRankOverall)
 			{
-				string category = this._Data[id].Category;
-				if (this._PerformanceScoreRankByCategory.ContainsKey(category)) this._PerformanceScoreRankByCategory[category].Add(id);
-				else
+				foreach (string category in this._Data[id].Category)
 				{
-					this._PerformanceScoreRankByCategory.Add(category, new List<string>());
-					this._PerformanceScoreRankByCategory[category].Add(id);
+					if (this._PerformanceScoreRankByCategory.ContainsKey(category)) this._PerformanceScoreRankByCategory[category].Add(id);
+					else
+					{
+						this._PerformanceScoreRankByCategory.Add(category, new List<string>());
+						this._PerformanceScoreRankByCategory[category].Add(id);
+					}
 				}
+				//string category = this._Data[id].Category;
+				//if (this._PerformanceScoreRankByCategory.ContainsKey(category)) this._PerformanceScoreRankByCategory[category].Add(id);
+				//else
+				//{
+				//	this._PerformanceScoreRankByCategory.Add(category, new List<string>());
+				//	this._PerformanceScoreRankByCategory[category].Add(id);
+				//}
 			}
 			foreach (string category in this._PerformanceScoreRankByCategory.Keys)
 			{
 				this._PerformanceScoreRankByCategory_dict.Add(category, new Dictionary<string, int>());
 				for (int i = 0; i < this._PerformanceScoreRankByCategory[category].Count; i++)
 				{
-					this._PerformanceScoreRankByCategory_dict[category].Add(this._PerformanceScoreRankByCategory[category][i], i);
+					try
+					{
+						this._PerformanceScoreRankByCategory_dict[category].Add(this._PerformanceScoreRankByCategory[category][i], i);
+					}
+					catch (Exception ex)
+					{
+						Fund f = this.Data[this._PerformanceScoreRankByCategory[category][i]];
+						Console.WriteLine("here {1} \r\n\r\n{0}", ex, f.PrintDebug());
+						Console.ReadLine();
+					}
 				}
 			}
 			this._PerformanceScoreRank_Sorted = true;
@@ -172,7 +220,16 @@ namespace frepnet
 			{
 				if (!this._PerformanceScoreRank_Sorted) this.Sort_PerformanceScoreRank();
 				//return 1+this._PerformanceScoreRankByCategory[this._Data[fid].Category].IndexOf(fid);
-				return this._PerformanceScoreRankByCategory_dict[this._Data[fid].Category][fid] + 1;
+				if (this.Data[fid].Category.Contains(this._Category))
+				//if (Array.Exists<string>(this.Data[fid].Category, (string obj) => { return obj == this._Category; }))
+				{
+					return this._PerformanceScoreRankByCategory_dict[this._Category][fid] + 1;
+				}
+				else
+				{
+					throw new InvalidOperationException();
+				}
+				//return this._PerformanceScoreRankByCategory_dict[this._Data[fid].Category][fid] + 1;
 			}
 			catch (Exception e)
 			{
@@ -195,46 +252,77 @@ namespace frepnet
 		private Dictionary<string, int> _OverallScoreRankOverall_dict;
 		private void Sort_OverallScoreRank()
 		{
-				this._OverallScoreRankOverall = new List<string>(this._Data.Keys);
-				this._OverallScoreRankOverall_dict = new Dictionary<string, int>();
-				this._OverallScoreRankOverall.Sort((string x, string y) =>
+			this._OverallScoreRankOverall = new List<string>(this._Data.Keys);
+			this._OverallScoreRankOverall_dict = new Dictionary<string, int>();
+			this._OverallScoreRankOverall.Sort((string x, string y) =>
 				{
+					int xpsr = this.GetPerformanceScoreRankOverAll(x);
+					int ypsr = this.GetPerformanceScoreRankOverAll(y);
+					int xpipr = this.GetPerformanceImprovementPercentageRankOverAll(x);
+					int ypipr = this.GetPerformanceImprovementPercentageRankOverAll(y);
+					int xhrr = this.GetHighestRatingRankOverAll(x);
+					int yhrr = this.GetHighestRatingRankOverAll(y);
+					int xo = xpsr + xpipr + xhrr;
+					int yo = ypsr + ypipr + yhrr;
 					if (x == y) return 0;
-					return (this._Data[x].OverallScore >= this._Data[y].OverallScore) ? 1 : -1;
+					return (xo >= yo) ? 1 : -1;
 				});
-				for (int i = 0; i < this._OverallScoreRankOverall.Count; i++)
+			for (int i = 0; i < this._OverallScoreRankOverall.Count; i++)
+			{
+				this._OverallScoreRankOverall_dict.Add(this._OverallScoreRankOverall[i], i);
+			}
+			this._OverallScoreRankByCategory = new Dictionary<string, List<string>>();
+			this._OverallScoreRankByCategory_dict = new Dictionary<string, Dictionary<string, int>>();
+
+			foreach (string id in this._OverallScoreRankOverall)
+			{
+				foreach (string category in this._Data[id].Category)
 				{
-					this._OverallScoreRankOverall_dict.Add(this._OverallScoreRankOverall[i], i);
+					if (this._OverallScoreRankByCategory.ContainsKey(category)) this._OverallScoreRankByCategory [category].Add(id);
+					else this._OverallScoreRankByCategory.Add(category, new List<string>(new string[] { id }));
 				}
-				this._OverallScoreRankByCategory = new Dictionary<string, List<string>>();
-				this._OverallScoreRankByCategory_dict = new Dictionary<string, Dictionary<string, int>>();
-				foreach (string id in this._OverallScoreRankOverall)
+			}
+
+			foreach (string category in this._OverallScoreRankByCategory.Keys)
+			{
+				this.SetCategory(category);
+				this._OverallScoreRankByCategory[category].Sort((string x, string y) => 
 				{
-					string category = this._Data[id].Category;
-					if (this._OverallScoreRankByCategory.ContainsKey(category)) this._OverallScoreRankByCategory[category].Add(id);
-					else
-					{
-						this._OverallScoreRankByCategory.Add(category, new List<string>());
-						this._OverallScoreRankByCategory[category].Add(id);
-					}
-				}
-				foreach (string category in this._OverallScoreRankByCategory.Keys)
+					int xpsr = this.GetPerformanceScoreRankByCategory(x);
+					int ypsr = this.GetPerformanceScoreRankByCategory(y);
+					int xpipr = this.GetPerformanceImprovementPercentageRankByCategory(x);
+					int ypipr = this.GetPerformanceImprovementPercentageRankByCategory(y);
+					int xhrr = this.GetHighestRatingRankByCategory(x);
+					int yhrr = this.GetHighestRatingRankByCategory(y);
+					int xo = xpsr + xpipr + xhrr;
+					int yo = ypsr + ypipr + yhrr;
+					if (x == y) return 0;
+					return (xo >= yo) ? 1 : -1;
+				});
+				this._OverallScoreRankByCategory_dict.Add(category, new Dictionary<string, int>());
+				for (int i = 0; i< this._OverallScoreRankByCategory[category].Count; i++)
 				{
-					this._OverallScoreRankByCategory_dict.Add(category, new Dictionary<string, int>());
-					for (int i = 0; i < this._OverallScoreRankByCategory[category].Count; i++)
-					{
-						this._OverallScoreRankByCategory_dict[category].Add(this._OverallScoreRankByCategory[category][i], i);
-					}
+					this._OverallScoreRankByCategory_dict[category].Add(this._OverallScoreRankByCategory[category][i], i);
 				}
-				this._OverallScoreRank_Sorted = true;
-}
+                this.ResetCategory();
+			}
+			this._OverallScoreRank_Sorted = true;
+		}
         public int GetOverallScoreRankByCategory(string fid)
 		{
 			try{
 	            if (!this._OverallScoreRank_Sorted) this.Sort_OverallScoreRank();
 	            //return 1 + this._OverallScoreRankByCategory[this._Data[fid].Category].IndexOf(fid);
-				return this._OverallScoreRankByCategory_dict[this._Data[fid].Category][fid] + 1;
-
+				if (this.Data[fid].Category.Contains(this._Category))
+				//if (Array.Exists<string>(this.Data[fid].Category, (string obj) => { return obj == this._Category; }))
+				{
+					return this._OverallScoreRankByCategory_dict[this._Category][fid] + 1;
+				}
+				else
+				{
+					throw new InvalidOperationException();
+				}
+				//return this._OverallScoreRankByCategory_dict[this._Data[fid].Category][fid] + 1;
 			}
 			catch (Exception e)
 			{
@@ -272,12 +360,14 @@ namespace frepnet
             this._HighestRatingRankByCategory_dict = new Dictionary<string, Dictionary<string, int>>();
 			foreach (string id in this._HighestRatingRankOverall)
 			{
-				string category = this._Data[id].Category;
-				if (this._HighestRatingRankByCategory.ContainsKey(category)) this._HighestRatingRankByCategory[category].Add(id);
-				else
+				foreach (string category in this._Data[id].Category)
 				{
-					this._HighestRatingRankByCategory.Add(category, new List<string>());
-					this._HighestRatingRankByCategory[category].Add(id);
+					if (this._HighestRatingRankByCategory.ContainsKey(category)) this._HighestRatingRankByCategory[category].Add(id);
+					else
+					{
+						this._HighestRatingRankByCategory.Add(category, new List<string>());
+						this._HighestRatingRankByCategory[category].Add(id);
+					}
 				}
 			}
 			foreach (string category in this._HighestRatingRankByCategory.Keys)
@@ -294,7 +384,16 @@ namespace frepnet
 		{
 			if (!this._HighestRatingRank_Sorted) this.Sort_HighestRatingRank();
 			//return 1 + this._HighestRatingRankByCategory[this._Data[fid].Category].IndexOf(fid);
-			return this._HighestRatingRankByCategory_dict[this._Data[fid].Category][fid] + 1;
+			if (this.Data[fid].Category.Contains(this._Category))
+			//if (Array.Exists<string>(this.Data[fid].Category, (string obj) => { return obj == this._Category; }))
+			{
+				return this._HighestRatingRankByCategory_dict[this._Category][fid] + 1;
+			}
+			else
+			{
+				throw new InvalidOperationException();
+			}
+			//return this._HighestRatingRankByCategory_dict[this._Data[fid].Category][fid] + 1;
         }
         public int GetHighestRatingRankOverAll(string fid)
         {
@@ -326,12 +425,14 @@ namespace frepnet
             this._PerformanceImprovementPercentageRankByCategory_dict = new Dictionary<string, Dictionary<string, int>>();
 			foreach (string id in this._PerformanceImprovementPercentageRankOverall)
 			{
-				string category = this._Data[id].Category;
-				if (this._PerformanceImprovementPercentageRankByCategory.ContainsKey(category)) this._PerformanceImprovementPercentageRankByCategory[category].Add(id);
-				else
+				foreach (string category in this._Data[id].Category)
 				{
-					this._PerformanceImprovementPercentageRankByCategory.Add(category, new List<string>());
-					this._PerformanceImprovementPercentageRankByCategory[category].Add(id);
+					if (this._PerformanceImprovementPercentageRankByCategory.ContainsKey(category)) this._PerformanceImprovementPercentageRankByCategory[category].Add(id);
+					else
+					{
+						this._PerformanceImprovementPercentageRankByCategory.Add(category, new List<string>());
+						this._PerformanceImprovementPercentageRankByCategory[category].Add(id);
+					}
 				}
 			}
 			foreach (string category in this._PerformanceImprovementPercentageRankByCategory.Keys)
@@ -344,11 +445,20 @@ namespace frepnet
 			}
 			this._PerformanceImprovementPercentageRank_Sorted = true;
 		}
-        public int GetPerformanceImprovementPercentageRankByCategory(string fid)
-        {
+		public int GetPerformanceImprovementPercentageRankByCategory(string fid)
+		{
 			if (!this._PerformanceImprovementPercentageRank_Sorted) this.Sort_PerformanceImprovementPercentageRank();
 			//return 1 + this._PerformanceImprovementPercentageRankByCategory[this._Data[fid].Category].IndexOf(fid);
-			return this._PerformanceImprovementPercentageRankByCategory_dict[this._Data[fid].Category][fid] + 1;
+			if (this.Data[fid].Category.Contains(this._Category))
+			//if (Array.Exists<string>(this.Data[fid].Category, (string obj) => { return obj == this._Category; }))
+			{
+				return this._PerformanceImprovementPercentageRankByCategory_dict[this._Category][fid] + 1;
+			}
+			else
+			{
+				throw new InvalidOperationException();
+			}
+			//return this._PerformanceImprovementPercentageRankByCategory_dict[this._Data[fid].Category][fid] + 1;
         }
         public int GetPerformanceImprovementPercentageRankOverAll(string fid)
         {

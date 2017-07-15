@@ -91,7 +91,7 @@ namespace frepnet
 			result._TemplateDirectory = "./templates/";
 			result._ExportDirectory = string.Format("./export/", DateTime.Now);
 			result._Separator = "|";
-			result._Shift = 9;
+			result._Shift = 12;
 			return result;
 		}
         internal static Settings Parse(string[] args)
