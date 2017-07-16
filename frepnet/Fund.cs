@@ -340,7 +340,8 @@ namespace frepnet
 
 		internal bool IsConsidered(QueryType queryType)
 		{
-			this._Type = queryType;
+            this._Type = queryType;
+			if (double.IsNaN(this.ValueResearchRating) && double.IsNaN(this.TotalBondSales) && double.IsNaN(this.TodayNav)) return false;
 			switch (this._Type)
 			{
 				case QueryType.Q1:

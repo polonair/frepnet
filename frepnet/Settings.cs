@@ -86,12 +86,12 @@ namespace frepnet
 		internal static Settings DummyParse()
 		{
 			Settings result = new Settings();
-			result._Standard = "Standard.csv";
+			result._Standard = "standard.csv";
 			result._DateWiseDirectory = "./import/";
 			result._TemplateDirectory = "./templates/";
 			result._ExportDirectory = string.Format("./export/", DateTime.Now);
 			result._Separator = "|";
-			result._Shift = 12;
+			result._Shift = 0;
 			return result;
 		}
         internal static Settings Parse(string[] args)

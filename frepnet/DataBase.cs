@@ -136,11 +136,12 @@ namespace frepnet
 			foreach (string category in splitted.Keys)
 			{
 				this.SetCategory(category);
-				splitted[category].Sort((string a, string b) => 
-				{ 
-					return Fund.Comparise(this._Data[a], this._Data[b]); 
+				List<string> keys = new List<string>(splitted[category]);
+				keys.Sort((string a, string b) =>
+				{
+					return Fund.Comparise(this._Data[a], this._Data[b]);
 				});
-				result.Add(new QueryResult(queryType, category, splitted[category]));
+				result.Add(new QueryResult(queryType, category, keys));
 				this.ResetCategory();
 			}
 			return result;
@@ -150,7 +151,11 @@ namespace frepnet
 			List<string> splitted = new List<string>();
 			foreach (string fid in this._Data.Keys) if (this._Data[fid].IsConsidered(queryType)) splitted.Add(fid);
 			List<QueryResult> result = new List<QueryResult>();
-			splitted.Sort((string a, string b) => { return Fund.Comparise(this._Data[a], this._Data[b]); });
+			splitted = new List<string>(splitted);
+			splitted.Sort((string a, string b) =>
+			{
+				return Fund.Comparise(this._Data[a], this._Data[b]);
+			});
 			result.Add(new QueryResult(queryType, null, splitted));
 			return result;
 		}
