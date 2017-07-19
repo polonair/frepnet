@@ -173,7 +173,8 @@ namespace frepnet
 			this._PerformanceScoreRankOverall.Sort((string x, string y) =>
 			{
 				if (x == y) return 0;
-				return (this._Data[x].PerformanceScore <= this._Data[y].PerformanceScore) ? 1 : -1;
+                return this._Data[y].PerformanceScore.CompareTo(this._Data[x].PerformanceScore);
+                //return (this._Data[x].PerformanceScore <= this._Data[y].PerformanceScore) ? 1 : -1;
 			});
 			for (int i = 0; i < this._PerformanceScoreRankOverall.Count; i++)
 			{
@@ -270,7 +271,8 @@ namespace frepnet
 					int xo = xpsr + xpipr + xhrr;
 					int yo = ypsr + ypipr + yhrr;
 					if (x == y) return 0;
-					return (xo >= yo) ? 1 : -1;
+                    return xo.CompareTo(yo);
+					//return (xo >= yo) ? 1 : -1;
 				});
 			for (int i = 0; i < this._OverallScoreRankOverall.Count; i++)
 			{
@@ -302,7 +304,8 @@ namespace frepnet
 					int xo = xpsr + xpipr + xhrr;
 					int yo = ypsr + ypipr + yhrr;
 					if (x == y) return 0;
-					return (xo >= yo) ? 1 : -1;
+                    return xo.CompareTo(yo);
+					//return (xo >= yo) ? 1 : -1;
 				});
 				this._OverallScoreRankByCategory_dict.Add(category, new Dictionary<string, int>());
 				for (int i = 0; i< this._OverallScoreRankByCategory[category].Count; i++)
@@ -355,7 +358,8 @@ namespace frepnet
 			this._HighestRatingRankOverall.Sort((string x, string y) =>
 			{
 				if (x == y) return 0;
-				return (this._Data[x].ValueResearchRating <= this._Data[y].ValueResearchRating) ? 1 : -1;
+                return this._Data[y].ValueResearchRating.CompareTo(this._Data[x].ValueResearchRating);
+				//return (this._Data[x].ValueResearchRating <= this._Data[y].ValueResearchRating) ? 1 : -1;
 			});
 			for (int i = 0; i< this._HighestRatingRankOverall.Count; i++)
 			{
@@ -420,7 +424,8 @@ namespace frepnet
 			this._PerformanceImprovementPercentageRankOverall.Sort((string x, string y) =>
 			{
 				if (x == y) return 0;
-				return (this._Data[x].PerformanceImprovementPercentage <= this._Data[y].PerformanceImprovementPercentage) ? 1 : -1;
+                return this._Data[y].PerformanceImprovementPercentage.CompareTo(this._Data[x].PerformanceImprovementPercentage);
+				//return (this._Data[x].PerformanceImprovementPercentage <= this._Data[y].PerformanceImprovementPercentage) ? 1 : -1;
 			});
 			for (int i = 0; i< this._PerformanceImprovementPercentageRankOverall.Count; i++)
 			{

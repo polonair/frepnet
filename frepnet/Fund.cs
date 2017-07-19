@@ -421,41 +421,51 @@ namespace frepnet
 		}
 		internal static int Comparise(Fund fund, Fund fund_2)
 		{
-			/*if (fund == null && fund_2 == null) return 0;
+            /*if (fund == null && fund_2 == null) return 0;
 			if (fund == null) return 1;
 			if (fund_2 == null) return -1;*/
 			if (fund._Type != fund_2._Type) return 0;
+            if (fund.Id == fund_2.Id) return 0;
 			switch (fund._Type)
 			{
 				case QueryType.Q1:
 				case QueryType.Q11:
-					return (fund.PercentageChangeInNAV <= fund_2.PercentageChangeInNAV) ? (1) : (-1);
-				case QueryType.Q2:
+					return fund_2.PercentageChangeInNAV.CompareTo(fund.PercentageChangeInNAV);
+                    //return (fund.PercentageChangeInNAV <= fund_2.PercentageChangeInNAV) ? (1) : (-1);
+                case QueryType.Q2:
 				case QueryType.Q12:
-					return (fund.PercentageChangeInNAVLong <= fund_2.PercentageChangeInNAVLong)?(1):(-1);
+					return fund_2.PercentageChangeInNAVLong.CompareTo(fund.PercentageChangeInNAVLong);
+					//return (fund.PercentageChangeInNAVLong <= fund_2.PercentageChangeInNAVLong)?(1):(-1);
 				case QueryType.Q3:
 				case QueryType.Q13:
-                	return (fund.PerformanceScoreRank >= fund_2.PerformanceScoreRank)?(1):(-1);
+					return fund.PerformanceScoreRank.CompareTo(fund_2.PerformanceScoreRank);
+                	//return (fund.PerformanceScoreRank >= fund_2.PerformanceScoreRank)?(1):(-1);
 				case QueryType.Q4:
 				case QueryType.Q10:
 				case QueryType.Q14:
 				case QueryType.Q20:
-					return (fund.PerformanceImprovementPercentageRank >= fund_2.PerformanceImprovementPercentageRank)?(1):(-1);
+					return fund.PerformanceImprovementPercentageRank.CompareTo(fund_2.PerformanceImprovementPercentageRank);
+					//return (fund.PerformanceImprovementPercentageRank >= fund_2.PerformanceImprovementPercentageRank)?(1):(-1);
 				case QueryType.Q5:
 				case QueryType.Q15:
-                	return (fund.HighestRatingRank >= fund_2.HighestRatingRank)?(1):(-1);
+					return fund.HighestRatingRank.CompareTo(fund_2.HighestRatingRank);
+                	//return (fund.HighestRatingRank >= fund_2.HighestRatingRank)?(1):(-1);
 				case QueryType.Q6:
 				case QueryType.Q16:
-                	return (fund.DaysSinceLaunch >= fund_2.DaysSinceLaunch)?(1):(-1);
+					return fund.DaysSinceLaunch.CompareTo(fund_2.DaysSinceLaunch);
+                	//return (fund.DaysSinceLaunch >= fund_2.DaysSinceLaunch)?(1):(-1);
 				case QueryType.Q7:
 				case QueryType.Q17:
-					return (fund.OverallScoreRank >= fund_2.OverallScoreRank)?(1):(-1);
+					return fund.OverallScoreRank.CompareTo(fund_2.OverallScoreRank);
+					//return (fund.OverallScoreRank >= fund_2.OverallScoreRank)?(1):(-1);
 				case QueryType.Q8:
 				case QueryType.Q18:
-					return (fund.TodayNav <= fund_2.TodayNav)?(1):(-1);
+					return fund_2.TodayNav.CompareTo(fund.TodayNav);
+					//return (fund.TodayNav <= fund_2.TodayNav)?(1):(-1);
 				case QueryType.Q9:
 				case QueryType.Q19:
-					return (fund.TodayNav >= fund_2.TodayNav)?(1):(-1);
+					return fund.TodayNav.CompareTo(fund_2.TodayNav);
+					//return (fund.TodayNav >= fund_2.TodayNav)?(1):(-1);
 				default: return 0;
 			}
 		}

@@ -91,7 +91,7 @@ namespace frepnet
 			result._TemplateDirectory = "./templates/";
 			result._ExportDirectory = string.Format("./export/", DateTime.Now);
 			result._Separator = "|";
-			result._Shift = 0;
+			result._Shift = 3;
 			return result;
 		}
         internal static Settings Parse(string[] args)
@@ -117,7 +117,7 @@ namespace frepnet
         {
             Console.WriteLine(
 @"
-Fund Reporter 1.1 (by fixnim specially for srinivas555)
+Fund Reporter 1.2 (by fixnim specially for srinivas555)
 
 Usage: frep.exe --standard-info=STANDARD_INFO_FILE | -s STANDARD_INFO_FILE 
                 --date-wise-dir=DATE_INFO_DIR | -d DATE_INFO_DIR 
