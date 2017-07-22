@@ -1,8 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace frep2
 {
@@ -17,7 +15,7 @@ namespace frep2
                 Settings.Parse(args);
 #endif
             (new Renderer(new DataBase(settings), settings)).Export();
-            Console.ReadLine();
+            Console.WriteLine("that's all, folks!");
         }
     }
 }

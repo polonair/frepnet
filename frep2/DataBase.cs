@@ -4,10 +4,14 @@ using System.IO;
 
 namespace frep2
 {
-    internal class DataBase
+    internal partial class DataBase
     {
         private Settings _Settings;
         private Dictionary<string, Fund> _Data = new Dictionary<string, Fund>();
+        private string _Category = null;
+        private Stack<string> _CategoryStack = new Stack<string>();
+
+        public Dictionary<string, Fund> Data { get { return this._Data; } }
 
         public DataBase(Settings settings)
         {
@@ -67,14 +71,14 @@ namespace frep2
         }
         private void Calculate()
         {
-            foreach(string id in this._Data.Keys)
+            foreach (string id in this._Data.Keys)
             {
-                this.calculateTotalBondSales(id);
+                this._Data[id].Calculate();
             }
         }
-        private void calculateTotalBondSales(string id)
+        internal IEnumerable<QueryResult> Query(QueryType queryType)
         {
-            throw new NotImplementedException();
+            return frep2.Query.Create(this, queryType).GetResult();
         }
     }
 }

@@ -17,7 +17,10 @@ namespace frep2
         }
         internal void Export()
         {
-            throw new NotImplementedException();
+            foreach (Template template in this._Templates)
+            {
+                template.Query(this._DataBase).Save(this._Settings);
+            }
         }
     }
 }

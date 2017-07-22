@@ -1,13 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace frep2
 {
     partial class Fund
     {
+        private double _TotalBondSales = double.NaN;
+        private double _ValueResearchRating = double.NaN;
+        private double _YesterdayNav = double.NaN;
+        private double _TodayNav = double.NaN;
+        private double _ChangeInNAV = double.NaN;
+        private double _PercentageChangeInNAV = double.NaN;
+        private double _PerformanceScore = double.NaN;
+        private double _PerformanceScore20 = double.NaN;
+        private double _ValueResearchRating20 = double.NaN;
+        private double _TotalBondSales20 = double.NaN;
+        private double _PerformanceImprovementPercentage = double.NaN;
+        private double _PreviousNav = double.NaN;
+        private double _LowestNAV = double.NaN;
+        private double _HighestNAV = double.NaN;
+        private double _ChangeInNavLong = double.NaN;
+        private double _PercentageChangeInNAVLong = double.NaN;
+
         public string note1 { get { return this._Notes[0]; } }
         public string note2 { get { return this._Notes[1]; } }
         public string note3 { get { return this._Notes[2]; } }
@@ -15,45 +30,42 @@ namespace frep2
         public string note5 { get { return this._Notes[4]; } }
         public string note6 { get { return this._Notes[5]; } }
         public string note7 { get { return this._Notes[6]; } }
+        public DateTime fundLaunchDate { get { return this._LaunchDate; } }
         public string fundName { get { return this._Name; } }
         public double totalBondSales { get { return this._TotalBondSales; } }
-        /*
+        public double yesterdayNAV { get { return this._YesterdayNav; } }
+        public double todayNAV { get { return this._TodayNav; } }
+        public double changeInNAV { get { return this._ChangeInNAV; } }
+        public double percentageChangeInNAV { get { return this._PercentageChangeInNAV; } }
+        public double performanceScore { get { return this._PerformanceScore; } }
+        public double valueResearchRating { get { return this._ValueResearchRating; } }
+        public double todayRating { get { return this._ValueResearchRating; } }
+        public double todaySales { get { return this._TotalBondSales; } }
+        public double performanceScore20 { get { return this._PerformanceScore20; } }
+        public double valueResearchRating20 { get { return this._ValueResearchRating20; } }
+        public double totalBondSales20 { get { return this._TotalBondSales20; } }
+        public double performanceImprovementPercentage { get { return this._PerformanceImprovementPercentage; } }
+        public double previousNAV { get { return this._PreviousNav; } }
+        public double lowestNAV { get { return this._LowestNAV; } }
+        public double highestNAV { get { return this._HighestNAV; } }
+        public double navChange { get { return this._ChangeInNAV; } }
+        public double navChangePercentage { get { return this._PercentageChangeInNAV; } }
+        public double navChangeLong { get { return this._ChangeInNavLong; } }
+        public double navChangeLongPercentage { get { return this._PercentageChangeInNAVLong; } }
+/*
+        public int overallScoreRank { get { return this.OverallScoreRank; } }
         public int performanceScoreRank { get { return this.PerformanceScoreRank; } }
-        public double yesterdayNAV { get { return this.YesterdayNav; } }
-        public double todayNAV { get { return this.TodayNav; } }
-        public double changeInNAV { get { return this.ChangeInNAV; } }
-        public double percentageChangeInNAV { get { return this.PercentageChangeInNAV; } }
-        public int daysSinceLaunch { get { return this.DaysSinceLaunch; } }
-        public double performanceScore { get { return this.PerformanceScore; } }
-        public double performanceImprovementPercentage { get { return this.PerformanceImprovementPercentage; } }
-        public DateTime fundLaunchDate { get { return this._LaunchDate; } }
+        public int highestRatingRank { get { return this.HighestRatingRank; } }
         public int performanceImprovementPercentageRank { get { return this.PerformanceImprovementPercentageRank; } }
         public int valueResearchRatingRank { get { return this.HighestRatingRank; } }
-        public double overallScore { get { return this.OverallScore; } }
-        public int highestRatingRank { get { return this.HighestRatingRank; } }
-        public double valueResearchRating { get { return this.ValueResearchRating; } }
-
-        public string Note1 { get { return this._Notes[0]; } }
-        public string Note2 { get { return this._Notes[1]; } }
-        public string Note3 { get { return this._Notes[2]; } }
-        public string Note4 { get { return this._Notes[3]; } }
-        public string Note5 { get { return this._Notes[4]; } }
-        public string Note6 { get { return this._Notes[5]; } }
-        public string Note7 { get { return this._Notes[6]; } }
+        public int overallScore { get { return this.OverallScore; } }
+*/
 
         public string FundID { get { return this._Id; } }
         public string FundName { get { return this._Name; } }
         public DateTime FundLaunchDate { get { return this._LaunchDate; } }
-        public double previousNAV { get { return this.PreviousNav; } }
-        public double lowestNAV { get { return this.LowestNAV; } }
-        public double highestNAV { get { return this.HighestNAV; } }
-        public double todayRating { get { return this.ValueResearchRating; } }
-        public double todaySales { get { return this.TotalBondSales; } }
-        public double navChange { get { return this.ChangeInNAV; } }
-        public double navChangePercentage { get { return this.PercentageChangeInNAV; } }
-        public double navChangeLong { get { return this.ChangeInNavLong; } }
-        public double navChangeLongPercentage { get { return this.PercentageChangeInNAVLong; } }
-        public double overallScoreRank { get { return this.OverallScoreRank; } }
+        public int daysSinceLaunch { get { return DateTime.Now.Subtract(this._LaunchDate).Days; } }
+        public int daysSinceLaunch20 { get { return DateTime.Now.Subtract(this._LaunchDate).Days-20; } }
 
         public DateTime day1date { get { return DateTime.Now; } }
         public DateTime day2date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(1)); } }
@@ -75,14 +87,15 @@ namespace frep2
         public DateTime day18date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(17)); } }
         public DateTime day19date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(18)); } }
         public DateTime day20date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(19)); } }
-*/
-        private string __getDayNav(int shift)
-        {
-            if (this._History[shift] == null) return "None";
-            if (double.IsNaN(this._History[shift].Nav)) return "None";
-            return this._History[shift].Nav.ToString();
-        }
 
+        public string Note1 { get { return this._Notes[0]; } }
+        public string Note2 { get { return this._Notes[1]; } }
+        public string Note3 { get { return this._Notes[2]; } }
+        public string Note4 { get { return this._Notes[3]; } }
+        public string Note5 { get { return this._Notes[4]; } }
+        public string Note6 { get { return this._Notes[5]; } }
+        public string Note7 { get { return this._Notes[6]; } }
+        
         public string day1NAV { get { return this.__getDayNav(0); } }
         public string day2NAV { get { return this.__getDayNav(1); } }
         public string day3NAV { get { return this.__getDayNav(2); } }
@@ -103,5 +116,12 @@ namespace frep2
         public string day18NAV { get { return this.__getDayNav(17); } }
         public string day19NAV { get { return this.__getDayNav(18); } }
         public string day20NAV { get { return this.__getDayNav(19); } }
+        private string __getDayNav(int shift)
+        {
+            if (shift >= this.History.Length) return "None";
+            if (this._History[shift] == null) return "None";
+            if (double.IsNaN(this._History[shift].Nav)) return "None";
+            return this._History[shift].Nav.ToString();
+        }
     }
 }

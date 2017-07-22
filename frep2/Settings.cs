@@ -90,7 +90,7 @@ namespace frep2
             result._TemplateDirectory = "./templates/";
             result._ExportDirectory = string.Format("./export/", DateTime.Now);
             result._Separator = "|";
-            result._Shift = 3;
+            result._Shift = 5;
             return result;
         }
         internal static Settings Parse(string[] args)

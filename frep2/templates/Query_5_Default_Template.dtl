@@ -1,0 +1,37 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Results for: {{fundCategory}}</h1>
+	<table border=1>
+		<tr>
+			<th>Note 1</th>
+			<th>Fund Name</th>
+			<th>Value Research Rating as on Today</th>
+			<th>Total Bond Sales in Rs (Crores) as on 3.30pm Today</th>
+			<th>Fund Launch Date</th>
+			<th>No. Of Days Since Launch</th>
+			
+			<th>Value Research Rating Rank</th>
+			<th>NAV as of today</th>
+			<th>Note 2</th>
+		</tr>
+		{% for currentFund in mutualFunds %}
+		<tr>
+			<td>{{currentFund.note1}}</td>
+			<td>{{currentFund.fundName}}</td>
+			<td>{{currentFund.valueResearchRating}}</td>
+			<td>{{currentFund.totalBondSales}}</td>
+			<td>{{currentFund.fundLaunchDate|Date:"d MMMM yyyy"}}</td>
+			<td>{{currentFund.daysSinceLaunch}}</td>
+			<td>{{currentFund.valueResearchRatingRank}}</td>
+			<td>{{currentFund.todayNAV}}</td>
+			<td>{{currentFund.note2}}</td>
+		{% endfor %}
+		</tr>
+	</table>
+	<p>Page {{currentPage}} of {{totalPages}}</p>
+	<p>Generated on {{date|Date:"d MMMM yyyy"}}</p>
+</body>
+</html>

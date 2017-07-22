@@ -15,10 +15,9 @@ namespace frep2
         private string[] _Notes;
         private bool[] _IncludeIn;
 
-        private double _TotalBondSales;
-
         public string Id { get { return this._Id; } }
         public List<string> Categories { get { return this._Categories; } }
+        public History[] History { get { return this._History; } }
 
         internal static Fund Create(DataBase dataBase, string header, string line, string separator)
         {
@@ -49,6 +48,30 @@ namespace frep2
                 if ((this._History.Length-1) < di) Array.Resize<History>(ref this._History, di + 1);
                 this._History[di] = history;
             }
+        }
+        internal void Calculate()
+        {
+            this.calculateTotalBondSales();
+            this.calculateTotalBondSales20();
+            this.calculateValueResearchRating();
+            this.calculateValueResearchRating20();
+            this.calculateYesterdayNav();
+            this.calculateTodayNav();
+            this.calculateChangeInNav();
+            this.calculatePercentageChangeInNAV();
+            this.calculatePerformanceScore();
+            this.calculatePerformanceScore20();
+            this.calculatePerformanceImprovementPercentage();
+            this.calculatePreviousNav();
+            this.calculateLowestNav();
+            this.calculateHighestNav();
+            this.calculateChangeInNavLong();
+            this.calculatePercentageChangeInNAVLong();
+        }
+        internal bool IncludedIn(QueryType queryType)
+        {
+            int qi = (int)queryType;
+            return this._IncludeIn[qi - 1];
         }
     }
 }

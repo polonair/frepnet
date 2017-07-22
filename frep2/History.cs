@@ -10,10 +10,13 @@ namespace frep2
         private Fund _Fund;
         private string _FundId;
         private double _Nav;
-        private double _Value;
-        private double _Total;
+        private double _ValueResearchRating;
+        private double _TotalBondSales;
 
         public DateTime Date { get { return this._Date; } }
+        public double Nav { get { return this._Nav; } }
+        public double TotalBondSales { get { return this._TotalBondSales; } }
+        public double ValueResearchRating { get { return this._ValueResearchRating; } }
 
         internal static string GetFundId(string header, string line, string separator)
         {
@@ -29,10 +32,10 @@ namespace frep2
             result._FundId = data[0].Trim();
             result._Nav = double.NaN;
             double.TryParse(data[1].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out result._Nav);
-            result._Value = double.NaN;
-            double.TryParse(data[2].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out result._Value);
-            result._Total = double.NaN;
-            double.TryParse(data[3].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out result._Total);
+            result._ValueResearchRating = double.NaN;
+            double.TryParse(data[2].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out result._ValueResearchRating);
+            result._TotalBondSales = double.NaN;
+            double.TryParse(data[3].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out result._TotalBondSales);
 
             return result;
         }
