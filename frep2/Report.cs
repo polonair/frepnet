@@ -7,8 +7,6 @@ namespace frep2
 {
     class Report
     {
-        class mock_template { internal string Render() { return "Hello"; } }
-
         private string _Template = null;
         private List<QueryResult> _Datas = new List<QueryResult>();
         private DataBase _DataBase;
@@ -21,9 +19,8 @@ namespace frep2
         {
             if (this._Template != null)
             {
-                //DotLiquid.Template.NamingConvention = new DotLiquid.NamingConventions.CSharpNamingConvention();
-                //DotLiquid.Template template = DotLiquid.Template.Parse(this._Template);
-                mock_template template = new mock_template();
+                DotLiquid.Template.NamingConvention = new DotLiquid.NamingConventions.CSharpNamingConvention();
+                DotLiquid.Template template = DotLiquid.Template.Parse(this._Template);
 
                 foreach (QueryResult data in this._Datas)
                 {
