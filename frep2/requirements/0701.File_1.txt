@@ -1,0 +1,106 @@
+Query Fields:
+
+Header Fields of the HTML Page output:
+
+$datestamp : print date, the current date when the application ran. (Format: 1st July 2017)
+$timestamp : print time, the current time when the application ran. Indian standard Time. (Format: 8.10 am)
+$currentPageNumber : print current page number
+$nextPageNumber : current page number + 1
+$FundCategory: The category to which the generated html page belongs to. For queries 11 - 20, all categories are considered, so print as "All" in fund category place.
+
+
+
+List Fields: 
+These fields are specific to each Fund ID. Suppose if there are 50 results in page, these below fields are printed 50 times.
+
+$FundID
+$FundName
+$FundLaunchDate (Print format: 1st July 2017)
+$Note1
+$Note2
+$Note3
+$Note4
+$Note5
+$Note6
+$Note7
+
+
+$todayNAV : Print nav of Today ($day1) (the date of running application).
+$yesterdayNAV : Print nav of yesterday date ($day2) (the date of running application).
+$previousNAV : Print nav of 20 days back date from current date ($Day20)
+$lowestNAV : Print lowest nav recorded in last 20 days from current date.
+$highestNAV : Print highest nav recorded in last 20 days from current date.
+$todayRating : Print value research rating of current date.
+$todaySales : Print total bond sales of current date.
+
+
+
+$navChange : yesterday NAV - Today NAV (Today being date of running application).
+$navChange% : represent navChange in percentage.
+$navChangeLong : 20 days back NAV - Today NAV
+$navChangeLong% : represent navChangeLong in percentage.
+
+
+$daysSinceLaunch : No.of days since fund launch date to Today.
+
+$performanceScore : See formula below
+$performanceScoreRank : Fund with highest performance score in specific fund category/overall (depending on query) will get Rank 1, next Rank 2......
+
+$performanceScoreImprovement% : See formula below
+$performanceScoreImprovement% Rank : Fund with highest performance score improvement % in specific fund category/overall (depending on query) will get Rank 1, next Rank 2......
+
+$highestRatingRank : Fund with highest value research rating in a specific fund category/overall (depending on query) will get Rank 1 followed by Rank 2......
+
+$overallScore : see formula below.
+$overallScoreRank : Fund with lowest overall score in a specific fund category/overall (depending on query) will get Rank 1 followed by Rank 2......
+
+$day1date: today date
+$day2date: yesterday date
+$day3date: day before yesterday date
+........
+$day20date: continue printing dates upto last 20 dates.
+
+
+$day1NAV : today nav of Fund
+$day2NAV : yesterday nav of Fund
+$day3NAV : day before yesterday nav of fund
+........
+$day20NAV : print nav of fund upto last 20 dates. (If NAV of any date is not available, then print "N/A")
+
+
+That's it.
+
+
+Formula's:
+
+Performance score = (value research rating * total bond sales) / No.of days since launch
+Performance score improvement % = compare todays performance score to 20 days back performance score of that fund (represent in percentage).
+Overall score = performance score rank number + performance improvement % rank number + highest rating rank number
+
+
+Queries:
+
+Query 1) sorted by navChange% (highest to lowest)
+Query 2) sorted by navChangeLong% (highest to lowest)
+Query 3) sorted by performanceScoreRank (Rank 1, rank 2, rank 3...)
+Query 4) sorted by performanceScoreImprovement% Rank (Rank 1, rank 2, rank 3....)
+Query 5) sorted by highestRatingRank (Rank 1, rank 2, rank 3....)
+Query 6) sorted by daysSinceLaunch (lowest number to highest number)
+Query 7) sorted by overallScore rank (Rank 1, rank 2, rank 3...)
+Query 8) sorted by todayNAV (highest to lowest)
+Query 9) sorted by todayNAV (lowest to highest)
+Query 10) sorted by performanceScoreImprovement% Rank (Rank 1, rank 2, rank 3....) [This query is exactly same as query 4. Just a copy].
+
+
+Query 11 - 20: Are same as query 1 - 10. The difference being 1 - 10 calculate & output results within category. Query 11 - 20 are irrespective of categories (They calculate among all categories).
+
+
+
+--------------------------------Html printing--------------------------------------------
+
+1) Print only 50 results per html page. Then print remaining in next pages.
+
+2) Just print 3 pages, no need to print all pages. I mean just print 3 pages as output for each category. For queries 11 - 20, just print 3 pages per query.
+
+3) For NAV queries (1, 2, 11, 12): Output only if NAV Change value is positive. Don't output "0" nav change or negative nav change fund id's in the output results.
+
