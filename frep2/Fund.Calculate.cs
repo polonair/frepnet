@@ -85,7 +85,7 @@ namespace frep2
             {
                 double average = 0;
                 int count = 0;
-                int countFrom = Math.Min(this.History.Length, 20);
+                int countFrom = Math.Min(this.History.Length-1, 20);
                 for (int i = countFrom; i > 10 && count < 5; i--)
                 {
                     if (this.History[i] != null && !double.IsNaN(this.History[i].Nav))
