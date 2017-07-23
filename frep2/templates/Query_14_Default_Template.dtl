@@ -31,7 +31,7 @@
 			<td>{{currentFund.performanceScoreRank}}</td>
 			<td>{{currentFund.performanceImprovementPercentageRank}}</td>
 			<td>{{currentFund.highestRatingRank}}</td>
-			<td>{{currentFund.todayNAV}}</td>
+			<td>{{currentFund.todayNAV|FrepNavFormat}}</td>
 			<td>{{currentFund.note2}}</td>
 		{% endfor %}
 		</tr>

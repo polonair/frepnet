@@ -25,6 +25,7 @@ namespace frep2
             result._DataBase = dataBase;
             result._Header = header;
             result._History = new History[] { };
+            line = line.Replace('�', ' '); //NBSP -> SP
             string[] data = line.Split(new string[] { separator }, StringSplitOptions.None);
             result._Id = data[0].Trim();
             if (result._Id.Length < 1) return null;

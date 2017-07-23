@@ -52,9 +52,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotLiquid, Version=2.0.145.0, Culture=neutral, PublicKeyToken=82e46016ecf9f07c, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotLiquid.2.0.145\lib\net45\DotLiquid.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -63,9 +60,73 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase.cs" />
-    <Compile Include="DataBase.Calculate.cs">
-      <DependentUpon>DataBase.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DotLiquid\ActivatorTagFactory.cs" />
+    <Compile Include="DotLiquid\Block.cs" />
+    <Compile Include="DotLiquid\Condition.cs" />
+    <Compile Include="DotLiquid\Context.cs" />
+    <Compile Include="DotLiquid\Document.cs" />
+    <Compile Include="DotLiquid\Drop.cs" />
+    <Compile Include="DotLiquid\Exceptions\ArgumentException.cs" />
+    <Compile Include="DotLiquid\Exceptions\ContextException.cs" />
+    <Compile Include="DotLiquid\Exceptions\FileSystemException.cs" />
+    <Compile Include="DotLiquid\Exceptions\FilterNotFoundException.cs" />
+    <Compile Include="DotLiquid\Exceptions\InterruptException.cs" />
+    <Compile Include="DotLiquid\Exceptions\LiquidException.cs" />
+    <Compile Include="DotLiquid\Exceptions\StackLevelException.cs" />
+    <Compile Include="DotLiquid\Exceptions\SyntaxException.cs" />
+    <Compile Include="DotLiquid\Exceptions\VariableNotFoundException.cs" />
+    <Compile Include="DotLiquid\FileSystems\BlankFileSystem.cs" />
+    <Compile Include="DotLiquid\FileSystems\EmbeddedFileSystem.cs" />
+    <Compile Include="DotLiquid\FileSystems\IFileSystem.cs" />
+    <Compile Include="DotLiquid\FileSystems\ITemplateFileSystem.cs" />
+    <Compile Include="DotLiquid\FileSystems\LocalFileSystem.cs" />
+    <Compile Include="DotLiquid\Hash.cs" />
+    <Compile Include="DotLiquid\IContextAware.cs" />
+    <Compile Include="DotLiquid\IIndexable.cs" />
+    <Compile Include="DotLiquid\ILiquidizable.cs" />
+    <Compile Include="DotLiquid\IRenderable.cs" />
+    <Compile Include="DotLiquid\ITagFactory.cs" />
+    <Compile Include="DotLiquid\IValueTypeConvertible.cs" />
+    <Compile Include="DotLiquid\Liquid.cs" />
+    <Compile Include="DotLiquid\LiquidTypeAttribute.cs" />
+    <Compile Include="DotLiquid\NamingConventions\CSharpNamingConvention.cs" />
+    <Compile Include="DotLiquid\NamingConventions\INamingConvention.cs" />
+    <Compile Include="DotLiquid\NamingConventions\RubyNamingConvention.cs" />
+    <Compile Include="DotLiquid\Proc.cs" />
+    <Compile Include="DotLiquid\RenderParameters.cs" />
+    <Compile Include="DotLiquid\StandardFilters.cs" />
+    <Compile Include="DotLiquid\Strainer.cs" />
+    <Compile Include="DotLiquid\Tag.cs" />
+    <Compile Include="DotLiquid\Tags\Assign.cs" />
+    <Compile Include="DotLiquid\Tags\Block.cs" />
+    <Compile Include="DotLiquid\Tags\Break.cs" />
+    <Compile Include="DotLiquid\Tags\Capture.cs" />
+    <Compile Include="DotLiquid\Tags\Case.cs" />
+    <Compile Include="DotLiquid\Tags\Comment.cs" />
+    <Compile Include="DotLiquid\Tags\Continue.cs" />
+    <Compile Include="DotLiquid\Tags\Cycle.cs" />
+    <Compile Include="DotLiquid\Tags\Extends.cs" />
+    <Compile Include="DotLiquid\Tags\For.cs" />
+    <Compile Include="DotLiquid\Tags\Html\TableRow.cs" />
+    <Compile Include="DotLiquid\Tags\If.cs" />
+    <Compile Include="DotLiquid\Tags\IfChanged.cs" />
+    <Compile Include="DotLiquid\Tags\Include.cs" />
+    <Compile Include="DotLiquid\Tags\Literal.cs" />
+    <Compile Include="DotLiquid\Tags\Raw.cs" />
+    <Compile Include="DotLiquid\Tags\Unless.cs" />
+    <Compile Include="DotLiquid\Template.cs" />
+    <Compile Include="DotLiquid\Util\EnumerableExtensionMethods.cs" />
+    <Compile Include="DotLiquid\Util\ExpressionUtility.cs" />
+    <Compile Include="DotLiquid\Util\ListExtensionMethods.cs" />
+    <Compile Include="DotLiquid\Util\ObjectExtensionMethods.cs" />
+    <Compile Include="DotLiquid\Util\R.cs" />
+    <Compile Include="DotLiquid\Util\Range.cs" />
+    <Compile Include="DotLiquid\Util\StrFTime.cs" />
+    <Compile Include="DotLiquid\Util\Symbol.cs" />
+    <Compile Include="DotLiquid\Util\TypeUtility.cs" />
+    <Compile Include="DotLiquid\Util\WeakTable.cs" />
+    <Compile Include="DotLiquid\Variable.cs" />
+    <Compile Include="FrepFilters.cs" />
     <Compile Include="Fund.Calculate.cs">
       <DependentUpon>Fund.cs</DependentUpon>
     </Compile>
@@ -120,7 +181,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
     <None Include="templates\Query_10_Default_Template.dtl" />
     <None Include="templates\Query_11_Default_Template.dtl" />
     <None Include="templates\Query_12_Default_Template.dtl" />

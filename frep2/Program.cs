@@ -8,6 +8,7 @@ namespace frep2
     {
         static void Main(string[] args)
         {
+            DotLiquid.Template.RegisterFilter(typeof(FrepFilters));
             Settings settings =
 #if DEBUG
                 Settings.DummyParse();

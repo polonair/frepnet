@@ -44,6 +44,7 @@ namespace frep2.Queries
             Fund f = this._DataBase.Data[id];
 
             if ((!f.IncludedIn(QueryType.Q8)) ||
+                double.IsNaN(f.todayNAV) ||
                 (
                     double.IsNaN(f.valueResearchRating) &&
                     double.IsNaN(f.totalBondSales) &&

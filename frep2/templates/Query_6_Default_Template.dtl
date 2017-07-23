@@ -23,7 +23,7 @@
 			<td>{{currentFund.totalBondSales}}</td>
 			<td>{{currentFund.fundLaunchDate|Date:"d MMMM yyyy"}}</td>
 			<td>{{currentFund.daysSinceLaunch}}</td>
-			<td>{{currentFund.todayNAV}}</td>
+			<td>{{currentFund.todayNAV|FrepNavFormat}}</td>
 			<td>{{currentFund.note2}}</td>
 		{% endfor %}
 		</tr>

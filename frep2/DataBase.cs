@@ -4,11 +4,10 @@ using System.IO;
 
 namespace frep2
 {
-    internal partial class DataBase
+    internal class DataBase
     {
         private Settings _Settings;
         private Dictionary<string, Fund> _Data = new Dictionary<string, Fund>();
-        private string _Category = null;
         private Stack<string> _CategoryStack = new Stack<string>();
 
         public Dictionary<string, Fund> Data { get { return this._Data; } }

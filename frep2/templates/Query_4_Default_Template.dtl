@@ -29,7 +29,7 @@
 			<td>{{currentFund.performanceScore|Round:2}}</td>
 			<td>{{currentFund.performanceImprovementPercentageRank}}</td>
 			<td>{{currentFund.performanceImprovementPercentage|Round:2}}</td>
-			<td>{{currentFund.todayNAV}}</td>
+			<td>{{currentFund.todayNAV|FrepNavFormat}}</td>
 			<td>{{currentFund.note2}}</td>
 		{% endfor %}
 		</tr>
