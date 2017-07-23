@@ -26,6 +26,7 @@ namespace frep2.Queries
             foreach (string category in byCategory.Keys)
             {
                 List<string> keys = new List<string>(byCategory[category]);
+                this.CalculateRanks(keys);
                 keys.Sort(new Comparison<string>(delegate(string a, string b)
                 {
                     double x = this._DataBase.Data[a].percentageChangeInNAV;
@@ -43,10 +44,11 @@ namespace frep2.Queries
             Fund f = this._DataBase.Data[id];
 
             if ((f.History.Length < 1) ||
+                (double.IsNaN(f.yesterdayNAV)) ||
                 (!f.IncludedIn(QueryType.Q1)) ||
                 (
                     double.IsNaN(f.valueResearchRating) && 
-                    double.IsNaN(f.totalBondSales) && 
+                    double.IsNaN(f.totalBondSales) &&
                     double.IsNaN(f.todayNAV)
                 ) ||
                 (f.percentageChangeInNAV <= 0) ||

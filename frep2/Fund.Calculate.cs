@@ -6,6 +6,27 @@ namespace frep2
 {
     partial class Fund
     {
+        internal void SetPerformanceScoreRank(int i)
+        {
+            this._PerformanceScoreRank = i;
+        }
+        internal void SetPerformanceImprovementPercentageRank(int v)
+        {
+            this._PerformanceImprovementPercentageRank = v;
+        }
+        internal void SetHighestRatingRank(int v)
+        {
+            this._HighestRatingRank = v;
+        }
+        internal void SetOverallScore(int v)
+        {
+            this._OverallScore = v;
+        }
+        internal void SetOverallScoreRank(int v)
+        {
+            this._OverallScoreRank = v;
+        }
+
         private void calculatePercentageChangeInNAVLong()
         {
             double result = double.NaN;

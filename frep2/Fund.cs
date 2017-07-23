@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace frep2
 {
-    internal partial class Fund
+    internal partial class Fund : DotLiquid.Drop
     {
         private DataBase _DataBase;
         private string _Header;

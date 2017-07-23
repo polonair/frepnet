@@ -26,6 +26,7 @@ namespace frep2.Queries
             foreach (string category in byCategory.Keys)
             {
                 List<string> keys = new List<string>(byCategory[category]);
+                this.CalculateRanks(keys);
                 keys.Sort(new Comparison<string>(delegate(string a, string b)
                 {
                     double x = this._DataBase.Data[a].performanceScore;
@@ -33,6 +34,8 @@ namespace frep2.Queries
                     //return x.CompareTo(y);
                     return y.CompareTo(x);
                 }));
+                int i = 1;
+                foreach(string key in keys) this._DataBase.Data[key].SetPerformanceScoreRank(i++);
                 result.Add(new QueryResult(QueryType.Q3, category, keys));
             }
 

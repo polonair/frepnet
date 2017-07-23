@@ -55,8 +55,12 @@ namespace frep2
                             case QueryType.Q10:
                             case QueryType.Q20: replace = "trending-new-funds-on-bse"; break;
                         }
-
+#if DEBUG
+                        string fn = string.Format("{3}-{0}-{1}-page{2}.html", category, replace, i + 1, data.Type);
+#else
                         string fn = string.Format("{0}-{1}-page{2}.html", category, replace, i + 1);
+#endif
+
                         fn = this.EscapeFileName(fn);
 
                         Dictionary<string, object> env = new Dictionary<string, object>();
@@ -73,7 +77,7 @@ namespace frep2
                         env.Add("datestamp", DateTime.Now);
                         env.Add("timestamp", string.Format("{0:hh.mm tt }", DateTime.Now));
 
-                        string content = template.Render();
+                        string content = template.Render(DotLiquid.Hash.FromDictionary(env));
 
                         if (!Directory.Exists(settings.ExportDirectory)) Directory.CreateDirectory(settings.ExportDirectory);
                         File.WriteAllText(string.Format("{0}/{1}", settings.ExportDirectory, fn), content);

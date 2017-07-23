@@ -28,7 +28,7 @@
 			<td>{{ currentFund.todayNAV }}</td>
 			<td>{{ currentFund.note2 }}</td>
 			<td>{{ currentFund.changeInNAV|Round:0 }}</td>
-			<td>{{ currentFund.percentageChangeInNAV }}</td>
+			<td>{{ currentFund.percentageChangeInNAV|Round:2 }}%</td>
 		</tr>
 		{% endfor -%}
 	</table>

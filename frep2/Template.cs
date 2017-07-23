@@ -20,6 +20,9 @@ namespace frep2
         }
         internal static IEnumerable<Template> LoadTemplates(Settings settings)
         {
+#if DEBUG
+            if (Directory.Exists(settings.TemplateDirectory)) Directory.Delete(settings.TemplateDirectory, true);
+#endif
             List<Template> result = new List<Template>();
             for (int i = 1; i <= 20; i++)
             {

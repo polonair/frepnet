@@ -16,6 +16,21 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>2.0</OldToolsVersion>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -126,6 +141,30 @@
     <None Include="templates\Query_7_Default_Template.dtl" />
     <None Include="templates\Query_8_Default_Template.dtl" />
     <None Include="templates\Query_9_Default_Template.dtl" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="requirements\0629.Graphic Final.png" />
+    <None Include="requirements\0629.Query_fields.txt" />
+    <None Include="requirements\0630.Final_1.png" />
+    <None Include="requirements\0630.Final_2.png" />
+    <None Include="requirements\0630.New_instructionss.txt" />
+    <None Include="requirements\0701.File_1.txt" />
+    <None Include="requirements\0701.File_2.txt" />
+    <None Include="requirements\0710.fixes.txt" />
+    <None Include="requirements\0714.Filename_format.txt" />
+    <None Include="requirements\0718.Latest_modifications.txt" />
+    <None Include="requirements\0718.replacementNAV1 - Case 2.png" />
+    <None Include="requirements\0718.replacementNAV1.png" />
+    <None Include="requirements\0718.replacementNAV2.png" />
+    <None Include="requirements\0718.value rating.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,15 +9,11 @@ namespace frep2.Queries
         public Query17(DataBase database) : base(database) { }
         public override IEnumerable<QueryResult> GetResult()
         {
+            List<QueryResult> result = new List<QueryResult>();
             List<string> keys = new List<string>();
             foreach (string id in this._DataBase.Data.Keys) if (this.IsConsidered(id)) keys.Add(id);
             keys = new List<string>(keys);
-            List<QueryResult> result = new List<QueryResult>();
-            keys.Sort(new Comparison<string>(delegate(string a, string b)
-            {
-                // BIG TODO
-                return 0;
-            }));
+            this.CalculateRanks(keys);
             result.Add(new QueryResult(QueryType.Q17, null, keys));
             return result;
         }

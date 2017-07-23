@@ -1,0 +1,35 @@
+1) Program is not outputting Query 11 and Query 12.
+
+2) A FundID can belong to multiple categories (But its fundName, FundLaunchDate will be same always).
+Currently the program is giving error if a FundID is listed in multiple categories, Showing error like "Fund ID 'ZBA5HJ8909' duplicated at line no.583".
+So in simple words, allow duplicate fundID in standard file if its fundName, FundLaunchDate are same across the duplications. 
+But don't allow duplications in dynamic file. In dynamic file all fundID's are unique and appear only one time.
+
+4) {{fundLaunchDate}}. (Print format: 1st July 2017). So is it possible to print in such format? (And don't print time, print just date).
+
+5) Decimal Points: some values are too much lengthy after decimal point like 0.426542288557214 and not good to look.
+navChange% : Just output as 15%, 22%, 4%, 9%.....in such style. If not possible, limit value to 2 decimal points.
+performanceScore, performanceImprovementScore: Limit value to 2 decimal points. For example, instead of 0.426542288557214, please print it as  0.43
+
+6) Query 1 & Query 2: I expected Reverse order.
+You currently followed {{todayNAV}}-{{yesterdayNAV}} format.
+Okay, Continue following that formula. But, Please reverse the current sorting order.
+But don't print the negative sign (-) infront of {{navChange}} & {{navChange%}} values.
+My concept is to show the Mutual Fund that largely lost value on the top.
+APPLICABLE FOR EVERY QUERY: "If {{navChange}} & {{navChange%}} values are positive, print their value as "0" instead of their real value".
+
+7) Query 3: PerformanceScoreRank is given in reverse order.
+
+8) Query 4: PerformanceImprovementScoreRank is given in reverse order.
+
+9) Query 5: Highest rating Rank is given in reverse order.
+
+10) Query 6: Working correctly.
+
+11) Query 7: Depends on other queries, so giving incorrect results. But sorting/ranking is correct.
+
+Query 8,9 are working perfectly.
+
+Query10 is just a copy of query4.
+
+And also please apply the Above mentioned fixes for Query11- Query20 as well.

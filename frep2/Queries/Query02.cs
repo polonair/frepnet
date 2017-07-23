@@ -26,6 +26,7 @@ namespace frep2.Queries
             foreach (string category in byCategory.Keys)
             {
                 List<string> keys = new List<string>(byCategory[category]);
+                this.CalculateRanks(keys);
                 keys.Sort(new Comparison<string>(delegate(string a, string b)
                 {
                     double x = this._DataBase.Data[a].navChangeLongPercentage;

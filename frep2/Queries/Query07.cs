@@ -22,18 +22,12 @@ namespace frep2.Queries
                 }
             }
             List<QueryResult> result = new List<QueryResult>();
-
             foreach (string category in byCategory.Keys)
             {
                 List<string> keys = new List<string>(byCategory[category]);
-                keys.Sort(new Comparison<string>(delegate(string a, string b)
-                {
-                    // BIG TODO
-                    return 0;
-                }));
+                this.CalculateRanks(keys);
                 result.Add(new QueryResult(QueryType.Q7, category, keys));
             }
-
             return result;
         }
         protected override bool IsConsidered(string id)

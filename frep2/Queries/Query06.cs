@@ -26,12 +26,13 @@ namespace frep2.Queries
             foreach (string category in byCategory.Keys)
             {
                 List<string> keys = new List<string>(byCategory[category]);
+                this.CalculateRanks(keys);
                 keys.Sort(new Comparison<string>(delegate(string a, string b)
                 {
                     double x = this._DataBase.Data[a].daysSinceLaunch;
                     double y = this._DataBase.Data[b].daysSinceLaunch;
-                    //return x.CompareTo(y);
-                    return y.CompareTo(x);
+                    return x.CompareTo(y);
+                    //return y.CompareTo(x);
                 }));
                 result.Add(new QueryResult(QueryType.Q6, category, keys));
             }
