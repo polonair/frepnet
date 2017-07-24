@@ -6,7 +6,7 @@ namespace frep2.Queries
 {
     class Query01 : Query
     {
-        public Query01(DataBase database) : base(database) { }
+        public Query01(Settings settings, DataBase database) : base(settings, database) { this._QueryType = QueryType.Q1; }
         public override IEnumerable<QueryResult> GetResult()
         {
             Dictionary<string, List<string>> byCategory = new Dictionary<string, List<string>>();
@@ -43,6 +43,8 @@ namespace frep2.Queries
         {
             Fund f = this._DataBase.Data[id];
 
+            if (!base.IsConsidered(id)) return false;
+
             if ((f.History.Length < 1) ||
                 (double.IsNaN(f.yesterdayNAV)) ||
                 (!f.IncludedIn(QueryType.Q1)) ||
@@ -52,6 +54,7 @@ namespace frep2.Queries
                     double.IsNaN(f.todayNAV)
                 ) ||
                 (f.percentageChangeInNAV <= 0) ||
+                double.IsNaN(f.percentageChangeInNAV) ||
                 (
                     (f.History.Length > 0) && 
                     ((f.History[0] == null) || (double.IsNaN(f.History[0].Nav)))

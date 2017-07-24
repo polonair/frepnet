@@ -77,7 +77,7 @@ namespace frep2
         }
         internal IEnumerable<QueryResult> Query(QueryType queryType)
         {
-            return frep2.Query.Create(this, queryType).GetResult();
+            return frep2.Query.Create(this._Settings, this, queryType).GetResult();
         }
     }
 }

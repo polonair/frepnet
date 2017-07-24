@@ -16,6 +16,7 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>2.0</OldToolsVersion>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,7 +29,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -163,6 +163,8 @@
     <Compile Include="Queries\Query18.cs" />
     <Compile Include="Queries\Query19.cs" />
     <Compile Include="Queries\Query20.cs" />
+    <Compile Include="QueryRestrictions.cs" />
+    <Compile Include="QueryRestrictor.cs" />
     <Compile Include="QueryResult.cs" />
     <Compile Include="QueryType.cs" />
     <Compile Include="Renderer.cs" />

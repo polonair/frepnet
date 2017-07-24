@@ -6,7 +6,7 @@ namespace frep2.Queries
 {
     class Query03: Query
     {
-        public Query03(DataBase database) : base(database) { }
+        public Query03(Settings settings, DataBase database) : base(settings, database) { this._QueryType = QueryType.Q3; }
         public override IEnumerable<QueryResult> GetResult()
         {
             Dictionary<string, List<string>> byCategory = new Dictionary<string, List<string>>();
@@ -34,8 +34,8 @@ namespace frep2.Queries
                     //return x.CompareTo(y);
                     return y.CompareTo(x);
                 }));
-                int i = 1;
-                foreach(string key in keys) this._DataBase.Data[key].SetPerformanceScoreRank(i++);
+                //int i = 1;
+                //foreach(string key in keys) this._DataBase.Data[key].SetPerformanceScoreRank(i++);
                 result.Add(new QueryResult(QueryType.Q3, category, keys));
             }
 
@@ -44,6 +44,8 @@ namespace frep2.Queries
         protected override bool IsConsidered(string id)
         {
             Fund f = this._DataBase.Data[id];
+
+            if (!base.IsConsidered(id)) return false;
 
             if ((!f.IncludedIn(QueryType.Q3)) ||
                 double.IsNaN(f.todayNAV) ||

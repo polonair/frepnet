@@ -6,7 +6,7 @@ namespace frep2.Queries
 {
     class Query07: Query
     {
-        public Query07(DataBase database) : base(database) { }
+        public Query07(Settings settings, DataBase database) : base(settings, database) { this._QueryType = QueryType.Q7; }
         public override IEnumerable<QueryResult> GetResult()
         {
             Dictionary<string, List<string>> byCategory = new Dictionary<string, List<string>>();
@@ -34,7 +34,12 @@ namespace frep2.Queries
         {
             Fund f = this._DataBase.Data[id];
 
+            if (!base.IsConsidered(id)) return false;
+
             if ((!f.IncludedIn(QueryType.Q7)) ||
+                (!f.IncludedIn(QueryType.Q3)) ||
+                (!f.IncludedIn(QueryType.Q4)) ||
+                (!f.IncludedIn(QueryType.Q5)) ||
                 double.IsNaN(f.todayNAV) ||
                 (
                     double.IsNaN(f.valueResearchRating) &&

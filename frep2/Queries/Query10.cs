@@ -6,7 +6,7 @@ namespace frep2.Queries
 {
     class Query10: Query
     {
-        public Query10(DataBase database) : base(database) { }
+        public Query10(Settings settings, DataBase database) : base(settings, database) { this._QueryType = QueryType.Q10; }
         public override IEnumerable<QueryResult> GetResult()
         {
             Dictionary<string, List<string>> byCategory = new Dictionary<string, List<string>>();
@@ -44,6 +44,8 @@ namespace frep2.Queries
         protected override bool IsConsidered(string id)
         {
             Fund f = this._DataBase.Data[id];
+
+            if (!base.IsConsidered(id)) return false;
 
             if ((!f.IncludedIn(QueryType.Q10)) ||
                 double.IsNaN(f.todayNAV) ||
