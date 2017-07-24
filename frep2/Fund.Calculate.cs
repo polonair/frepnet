@@ -221,7 +221,7 @@ namespace frep2
             double result = 0;
             for (int i = 0; i < this.History.Length; i++)
             {
-                if (this.History[i] != null)
+                if (this.History[i] != null && !double.IsNaN(this.History[i].TotalBondSales))
                 {
                     result = this.History[i].TotalBondSales;
                     break;
@@ -234,7 +234,7 @@ namespace frep2
             double result = 0;
             for (int i = 0; i < this.History.Length; i++)
             {
-                if (this.History[i] != null)
+                if (this.History[i] != null && !double.IsNaN(this.History[i].ValueResearchRating))
                 {
                     result = this.History[i].ValueResearchRating;
                     break;
