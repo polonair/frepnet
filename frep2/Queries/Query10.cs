@@ -12,7 +12,7 @@ namespace frep2.Queries
             Dictionary<string, List<string>> byCategory = new Dictionary<string, List<string>>();
             foreach (string id in this._DataBase.Data.Keys)
             {
-                if (this.IsConsidered(id))
+                if (this._DataBase.Data[id].IsConsidered(this._Settings, this._QueryType))
                 {
                     foreach (string category in this._DataBase.Data[id].Categories)
                     {
@@ -25,8 +25,9 @@ namespace frep2.Queries
 
             foreach (string category in byCategory.Keys)
             {
+                this._DataBase.Category = category;
                 List<string> keys = new List<string>(byCategory[category]);
-                this.CalculateRanks(keys);
+                //this.CalculateRanks(keys);
                 keys.Sort(new Comparison<string>(delegate(string a, string b)
                 {
                     double x = this._DataBase.Data[a].performanceImprovementPercentage;
@@ -34,28 +35,13 @@ namespace frep2.Queries
                     //return x.CompareTo(y);
                     return y.CompareTo(x);
                 }));
-                int i = 1;
-                foreach (string key in keys) this._DataBase.Data[key].SetPerformanceImprovementPercentageRank(i++);
+                //int i = 1;
+                //foreach (string key in keys) this._DataBase.Data[key].SetPerformanceImprovementPercentageRank(i++);
                 result.Add(new QueryResult(QueryType.Q10, category, keys));
+                this._DataBase.Category = "All";
             }
 
             return result;
-        }
-        protected override bool IsConsidered(string id)
-        {
-            Fund f = this._DataBase.Data[id];
-
-            if (!base.IsConsidered(id)) return false;
-
-            if ((!f.IncludedIn(QueryType.Q10)) ||
-                double.IsNaN(f.todayNAV) ||
-                (
-                    double.IsNaN(f.valueResearchRating) &&
-                    double.IsNaN(f.totalBondSales) &&
-                    double.IsNaN(f.todayNAV)
-                ))
-                return false;
-            return true;
         }
     }
 }

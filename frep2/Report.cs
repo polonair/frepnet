@@ -32,6 +32,7 @@ namespace frep2
                     {
                         string category = string.IsNullOrEmpty(data.Category) ? "All" : data.Category;
                         string replace = "";
+
                         switch (data.Type)
                         {
                             case QueryType.Q1:
@@ -62,7 +63,7 @@ namespace frep2
 #endif
 
                         fn = this.EscapeFileName(fn);
-
+                        this._DataBase.Category = category;
                         Dictionary<string, object> env = new Dictionary<string, object>();
 
                         env.Add("fundCategory", category);

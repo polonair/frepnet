@@ -12,7 +12,7 @@ namespace frep2.Queries
             Dictionary<string, List<string>> byCategory = new Dictionary<string, List<string>>();
             foreach (string id in this._DataBase.Data.Keys)
             {
-                if (this.IsConsidered(id))
+                if (this._DataBase.Data[id].IsConsidered(this._Settings, this._QueryType))
                 {
                     foreach (string category in this._DataBase.Data[id].Categories)
                     {
@@ -25,8 +25,9 @@ namespace frep2.Queries
 
             foreach (string category in byCategory.Keys)
             {
+                this._DataBase.Category = category;
                 List<string> keys = new List<string>(byCategory[category]);
-                this.CalculateRanks(keys);
+                //this.CalculateRanks(keys);
                 keys.Sort(new Comparison<string>(delegate(string a, string b)
                 {
                     double x = this._DataBase.Data[a].navChangeLongPercentage;
@@ -35,31 +36,10 @@ namespace frep2.Queries
                     return y.CompareTo(x);
                 }));
                 result.Add(new QueryResult(QueryType.Q2, category, keys));
+                this._DataBase.Category = "All";
             }
 
             return result;
-        }
-        protected override bool IsConsidered(string id)
-        {
-            Fund f = this._DataBase.Data[id];
-
-            if (!base.IsConsidered(id)) return false;
-
-            if ((f.History.Length < 1) ||
-                (!f.IncludedIn(QueryType.Q2)) ||
-                (
-                    double.IsNaN(f.valueResearchRating) &&
-                    double.IsNaN(f.totalBondSales) &&
-                    double.IsNaN(f.todayNAV)
-                ) ||
-                (f.percentageChangeInNAV <= 0) ||
-                double.IsNaN(f.percentageChangeInNAV) ||
-                (
-                    (f.History.Length > 1) &&
-                    ((f.History[0] == null) || (double.IsNaN(f.History[0].Nav)))
-                ))
-                return false;
-            return true;
         }
     }
 }

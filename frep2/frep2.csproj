@@ -60,6 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase.cs" />
+    <Compile Include="DataBase.Ranking.cs">
+      <DependentUpon>DataBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="DotLiquid\ActivatorTagFactory.cs" />
     <Compile Include="DotLiquid\Block.cs" />
     <Compile Include="DotLiquid\Condition.cs" />
@@ -128,6 +131,9 @@
     <Compile Include="DotLiquid\Variable.cs" />
     <Compile Include="FrepFilters.cs" />
     <Compile Include="Fund.Calculate.cs">
+      <DependentUpon>Fund.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fund.Considering.cs">
       <DependentUpon>Fund.cs</DependentUpon>
     </Compile>
     <Compile Include="Fund.cs" />

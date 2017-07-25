@@ -4,13 +4,15 @@ using System.IO;
 
 namespace frep2
 {
-    internal class DataBase
+    internal partial class DataBase
     {
         private Settings _Settings;
         private Dictionary<string, Fund> _Data = new Dictionary<string, Fund>();
         private Stack<string> _CategoryStack = new Stack<string>();
+        private string _Category = "All";
 
         public Dictionary<string, Fund> Data { get { return this._Data; } }
+        public string Category { get { return this._Category; } set { this._Category = value; } }
 
         public DataBase(Settings settings)
         {
@@ -66,9 +68,10 @@ namespace frep2
                 }
             }
             else throw new Exception(string.Format("Directory \"{0}\" doesn't exist", this._Settings.DateWiseDirectory));
-            this.Calculate();
+            this.CalculateStatic();
+            this.CalculateRanks();
         }
-        private void Calculate()
+        private void CalculateStatic()
         {
             foreach (string id in this._Data.Keys)
             {

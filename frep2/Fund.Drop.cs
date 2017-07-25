@@ -22,11 +22,11 @@ namespace frep2
         private double _HighestNAV = double.NaN;
         private double _ChangeInNavLong = double.NaN;
         private double _PercentageChangeInNAVLong = double.NaN;
-        private int _PerformanceScoreRank = 0;
+        /*private int _PerformanceScoreRank = 0;
         private int _PerformanceImprovementPercentageRank = 0;
         private int _HighestRatingRank = 0;
         private int _OverallScore = 0;
-        private int _OverallScoreRank = 0;
+        private int _OverallScoreRank = 0;*/
 
         public string note1 { get { return this._Notes[0]; } }
         public string note2 { get { return this._Notes[1]; } }
@@ -58,12 +58,12 @@ namespace frep2
         public double navChangeLong { get { return this._ChangeInNavLong; } }
         public double navChangeLongPercentage { get { return this._PercentageChangeInNAVLong; } }
 
-        public int overallScoreRank { get { return this._OverallScoreRank; } }
-        public int performanceScoreRank { get { return this._PerformanceScoreRank; } }
-        public int highestRatingRank { get { return this._HighestRatingRank; } }
-        public int performanceImprovementPercentageRank { get { return this._PerformanceImprovementPercentageRank; } }
-        public int valueResearchRatingRank { get { return this._HighestRatingRank; } }
-        public int overallScore { get { return this._OverallScore; } }
+        public int overallScoreRank { get { return  this._OverallScoreRanks[this._DataBase.Category]; } }
+        public int performanceScoreRank { get { return this._PerformanceScoreRanks[this._DataBase.Category]; } }
+        public int highestRatingRank { get { return this._HighestRatingRanks[this._DataBase.Category]; } }
+        public int performanceImprovementPercentageRank { get { return this._PerformanceImprovementPercentageRanks[this._DataBase.Category]; } }
+        public int valueResearchRatingRank { get { return this._HighestRatingRanks[this._DataBase.Category]; } }
+        public int overallScore { get { return this._OverallScores[this._DataBase.Category]; } }
 
 
         public string FundID { get { return this._Id; } }
