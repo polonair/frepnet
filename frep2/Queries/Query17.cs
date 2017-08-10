@@ -13,7 +13,10 @@ namespace frep2.Queries
             List<QueryResult> result = new List<QueryResult>();
             List<string> keys = new List<string>();
             foreach (string id in this._DataBase.Data.Keys) 
-                if (this._DataBase.Data[id].IsConsidered(this._Settings, this._QueryType)) 
+                if (this._DataBase.Data[id].IsConsidered(this._Settings, QueryType.Q13) &&
+                    this._DataBase.Data[id].IsConsidered(this._Settings, QueryType.Q14) &&
+                    this._DataBase.Data[id].IsConsidered(this._Settings, QueryType.Q15) &&
+                    this._DataBase.Data[id].IsConsidered(this._Settings, QueryType.Q17))
                     keys.Add(id);
             keys = new List<string>(keys);
             //this.CalculateRanks(keys);

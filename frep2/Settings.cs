@@ -112,9 +112,9 @@ namespace frep2
             result._TemplateDirectory = "./templates/";
             result._ExportDirectory = string.Format("./export/", DateTime.Now);
             result._Separator = "|";
-            result._Shift = 9;//25.07.17
 
             //result.Restrictions.Add(QueryType.Q1, QueryRestrictor.Parse("v1,t1"));
+            result._Shift = 25;//10.08.17
             return result;
         }
         internal static Settings Parse(string[] args)
@@ -140,7 +140,7 @@ namespace frep2
         {
             Console.WriteLine(
 @"
-Fund Reporter 2.0.5 (by fixnim specially for srinivas555)
+Fund Reporter 2.0.6 (by fixnim specially for srinivas555)
 
 Usage: frep.exe --standard-info=STANDARD_INFO_FILE | -s STANDARD_INFO_FILE 
                 --date-wise-dir=DATE_INFO_DIR | -d DATE_INFO_DIR 

@@ -12,7 +12,10 @@ namespace frep2.Queries
             Dictionary<string, List<string>> byCategory = new Dictionary<string, List<string>>();
             foreach (string id in this._DataBase.Data.Keys)
             {
-                if (this._DataBase.Data[id].IsConsidered(this._Settings, this._QueryType))
+                if (this._DataBase.Data[id].IsConsidered(this._Settings, QueryType.Q3) &&
+                    this._DataBase.Data[id].IsConsidered(this._Settings, QueryType.Q4) &&
+                    this._DataBase.Data[id].IsConsidered(this._Settings, QueryType.Q5) &&
+                    this._DataBase.Data[id].IsConsidered(this._Settings, QueryType.Q7))
                 {
                     foreach (string category in this._DataBase.Data[id].Categories)
                     {
