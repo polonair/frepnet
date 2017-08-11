@@ -173,6 +173,7 @@
     <Compile Include="QueryRestrictor.cs" />
     <Compile Include="QueryResult.cs" />
     <Compile Include="QueryType.cs" />
+    <Compile Include="RankType.cs" />
     <Compile Include="Renderer.cs" />
     <Compile Include="Report.cs" />
     <Compile Include="Settings.cs" />

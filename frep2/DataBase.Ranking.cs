@@ -158,9 +158,9 @@ namespace frep2
                 foreach (string id in keys[category])
                 {
                     this.Data[id].SetOverallScore(
-                        this.Data[id].performanceImprovementPercentageRank + 
-                        this.Data[id].performanceScoreRank + 
-                        this.Data[id].highestRatingRank,
+                        this.Data[id].performanceImprovementPercentageRank.Value + 
+                        this.Data[id].performanceScoreRank.Value + 
+                        this.Data[id].highestRatingRank.Value,
                         category);
                 }
                 this.Category = "All";
@@ -198,8 +198,8 @@ namespace frep2
                 this.Category = category;
                 keys[category].Sort(new Comparison<string>(delegate(string a, string b)
                 {
-                    double x = this.Data[a].overallScore;
-                    double y = this.Data[b].overallScore;
+                    double x = this.Data[a].overallScore.Value;
+                    double y = this.Data[b].overallScore.Value;
                     return x.CompareTo(y);
                     //return y.CompareTo(x);// 
                 }));

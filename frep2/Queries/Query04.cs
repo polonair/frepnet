@@ -30,8 +30,8 @@ namespace frep2.Queries
                 //this.CalculateRanks(keys);
                 keys.Sort(new Comparison<string>(delegate(string a, string b)
                 {
-                    double x = this._DataBase.Data[a].performanceImprovementPercentageRank;
-                    double y = this._DataBase.Data[b].performanceImprovementPercentageRank;
+                    double x = this._DataBase.Data[a].performanceImprovementPercentageRank.Value;
+                    double y = this._DataBase.Data[b].performanceImprovementPercentageRank.Value;
                     return x.CompareTo(y);
                     //return y.CompareTo(x);
                 }));

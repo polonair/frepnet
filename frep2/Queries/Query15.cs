@@ -19,6 +19,10 @@ namespace frep2.Queries
             //this.CalculateRanks(keys);
             keys.Sort(new Comparison<string>(delegate(string a, string b)
             {
+                double x = this._DataBase.Data[a].highestRatingRank.Value;
+                double y = this._DataBase.Data[b].highestRatingRank.Value;
+                return x.CompareTo(y);
+                /*
                 double x = this._DataBase.Data[a].valueResearchRating;
                 double y = this._DataBase.Data[b].valueResearchRating;
                 int r = y.CompareTo(x);
@@ -31,6 +35,7 @@ namespace frep2.Queries
                 y = this._DataBase.Data[b].daysSinceLaunch;
                 r = x.CompareTo(y);
                 return r;
+                */
             }));
             result.Add(new QueryResult(QueryType.Q15, null, keys));
             return result;

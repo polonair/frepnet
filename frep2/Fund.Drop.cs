@@ -58,19 +58,73 @@ namespace frep2
         public double navChangeLong { get { return this._ChangeInNavLong; } }
         public double navChangeLongPercentage { get { return this._PercentageChangeInNAVLong; } }
 
-        public int overallScoreRank { get { return  this._OverallScoreRanks[this._DataBase.Category]; } }
-        public int performanceScoreRank { get { return this._PerformanceScoreRanks[this._DataBase.Category]; } }
-        public int highestRatingRank { get { return this._HighestRatingRanks[this._DataBase.Category]; } }
-        public int performanceImprovementPercentageRank { get { return this._PerformanceImprovementPercentageRanks[this._DataBase.Category]; } }
-        public int valueResearchRatingRank { get { return this._HighestRatingRanks[this._DataBase.Category]; } }
-        public int overallScore { get { return this._OverallScores[this._DataBase.Category]; } }
+        public RankType overallScoreRank
+        {
+            get
+            {
+                if (this._OverallScoreRanks.ContainsKey(this._DataBase.Category))
+                    return RankType.FromInt(this._OverallScoreRanks[this._DataBase.Category]);
+                else
+                    return RankType.NA;                
+            }
+        }
+        public RankType performanceScoreRank
+        {
+            get
+            {
+                if (this._PerformanceScoreRanks.ContainsKey(this._DataBase.Category))
+                    return RankType.FromInt(this._PerformanceScoreRanks[this._DataBase.Category]);
+                else
+                    return RankType.NA;                
+            }
+        }
+        public RankType highestRatingRank
+        {
+            get
+            {
+                if (this._HighestRatingRanks.ContainsKey(this._DataBase.Category))
+                    return RankType.FromInt(this._HighestRatingRanks[this._DataBase.Category]);
+                else
+                    return RankType.NA;                
+            }
+        }
+        public RankType performanceImprovementPercentageRank
+        {
+            get
+            {
+                if (this._PerformanceImprovementPercentageRanks.ContainsKey(this._DataBase.Category))
+                    return RankType.FromInt(this._PerformanceImprovementPercentageRanks[this._DataBase.Category]);
+                else
+                    return RankType.NA;                
+            }
+        }
+        public RankType valueResearchRatingRank
+        {
+            get
+            {
+                if (this._HighestRatingRanks.ContainsKey(this._DataBase.Category))
+                    return RankType.FromInt(this._HighestRatingRanks[this._DataBase.Category]);
+                else
+                    return RankType.NA;                
+            }
+        }
+        public RankType overallScore
+        {
+            get
+            {
+                if (this._OverallScores.ContainsKey(this._DataBase.Category))
+                    return RankType.FromInt(this._OverallScores[this._DataBase.Category]);
+                else
+                    return RankType.NA;
+            }
+        }
 
 
         public string FundID { get { return this._Id; } }
         public string FundName { get { return this._Name; } }
         public DateTime FundLaunchDate { get { return this._LaunchDate; } }
         public int daysSinceLaunch { get { return DateTime.Now.Subtract(this._LaunchDate).Days; } }
-        public int daysSinceLaunch20 { get { return DateTime.Now.Subtract(this._LaunchDate).Days-20; } }
+        public int daysSinceLaunch20 { get { return DateTime.Now.Subtract(this._LaunchDate).Days - 20; } }
 
         public DateTime day1date { get { return DateTime.Now; } }
         public DateTime day2date { get { return DateTime.Now.Subtract(TimeSpan.FromDays(1)); } }
@@ -100,7 +154,7 @@ namespace frep2
         public string Note5 { get { return this._Notes[4]; } }
         public string Note6 { get { return this._Notes[5]; } }
         public string Note7 { get { return this._Notes[6]; } }
-        
+
         public string day1NAV { get { return this.__getDayNav(0); } }
         public string day2NAV { get { return this.__getDayNav(1); } }
         public string day3NAV { get { return this.__getDayNav(2); } }

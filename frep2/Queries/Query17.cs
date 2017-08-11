@@ -22,8 +22,8 @@ namespace frep2.Queries
             //this.CalculateRanks(keys);
             keys.Sort(new Comparison<string>(delegate(string a, string b)
             {
-                double x = this._DataBase.Data[a].overallScoreRank;
-                double y = this._DataBase.Data[b].overallScoreRank;
+                double x = this._DataBase.Data[a].overallScoreRank.Value;
+                double y = this._DataBase.Data[b].overallScoreRank.Value;
                 return x.CompareTo(y);
                 //return y.CompareTo(x);
             }));
