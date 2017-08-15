@@ -6,25 +6,35 @@ namespace frep2
 {
     partial class Fund
     {
-        internal void SetPerformanceScoreRank(int i)
+        private Dictionary<string, int> _PerformanceScoreRanks = new Dictionary<string,int>();
+        internal void SetPerformanceScoreRank(int i, string category)
         {
-            this._PerformanceScoreRank = i;
+            if (this._PerformanceScoreRanks.ContainsKey(category)) this._PerformanceScoreRanks[category] = i;
+            else this._PerformanceScoreRanks.Add(category, i);
         }
-        internal void SetPerformanceImprovementPercentageRank(int v)
+        private Dictionary<string, int> _PerformanceImprovementPercentageRanks = new Dictionary<string, int>();
+        internal void SetPerformanceImprovementPercentageRank(int i, string category)
         {
-            this._PerformanceImprovementPercentageRank = v;
+            if (this._PerformanceImprovementPercentageRanks.ContainsKey(category)) this._PerformanceImprovementPercentageRanks[category] = i;
+            else this._PerformanceImprovementPercentageRanks.Add(category, i);
         }
-        internal void SetHighestRatingRank(int v)
+        private Dictionary<string, int> _HighestRatingRanks = new Dictionary<string, int>();
+        internal void SetHighestRatingRank(int i, string category)
         {
-            this._HighestRatingRank = v;
+            if (this._HighestRatingRanks.ContainsKey(category)) this._HighestRatingRanks[category] = i;
+            else this._HighestRatingRanks.Add(category, i);
         }
-        internal void SetOverallScore(int v)
+        private Dictionary<string, int> _OverallScores = new Dictionary<string, int>();
+        internal void SetOverallScore(int i, string category)
         {
-            this._OverallScore = v;
+            if (this._OverallScores.ContainsKey(category)) this._OverallScores[category] = i;
+            else this._OverallScores.Add(category, i);
         }
-        internal void SetOverallScoreRank(int v)
+        private Dictionary<string, int> _OverallScoreRanks = new Dictionary<string, int>();
+        internal void SetOverallScoreRank(int i, string category)
         {
-            this._OverallScoreRank = v;
+            if (this._OverallScoreRanks.ContainsKey(category)) this._OverallScoreRanks[category] = i;
+            else this._OverallScoreRanks.Add(category, i);
         }
 
         private void calculatePercentageChangeInNAVLong()
@@ -85,7 +95,7 @@ namespace frep2
             {
                 double average = 0;
                 int count = 0;
-                int countFrom = Math.Min(this.History.Length, 20);
+                int countFrom = Math.Min(this.History.Length-1, 20);
                 for (int i = countFrom; i > 10 && count < 5; i--)
                 {
                     if (this.History[i] != null && !double.IsNaN(this.History[i].Nav))
@@ -221,7 +231,7 @@ namespace frep2
             double result = 0;
             for (int i = 0; i < this.History.Length; i++)
             {
-                if (this.History[i] != null)
+                if (this.History[i] != null && !double.IsNaN(this.History[i].TotalBondSales))
                 {
                     result = this.History[i].TotalBondSales;
                     break;
@@ -234,7 +244,7 @@ namespace frep2
             double result = 0;
             for (int i = 0; i < this.History.Length; i++)
             {
-                if (this.History[i] != null)
+                if (this.History[i] != null && !double.IsNaN(this.History[i].ValueResearchRating))
                 {
                     result = this.History[i].ValueResearchRating;
                     break;

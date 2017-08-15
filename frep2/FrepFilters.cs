@@ -16,5 +16,17 @@ namespace frep2
             if (double.TryParse(value, out v)) return string.Format("Rs {0:F2}", v);
             return "NA";
         }
+        public static string FrepFnEscape(object input)
+        {
+            string value = input.ToString().Trim();
+            string result = "";
+            foreach (char c in value)
+            {
+                if (char.IsLetterOrDigit(c) || c == '.') result += c;
+                else result += '-';
+                while (result != result.Replace("--", "-")) result = result.Replace("--", "-");
+            }
+            return result.ToLowerInvariant().Trim('-');
+        }
     }
 }

@@ -24,6 +24,7 @@ namespace frep2
         }
         internal static History Create(DateTime date, string header, string line, Fund fund, string separator)
         {
+            double value;
             History result = new History();
             result._Date = date;
             result._Header = header;
@@ -31,11 +32,11 @@ namespace frep2
             string[] data = line.Split(new string[] { separator }, StringSplitOptions.None);
             result._FundId = data[0].Trim();
             result._Nav = double.NaN;
-            double.TryParse(data[1].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out result._Nav);
             result._ValueResearchRating = double.NaN;
-            double.TryParse(data[2].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out result._ValueResearchRating);
             result._TotalBondSales = double.NaN;
-            double.TryParse(data[3].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out result._TotalBondSales);
+            if (double.TryParse(data[1].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out value)) result._Nav = value;
+            if (double.TryParse(data[2].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out value)) result._ValueResearchRating = value;
+            if (double.TryParse(data[3].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out value)) result._TotalBondSales = value;
 
             return result;
         }

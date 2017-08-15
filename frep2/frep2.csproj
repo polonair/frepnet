@@ -16,6 +16,7 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>2.0</OldToolsVersion>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -28,7 +29,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -60,6 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBase.cs" />
+    <Compile Include="DataBase.Ranking.cs">
+      <DependentUpon>DataBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="DotLiquid\ActivatorTagFactory.cs" />
     <Compile Include="DotLiquid\Block.cs" />
     <Compile Include="DotLiquid\Condition.cs" />
@@ -130,6 +133,9 @@
     <Compile Include="Fund.Calculate.cs">
       <DependentUpon>Fund.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fund.Considering.cs">
+      <DependentUpon>Fund.cs</DependentUpon>
+    </Compile>
     <Compile Include="Fund.cs" />
     <Compile Include="Fund.Drop.cs">
       <DependentUpon>Fund.cs</DependentUpon>
@@ -163,8 +169,11 @@
     <Compile Include="Queries\Query18.cs" />
     <Compile Include="Queries\Query19.cs" />
     <Compile Include="Queries\Query20.cs" />
+    <Compile Include="QueryRestrictions.cs" />
+    <Compile Include="QueryRestrictor.cs" />
     <Compile Include="QueryResult.cs" />
     <Compile Include="QueryType.cs" />
+    <Compile Include="RankType.cs" />
     <Compile Include="Renderer.cs" />
     <Compile Include="Report.cs" />
     <Compile Include="Settings.cs" />

@@ -16,7 +16,15 @@ namespace frep2
                 if (args.Length < 1) Settings.PrintHelp();
                 this._Arguments = Environment.CommandLine.Substring(Environment.CommandLine.IndexOf(args[0]));
             }
-            internal void Parse(ref string standard, ref string date, ref string template, ref string export, ref string separator, ref bool help, ref int shift)
+            internal void Parse(
+                ref string standard, 
+                ref string date, 
+                ref string template, 
+                ref string export, 
+                ref string separator, 
+                ref bool help, 
+                ref int shift,
+                QueryRestrictions restrictors)
             {
                 string[] args = this._Arguments.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < args.Length; i++)
@@ -58,6 +66,18 @@ namespace frep2
                 }
                 if (this._Parsed.ContainsKey("--help")) help = true;
                 if (this._Parsed.ContainsKey("-h")) help = true;
+                foreach(string key in this._Parsed.Keys)
+                {
+                    if (key.StartsWith("-q") && key.Length > 2)
+                    {
+                        int q = 0;
+                        if (int.TryParse(key.Substring(2), out q) && (q>=1 && q<=20))
+                        {
+                            QueryRestrictor r = QueryRestrictor.Parse(this._Parsed[key]);
+                            if (r != null) restrictors.Add((QueryType)q, r);
+                        }
+                    }
+                }
             }
         }
 
@@ -69,6 +89,7 @@ namespace frep2
         private string _Separator;
         private string _Date;
         private int _Shift;
+        private QueryRestrictions _Restrictions = new QueryRestrictions();
 
         public string Standard { get { return Path.Combine(this._CurrentDirectory, this._Standard); } }
         public string DateWiseDirectory { get { return Path.Combine(this._CurrentDirectory, this._DateWiseDirectory); } }
@@ -76,6 +97,7 @@ namespace frep2
         public string TemplateDirectory { get { return Path.Combine(this._CurrentDirectory, this._TemplateDirectory); } }
         public string Separator { get { return this._Separator; } }
         public int Shift { get { return this._Shift; } }
+        public QueryRestrictions Restrictions { get { return this._Restrictions; } }
 
         private Settings()
         {
@@ -90,7 +112,9 @@ namespace frep2
             result._TemplateDirectory = "./templates/";
             result._ExportDirectory = string.Format("./export/", DateTime.Now);
             result._Separator = "|";
-            result._Shift = 7;
+
+            //result.Restrictions.Add(QueryType.Q1, QueryRestrictor.Parse("v1,t1"));
+            result._Shift = 26;//11.08.17
             return result;
         }
         internal static Settings Parse(string[] args)
@@ -106,7 +130,7 @@ namespace frep2
 
             Parser parser = new Parser(args);
 
-            parser.Parse(ref result._Standard, ref result._DateWiseDirectory, ref result._TemplateDirectory, ref result._ExportDirectory, ref result._Separator, ref help, ref result._Shift);
+            parser.Parse(ref result._Standard, ref result._DateWiseDirectory, ref result._TemplateDirectory, ref result._ExportDirectory, ref result._Separator, ref help, ref result._Shift, result._Restrictions);
 
             if (help) Settings.PrintHelp();
 
@@ -116,28 +140,36 @@ namespace frep2
         {
             Console.WriteLine(
 @"
-Fund Reporter 2.0 (by fixnim specially for srinivas555)
+Fund Reporter 2.0.7 (by fixnim specially for srinivas555)
 
 Usage: frep.exe --standard-info=STANDARD_INFO_FILE | -s STANDARD_INFO_FILE 
                 --date-wise-dir=DATE_INFO_DIR | -d DATE_INFO_DIR 
                 [--template-dir=TEMPLATE_DIR | -t TEMPLATE_DIR] 
                 [--export-dir=EXPORT_DIR | -x EXPORT_DIR]
                 [--csv-separator=SEPARATOR | -c SEPARATOR]
+                [-q(1..20)=QUERY_RESTRICTION ]
 
     STANDARD_INFO_FILE - csv-file with standard fund information;
     DATE_INFO_DIR      - directory with date-wise csv-files;
     TEMPLATE_DIR       - directory with templates (optional, default value './template/');
     EXPORT_DIR         - directory where to export reports (optional, default value './export/');
-    SEPARATOR          - symbol used to separate values in csv (optional, default value '|').
+    SEPARATOR          - symbol used to separate values in csv (optional, default value '|');
+    QUERY_RESTRICTION  - restrictions for query.
 
-Examples:    
+Restriction format:
+    [[v|t]VALUE][,[t|v]VALUE], for example: v200,t54 means that if fund vrr <= 200 and tbs <= 54 
+    then it will be ignored for query.
+
+Examples:
     frep.exe -s Standard.csv -d ./import
     frep.exe -s Standard.csv -d ./import -c ;
     frep.exe --standard-info=Standard.csv --date-wise-dir=./import --csv-separator=;
     frep.exe -s Standard.csv -d ./import -t ./templates -x ./export -c |
+    frep.exe -s Standard.csv -d ./import -q1 v100,t5 -q2 v5,t2
 
 Note:
-    Do not use directory names with spaces.
+    - do not use directories with spaces in its' names;
+    - do not use spaces in QUERY_RESTRICTION.
 ");
             Environment.Exit(0);
         }

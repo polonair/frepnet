@@ -6,13 +6,13 @@ namespace frep2.Queries
 {
     class Query06: Query
     {
-        public Query06(DataBase database) : base(database) { }
+        public Query06(Settings settings, DataBase database) : base(settings, database) { this._QueryType = QueryType.Q6; }
         public override IEnumerable<QueryResult> GetResult()
         {
             Dictionary<string, List<string>> byCategory = new Dictionary<string, List<string>>();
             foreach (string id in this._DataBase.Data.Keys)
             {
-                if (this.IsConsidered(id))
+                if (this._DataBase.Data[id].IsConsidered(this._Settings, this._QueryType))
                 {
                     foreach (string category in this._DataBase.Data[id].Categories)
                     {
@@ -25,8 +25,9 @@ namespace frep2.Queries
 
             foreach (string category in byCategory.Keys)
             {
+                this._DataBase.Category = category;
                 List<string> keys = new List<string>(byCategory[category]);
-                this.CalculateRanks(keys);
+                //this.CalculateRanks(keys);
                 keys.Sort(new Comparison<string>(delegate(string a, string b)
                 {
                     double x = this._DataBase.Data[a].daysSinceLaunch;
@@ -35,23 +36,10 @@ namespace frep2.Queries
                     //return y.CompareTo(x);
                 }));
                 result.Add(new QueryResult(QueryType.Q6, category, keys));
+                this._DataBase.Category = "All";
             }
 
             return result;
-        }
-        protected override bool IsConsidered(string id)
-        {
-            Fund f = this._DataBase.Data[id];
-
-            if ((!f.IncludedIn(QueryType.Q6)) ||
-                double.IsNaN(f.todayNAV) ||
-                (
-                    double.IsNaN(f.valueResearchRating) &&
-                    double.IsNaN(f.totalBondSales) &&
-                    double.IsNaN(f.todayNAV)
-                ))
-                return false;
-            return true;
         }
     }
 }

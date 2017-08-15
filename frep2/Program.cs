@@ -16,7 +16,6 @@ namespace frep2
                 Settings.Parse(args);
 #endif
             (new Renderer(new DataBase(settings), settings)).Export();
-            Console.WriteLine("that's all, folks!");
         }
     }
 }

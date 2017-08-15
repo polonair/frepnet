@@ -32,6 +32,7 @@ namespace frep2
                     {
                         string category = string.IsNullOrEmpty(data.Category) ? "All" : data.Category;
                         string replace = "";
+
                         switch (data.Type)
                         {
                             case QueryType.Q1:
@@ -62,7 +63,7 @@ namespace frep2
 #endif
 
                         fn = this.EscapeFileName(fn);
-
+                        this._DataBase.Category = category;
                         Dictionary<string, object> env = new Dictionary<string, object>();
 
                         env.Add("fundCategory", category);
@@ -70,8 +71,8 @@ namespace frep2
                         env.Add("mutualFunds", data.GetSlice(this._DataBase, i * 50, 50));
                         env.Add("currentPage", i + 1);
                         env.Add("currentPageNumber", i + 1);
-                        env.Add("nextPage", ((i + 1) >= pages) ? (0) : (i + 2));
-                        env.Add("nextPageNumber", ((i + 1) >= pages) ? (0) : (i + 2));
+                        env.Add("nextPage", ((i + 1) >= pages) ? (1) : (i + 2));
+                        env.Add("nextPageNumber", ((i + 1) >= pages) ? (1) : (i + 2));
                         env.Add("totalPages", pages);
                         env.Add("date", DateTime.Now);
                         env.Add("datestamp", DateTime.Now);
