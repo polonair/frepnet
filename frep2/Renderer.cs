@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace frep2
 {
@@ -17,10 +18,17 @@ namespace frep2
         }
         internal void Export()
         {
+            int count = 0;
             foreach (Template template in this._Templates)
             {
-                template.Query(this._DataBase).Save(this._Settings);
+                count++;
+                ThreadPool.QueueUserWorkItem(new WaitCallback((object o) =>
+                {
+                    template.Query(this._DataBase).Save(this._Settings);
+                    count--;
+                }));
             }
+            while (count > 0) Thread.Sleep(1000);
         }
     }
 }

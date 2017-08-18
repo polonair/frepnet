@@ -9,7 +9,8 @@ namespace frep2.Queries
         public Query17(Settings settings, DataBase database) : base(settings, database) { this._QueryType = QueryType.Q17; }
         public override IEnumerable<QueryResult> GetResult()
         {
-            this._DataBase.Category = "All";
+            string category = "All";
+            //this._DataBase.Category = "All";
             List<QueryResult> result = new List<QueryResult>();
             List<string> keys = new List<string>();
             foreach (string id in this._DataBase.Data.Keys) 
@@ -22,8 +23,8 @@ namespace frep2.Queries
             //this.CalculateRanks(keys);
             keys.Sort(new Comparison<string>(delegate(string a, string b)
             {
-                double x = this._DataBase.Data[a].overallScoreRank.Value;
-                double y = this._DataBase.Data[b].overallScoreRank.Value;
+                double x = this._DataBase.Data[a].overallScoreRank[category];
+                double y = this._DataBase.Data[b].overallScoreRank[category];
                 return x.CompareTo(y);
                 //return y.CompareTo(x);
             }));

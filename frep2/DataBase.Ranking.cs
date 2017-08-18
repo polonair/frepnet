@@ -154,16 +154,16 @@ namespace frep2
 
             foreach (string category in keys.Keys)
             {
-                this.Category = category;
+                //this.Category = category;
                 foreach (string id in keys[category])
                 {
                     this.Data[id].SetOverallScore(
-                        this.Data[id].performanceImprovementPercentageRank.Value + 
-                        this.Data[id].performanceScoreRank.Value + 
-                        this.Data[id].highestRatingRank.Value,
+                        this.Data[id].performanceImprovementPercentageRank[category] + 
+                        this.Data[id].performanceScoreRank[category] + 
+                        this.Data[id].highestRatingRank[category],
                         category);
                 }
-                this.Category = "All";
+                //this.Category = "All";
             }
         }
         private void _CalculateOverallScoreRank()
@@ -195,15 +195,15 @@ namespace frep2
 
             foreach (string category in keys.Keys)
             {
-                this.Category = category;
+                //this.Category = category;
                 keys[category].Sort(new Comparison<string>(delegate(string a, string b)
                 {
-                    double x = this.Data[a].overallScore.Value;
-                    double y = this.Data[b].overallScore.Value;
+                    double x = this.Data[a].overallScore[category];
+                    double y = this.Data[b].overallScore[category];
                     return x.CompareTo(y);
                     //return y.CompareTo(x);// 
                 }));
-                this.Category = "All";
+                //this.Category = "All";
                 int i = 1;
                 foreach (string id in keys[category])
                 {

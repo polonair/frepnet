@@ -357,7 +357,7 @@ namespace DotLiquid
             scope = scope ?? Environments.LastOrDefault() ?? Scopes.Last();
             variable = variable ?? LookupAndEvaluate(scope, key);
 
-            variable = Liquidize(variable);
+            variable = Liquidize(variable, this);
             if (variable is IContextAware contextAwareVariable)
             {
                 contextAwareVariable.Context = this;
@@ -412,7 +412,7 @@ namespace DotLiquid
                 if (@object is KeyValuePair<string, object> && ((KeyValuePair<string, object>)@object).Key == (string)part)
                 {
                     object res = ((KeyValuePair<string, object>)@object).Value;
-                    @object = Liquidize(res);
+                    @object = Liquidize(res, this);
                 }
                 // If object is a hash- or array-like object we look for the
                 // presence of the key and if its available we return it
@@ -420,7 +420,7 @@ namespace DotLiquid
                 {
                     // If its a proc we will replace the entry with the proc
                     object res = LookupAndEvaluate(@object, part);
-                    @object = Liquidize(res);
+                    @object = Liquidize(res, this);
                 }
                 // Some special cases. If the part wasn't in square brackets and
                 // no key with the same name was found we interpret following calls
@@ -523,15 +523,19 @@ namespace DotLiquid
             return value;
         }
 
-        private static object Liquidize(object obj)
+        private static object Liquidize(object obj, Context ctx)
         {
             if (obj == null)
             { 
                 return obj;
             }
             if (obj is ILiquidizable liquidizableObj)
-            { 
+            {
                 return liquidizableObj.ToLiquid();
+            }
+            if (obj is ILiquidizableWithContext liquidizableObj2)
+            {
+                return liquidizableObj2.ToLiquid(ctx);
             }
             if (obj is string)
             { 

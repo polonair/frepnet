@@ -87,6 +87,7 @@
     <Compile Include="DotLiquid\IContextAware.cs" />
     <Compile Include="DotLiquid\IIndexable.cs" />
     <Compile Include="DotLiquid\ILiquidizable.cs" />
+    <Compile Include="DotLiquid\ILiquidizableWithContext.cs" />
     <Compile Include="DotLiquid\IRenderable.cs" />
     <Compile Include="DotLiquid\ITagFactory.cs" />
     <Compile Include="DotLiquid\IValueTypeConvertible.cs" />

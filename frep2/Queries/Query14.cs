@@ -9,7 +9,8 @@ namespace frep2.Queries
         public Query14(Settings settings, DataBase database) : base(settings, database) { this._QueryType = QueryType.Q14; }
         public override IEnumerable<QueryResult> GetResult()
         {
-            this._DataBase.Category = "All";
+            //string category = "All";
+            //this._DataBase.Category = "All";
             List<QueryResult> result = new List<QueryResult>();
             List<string> keys = new List<string>();
             foreach (string id in this._DataBase.Data.Keys)

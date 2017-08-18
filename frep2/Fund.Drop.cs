@@ -58,67 +58,12 @@ namespace frep2
         public double navChangeLong { get { return this._ChangeInNavLong; } }
         public double navChangeLongPercentage { get { return this._PercentageChangeInNAVLong; } }
 
-        public RankType overallScoreRank
-        {
-            get
-            {
-                if (this._OverallScoreRanks.ContainsKey(this._DataBase.Category))
-                    return RankType.FromInt(this._OverallScoreRanks[this._DataBase.Category]);
-                else
-                    return RankType.NA;                
-            }
-        }
-        public RankType performanceScoreRank
-        {
-            get
-            {
-                if (this._PerformanceScoreRanks.ContainsKey(this._DataBase.Category))
-                    return RankType.FromInt(this._PerformanceScoreRanks[this._DataBase.Category]);
-                else
-                    return RankType.NA;                
-            }
-        }
-        public RankType highestRatingRank
-        {
-            get
-            {
-                if (this._HighestRatingRanks.ContainsKey(this._DataBase.Category))
-                    return RankType.FromInt(this._HighestRatingRanks[this._DataBase.Category]);
-                else
-                    return RankType.NA;                
-            }
-        }
-        public RankType performanceImprovementPercentageRank
-        {
-            get
-            {
-                if (this._PerformanceImprovementPercentageRanks.ContainsKey(this._DataBase.Category))
-                    return RankType.FromInt(this._PerformanceImprovementPercentageRanks[this._DataBase.Category]);
-                else
-                    return RankType.NA;                
-            }
-        }
-        public RankType valueResearchRatingRank
-        {
-            get
-            {
-                if (this._HighestRatingRanks.ContainsKey(this._DataBase.Category))
-                    return RankType.FromInt(this._HighestRatingRanks[this._DataBase.Category]);
-                else
-                    return RankType.NA;                
-            }
-        }
-        public RankType overallScore
-        {
-            get
-            {
-                if (this._OverallScores.ContainsKey(this._DataBase.Category))
-                    return RankType.FromInt(this._OverallScores[this._DataBase.Category]);
-                else
-                    return RankType.NA;
-            }
-        }
-
+        public RankType overallScoreRank { get { return this._OverallScoreRanks; } }
+        public RankType performanceScoreRank { get { return this._PerformanceScoreRanks; } }
+        public RankType highestRatingRank { get { return this._HighestRatingRanks; } }
+        public RankType performanceImprovementPercentageRank { get { return this._PerformanceImprovementPercentageRanks; } }
+        public RankType valueResearchRatingRank { get { return this._HighestRatingRanks; } }
+        public RankType overallScore { get { return this._OverallScores; } }
 
         public string FundID { get { return this._Id; } }
         public string FundName { get { return this._Name; } }

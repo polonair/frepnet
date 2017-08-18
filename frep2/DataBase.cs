@@ -8,11 +8,11 @@ namespace frep2
     {
         private Settings _Settings;
         private Dictionary<string, Fund> _Data = new Dictionary<string, Fund>();
-        private Stack<string> _CategoryStack = new Stack<string>();
-        private string _Category = "All";
+        //private Stack<string> _CategoryStack = new Stack<string>();
+        //private string _Category = "All";
 
         public Dictionary<string, Fund> Data { get { return this._Data; } }
-        public string Category { get { return this._Category; } set { this._Category = value; } }
+        //public string Category { get { return this._Category; } set { this._Category = value; } }
 
         public DataBase(Settings settings)
         {
@@ -52,7 +52,7 @@ namespace frep2
                     try { date = UTIL.ParseOrdinalDateTime(d); }
                     catch { continue; }
 
-                    if (DateTime.Now.Subtract(date).Days < 31)
+                    if (DateTime.Now.Subtract(date).Days < (31 + this._Settings.Shift))
                     {
                         string[] content = File.ReadAllLines(file);
                         string header = content[0];

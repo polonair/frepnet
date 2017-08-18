@@ -114,7 +114,7 @@ namespace frep2
             result._Separator = "|";
 
             //result.Restrictions.Add(QueryType.Q1, QueryRestrictor.Parse("v1,t1,n1"));
-            result._Shift = 26;//11.08.17
+            result._Shift = 33;//18.08.17
             return result;
         }
         internal static Settings Parse(string[] args)

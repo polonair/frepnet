@@ -25,20 +25,20 @@ namespace frep2.Queries
 
             foreach (string category in byCategory.Keys)
             {
-                this._DataBase.Category = category;
+                //this._DataBase.Category = category;
                 List<string> keys = new List<string>(byCategory[category]);
                 //this.CalculateRanks(keys);
                 keys.Sort(new Comparison<string>(delegate(string a, string b)
                 {
-                    double x = this._DataBase.Data[a].highestRatingRank.Value;
-                    double y = this._DataBase.Data[b].highestRatingRank.Value;
+                    double x = this._DataBase.Data[a].highestRatingRank[category];
+                    double y = this._DataBase.Data[b].highestRatingRank[category];
                     return x.CompareTo(y);
                     //return y.CompareTo(x);
                 }));
                 //int i = 1;
                 //foreach (string key in keys) this._DataBase.Data[key].SetHighestRatingRank(i++);
                 result.Add(new QueryResult(QueryType.Q5, category, keys));
-                this._DataBase.Category = "All";
+                //this._DataBase.Category = "All";
             }
 
             return result;

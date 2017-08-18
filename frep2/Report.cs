@@ -63,7 +63,7 @@ namespace frep2
 #endif
 
                         fn = this.EscapeFileName(fn);
-                        this._DataBase.Category = category;
+                        //this._DataBase.Category = category;
                         Dictionary<string, object> env = new Dictionary<string, object>();
 
                         env.Add("fundCategory", category);
