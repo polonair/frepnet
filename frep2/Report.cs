@@ -7,15 +7,15 @@ namespace frep2
 {
     class Report
     {
-        private string _Template = null;
+        protected string _Template = null;
         private List<QueryResult> _Datas = new List<QueryResult>();
-        private DataBase _DataBase;
+        protected DataBase _DataBase;
 
         public string Template { get { return this._Template; } set { this._Template = value; } }
 
         public Report(DataBase database) { this._DataBase = database; }
         internal void AddResult(QueryResult r) { this._Datas.Add(r); }
-        public void Save(Settings settings)
+        public virtual void Save(Settings settings)
         {
             if (this._Template != null)
             {
@@ -86,7 +86,7 @@ namespace frep2
                 }
             }
         }
-        string EscapeFileName(string fn)
+        protected string EscapeFileName(string fn)
         {
             string result = "";
             foreach (char c in fn)

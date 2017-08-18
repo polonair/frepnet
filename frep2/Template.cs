@@ -7,10 +7,10 @@ namespace frep2
     internal class Template
     {
 
-        private string _Content;
+        protected string _Content;
         private QueryType _Type;
 
-        internal Report Query(DataBase dataBase)
+        internal virtual Report Query(DataBase dataBase)
         {
             Report result = new Report(dataBase);
             result.Template = this._Content;
@@ -18,11 +18,10 @@ namespace frep2
             foreach (QueryResult r in data) result.AddResult(r);
             return result;
         }
+
         internal static IEnumerable<Template> LoadTemplates(Settings settings)
         {
-#if DEBUG
-            if (Directory.Exists(settings.TemplateDirectory)) Directory.Delete(settings.TemplateDirectory, true);
-#endif
+            RemoveDirectory(settings.TemplateDirectory);
             List<Template> result = new List<Template>();
             for (int i = 1; i <= 20; i++)
             {
@@ -30,6 +29,14 @@ namespace frep2
                 if (t != null) result.Add(t);
             }
             return result;
+        }
+        static bool _Removed = false;
+        protected static void RemoveDirectory(string templateDirectory)
+        {
+#if DEBUG
+            if (!_Removed && Directory.Exists(templateDirectory)) Directory.Delete(templateDirectory, true);
+            _Removed = true;
+#endif
         }
         private static Template _Load(Settings settings, QueryType queryType)
         {

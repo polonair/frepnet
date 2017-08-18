@@ -322,6 +322,36 @@ namespace frep2.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;html&gt;
+        ///&lt;head&gt;
+        ///	&lt;title&gt;&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///	&lt;h1&gt;Results for: {{fundCategory}}&lt;/h1&gt;
+        ///	&lt;table border = 1 &gt;
+        ///		&lt;tr&gt;
+        ///			&lt;th&gt; Note 1&lt;/th&gt;
+        ///			&lt;th&gt;Fund Name&lt;/th&gt;
+        ///			&lt;th&gt;Value Research Rating as on Today&lt;/th&gt;
+        ///			&lt;th&gt;Total Bond Sales in Rs (Crores) as on 3.30pm Today&lt;/th&gt;
+        ///			&lt;th&gt;Performance Score Rank&lt;/th&gt;
+        ///			&lt;th&gt;Yesterday NAV&lt;/th&gt;
+        ///			&lt;th&gt;Today&apos;s NAV&lt;/th&gt;
+        ///			&lt;th&gt;Note 2&lt;/th&gt;
+        ///			&lt;th&gt;Change in NAV&lt;/th&gt;
+        ///			&lt;th&gt;% Change in NAV&lt;/th&gt;
+        ///		&lt;/tr&gt;
+        ///		{% for currentFund in mutualFunds -%}
+        ///		&lt;tr&gt;
+        ///			&lt;td&gt;{{ cur [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string Individual_Query_Default_Template {
+            get {
+                return ResourceManager.GetString("Individual_Query_Default_Template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Error - Illegal template name &apos;{0}&apos;.
         /// </summary>
         internal static string LocalFileSystemIllegalTemplateNameException {
@@ -688,11 +718,11 @@ namespace frep2.Properties {
         ///			&lt;th&gt;Today&apos;s NAV&lt;/th&gt;
         ///			&lt;th&gt;Note 2&lt;/th&gt;
         ///			&lt;th&gt;Change in NAV&lt;/th&gt;
-        ///			&lt;th&gt;% Change in NAV&lt;/th&gt;
+        ///			&lt;th&gt;% Change LONG in NAV&lt;/th&gt;
         ///		&lt;/tr&gt;
         ///		{% for currentFund in mutualFunds %}
         ///		&lt;tr&gt;
-        ///			&lt;td&gt;{{currentFu [остаток строки не уместился]&quot;;.
+        ///			&lt;td&gt;{{curr [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string Query_2_Default_Template {
             get {

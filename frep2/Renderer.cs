@@ -14,18 +14,21 @@ namespace frep2
         {
             this._DataBase = database;
             this._Settings = settings;
-            this._Templates = (List<Template>)Template.LoadTemplates(this._Settings);
+            this._Templates = new List<Template>();
+            this._Templates.Add(new IndividualTemplate(this._Settings));
+            this._Templates.AddRange(Template.LoadTemplates(this._Settings));
         }
         internal void Export()
         {
             int count = 0;
+            object locker = new object();
             foreach (Template template in this._Templates)
             {
-                count++;
+                lock (locker) count++;
                 ThreadPool.QueueUserWorkItem(new WaitCallback((object o) =>
                 {
                     template.Query(this._DataBase).Save(this._Settings);
-                    count--;
+                    lock (locker) count--;
                 }));
             }
             while (count > 0) Thread.Sleep(1000);

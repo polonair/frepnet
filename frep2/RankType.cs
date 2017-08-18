@@ -13,6 +13,7 @@ namespace frep2
         //private int _Value;
         private Dictionary<string, int> _Values = new Dictionary<string, int>();
 
+
         //public static readonly RankType NA = new RankType(true);
 
         //public int Value { get { return this._Value; } }
@@ -35,13 +36,25 @@ namespace frep2
         //internal static RankType FromInt(int v) { return new RankType(v); }
         public object ToLiquid(Context ctx)
         {
-            /*if (this._IsNa) return "NA";
-            else
-            {*/
+            if (ctx.Environments.Count > 0 && ctx.Environments[0].ContainsKey("fundCategory"))
+            {
                 string key = ctx.Environments[0]["fundCategory"].ToString();
                 if (this._Values.ContainsKey(key)) return this._Values[key].ToString();
-                else return "NA";
-            /*}*/
+            }
+            else
+            {
+                string key = string.Empty;
+                foreach (Hash h in ctx.Scopes)
+                {
+                    if (h.ContainsKey("fundCategory"))
+                    {
+                        key = h["fundCategory"].ToString();
+                        if (this._Values.ContainsKey(key))
+                            return this._Values[key].ToString();
+                    }
+                }
+            }
+            return "NA";
         }
     }
 }

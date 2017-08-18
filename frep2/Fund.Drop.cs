@@ -35,6 +35,7 @@ namespace frep2
         public string note5 { get { return this._Notes[4]; } }
         public string note6 { get { return this._Notes[5]; } }
         public string note7 { get { return this._Notes[6]; } }
+        public string[] categories { get { return this._Categories.ToArray(); } }
         public DateTime fundLaunchDate { get { return this._LaunchDate; } }
         public string fundName { get { return this._Name; } }
         public double totalBondSales { get { return this._TotalBondSales; } }
