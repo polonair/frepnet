@@ -113,7 +113,7 @@ namespace frep2
             result._ExportDirectory = string.Format("./export/", DateTime.Now);
             result._Separator = "|";
 
-            //result.Restrictions.Add(QueryType.Q1, QueryRestrictor.Parse("v1,t1"));
+            //result.Restrictions.Add(QueryType.Q1, QueryRestrictor.Parse("v1,t1,n1"));
             result._Shift = 26;//11.08.17
             return result;
         }
@@ -157,15 +157,15 @@ Usage: frep.exe --standard-info=STANDARD_INFO_FILE | -s STANDARD_INFO_FILE
     QUERY_RESTRICTION  - restrictions for query.
 
 Restriction format:
-    [[v|t]VALUE][,[t|v]VALUE], for example: v200,t54 means that if fund vrr <= 200 and tbs <= 54 
-    then it will be ignored for query.
+    [[v|t|n]VALUE][,[t|v|n]VALUE][,[n|t|v]VALUE], for example: v200,t54,n20 means that if
+    fund vrr <= 200 and tbs <= 54 and today nav <= 20 then it will be ignored for query.
 
 Examples:
     frep.exe -s Standard.csv -d ./import
     frep.exe -s Standard.csv -d ./import -c ;
     frep.exe --standard-info=Standard.csv --date-wise-dir=./import --csv-separator=;
     frep.exe -s Standard.csv -d ./import -t ./templates -x ./export -c |
-    frep.exe -s Standard.csv -d ./import -q1 v100,t5 -q2 v5,t2
+    frep.exe -s Standard.csv -d ./import -q1 v100,t5 -q2 v5,t2,n1
 
 Note:
     - do not use directories with spaces in its' names;

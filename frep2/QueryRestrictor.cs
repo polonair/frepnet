@@ -8,6 +8,7 @@ namespace frep2
     {
         List<double> _V = new List<double>();
         List<double> _T = new List<double>();
+        List<double> _N = new List<double>();
 
         internal static QueryRestrictor Parse(string v)
         {
@@ -28,6 +29,11 @@ namespace frep2
                     if (double.TryParse(part.Substring(1), NumberStyles.Float, CultureInfo.InvariantCulture, out value))
                         result._T.Add(value);
                 }
+                if (part.Trim().StartsWith("n"))
+                {
+                    if (double.TryParse(part.Substring(1), NumberStyles.Float, CultureInfo.InvariantCulture, out value))
+                        result._N.Add(value);
+                }
             }
             return result;
         }
@@ -41,6 +47,11 @@ namespace frep2
             foreach (double t in this._T)
             {
                 if (fund.totalBondSales < t)
+                    return false;
+            }
+            foreach (double n in this._N)
+            {
+                if (fund.todayNAV < n)
                     return false;
             }
             return true;
