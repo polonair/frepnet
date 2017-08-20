@@ -11,9 +11,8 @@ namespace frep2
         public static string FrepNavFormat(object input)
         {
             string value = input.ToString();
-            double v;
             if (value == double.NaN.ToString()) return "NA";
-            if (double.TryParse(value, out v)) return string.Format("Rs {0:F2}", v);
+            if (double.TryParse(value, out double v)) return string.Format("Rs {0:F2}", v);
             return "NA";
         }
         public static string FrepFnEscape(object input)

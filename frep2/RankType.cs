@@ -9,14 +9,8 @@ namespace frep2
 {
     class RankType : DotLiquid.ILiquidizableWithContext
     {
-        //private bool _IsNa = false;
-        //private int _Value;
         private Dictionary<string, int> _Values = new Dictionary<string, int>();
 
-
-        //public static readonly RankType NA = new RankType(true);
-
-        //public int Value { get { return this._Value; } }
         public int this[string category]
         {
             get
@@ -30,10 +24,8 @@ namespace frep2
                 else this._Values.Add(category, value);
             }
         }
-        //private RankType(int value) { this._Value = value; }
-        //private RankType(bool isNa) { this._IsNa = isNa; }
+
         public RankType() { }
-        //internal static RankType FromInt(int v) { return new RankType(v); }
         public object ToLiquid(Context ctx)
         {
             if (ctx.Environments.Count > 0 && ctx.Environments[0].ContainsKey("fundCategory"))

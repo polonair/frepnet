@@ -22,11 +22,6 @@ namespace frep2
         private double _HighestNAV = double.NaN;
         private double _ChangeInNavLong = double.NaN;
         private double _PercentageChangeInNAVLong = double.NaN;
-        /*private int _PerformanceScoreRank = 0;
-        private int _PerformanceImprovementPercentageRank = 0;
-        private int _HighestRatingRank = 0;
-        private int _OverallScore = 0;
-        private int _OverallScoreRank = 0;*/
 
         public string note1 { get { return this._Notes[0]; } }
         public string note2 { get { return this._Notes[1]; } }

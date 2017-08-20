@@ -22,7 +22,6 @@ namespace frep2
             public void Dispose() { }
             public bool MoveNext() { return this._Enumerator.MoveNext(); }
             public void Reset() { }
-
         }
 
         DataBase _DataBase;
@@ -50,7 +49,6 @@ namespace frep2
         public void Insert(int index, Fund item) { throw new NotImplementedException(); }
         public bool Remove(Fund item) { throw new NotImplementedException(); }
         public void RemoveAt(int index) { throw new NotImplementedException(); }
-        //IEnumerator IEnumerable.GetEnumerator() { return this.GetEnumerator(); }
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() { return this.GetEnumerator(); }
     }
 }

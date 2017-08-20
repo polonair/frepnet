@@ -13,8 +13,7 @@ namespace frep2
 
         internal virtual Report Query(DataBase dataBase)
         {
-            Report result = new Report(dataBase);
-            result.Template = this._Content;
+            Report result = new Report(dataBase) { Template = this._Content };
             IEnumerable<QueryResult> data = dataBase.Query(this._Type);
             foreach (QueryResult r in data) result.AddResult(r);
             return result;
@@ -93,9 +92,11 @@ namespace frep2
         {
             string fileName = string.Format("{0}/{1}", settings.TemplateDirectory, filename);
             if (!File.Exists(fileName)) File.WriteAllText(fileName, filecontent);
-            Template result = new Template();
-            result._Content = File.ReadAllText(fileName);
-            result._Type = type;
+            Template result = new Template()
+            {
+                _Content = File.ReadAllText(fileName),
+                _Type = type
+            };
             return result;
         }
     }

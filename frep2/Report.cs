@@ -63,21 +63,20 @@ namespace frep2
 #endif
 
                         fn = this.EscapeFileName(fn);
-                        //this._DataBase.Category = category;
-                        Dictionary<string, object> env = new Dictionary<string, object>();
-
-                        env.Add("fundCategory", category);
-                        env.Add("FundCategory", category);
-                        env.Add("mutualFunds", data.GetSlice(this._DataBase, i * 50, 50));
-                        env.Add("currentPage", i + 1);
-                        env.Add("currentPageNumber", i + 1);
-                        env.Add("nextPage", ((i + 1) >= pages) ? (1) : (i + 2));
-                        env.Add("nextPageNumber", ((i + 1) >= pages) ? (1) : (i + 2));
-                        env.Add("totalPages", pages);
-                        env.Add("date", DateTime.Now);
-                        env.Add("datestamp", DateTime.Now);
-                        env.Add("timestamp", string.Format("{0:hh.mm tt }", DateTime.Now));
-
+                        Dictionary<string, object> env = new Dictionary<string, object>
+                        {
+                            { "fundCategory", category },
+                            { "FundCategory", category },
+                            { "mutualFunds", data.GetSlice(this._DataBase, i * 50, 50) },
+                            { "currentPage", i + 1 },
+                            { "currentPageNumber", i + 1 },
+                            { "nextPage", ((i + 1) >= pages) ? (1) : (i + 2) },
+                            { "nextPageNumber", ((i + 1) >= pages) ? (1) : (i + 2) },
+                            { "totalPages", pages },
+                            { "date", DateTime.Now },
+                            { "datestamp", DateTime.Now },
+                            { "timestamp", string.Format("{0:hh.mm tt }", DateTime.Now) }
+                        };
                         string content = template.Render(DotLiquid.Hash.FromDictionary(env));
 
                         if (!Directory.Exists(settings.ExportDirectory)) Directory.CreateDirectory(settings.ExportDirectory);

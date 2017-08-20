@@ -17,12 +17,12 @@ namespace frep2
                 this._Arguments = Environment.CommandLine.Substring(Environment.CommandLine.IndexOf(args[0]));
             }
             internal void Parse(
-                ref string standard, 
-                ref string date, 
-                ref string template, 
-                ref string export, 
-                ref string separator, 
-                ref bool help, 
+                ref string standard,
+                ref string date,
+                ref string template,
+                ref string export,
+                ref string separator,
+                ref bool help,
                 ref int shift,
                 QueryRestrictions restrictors)
             {
@@ -66,12 +66,11 @@ namespace frep2
                 }
                 if (this._Parsed.ContainsKey("--help")) help = true;
                 if (this._Parsed.ContainsKey("-h")) help = true;
-                foreach(string key in this._Parsed.Keys)
+                foreach (string key in this._Parsed.Keys)
                 {
                     if (key.StartsWith("-q") && key.Length > 2)
                     {
-                        int q = 0;
-                        if (int.TryParse(key.Substring(2), out q) && (q>=1 && q<=20))
+                        if (int.TryParse(key.Substring(2), out int q) && (q >= 1 && q <= 20))
                         {
                             QueryRestrictor r = QueryRestrictor.Parse(this._Parsed[key]);
                             if (r != null) restrictors.Add((QueryType)q, r);
@@ -106,34 +105,33 @@ namespace frep2
         }
         internal static Settings DummyParse()
         {
-            Settings result = new Settings();
-            result._Standard = "standard.csv";
-            result._DateWiseDirectory = "./import/";
-            result._TemplateDirectory = "./templates/";
-            result._ExportDirectory = string.Format("./export/", DateTime.Now);
-            result._Separator = "|";
-
+            Settings result = new Settings()
+            {
+                _Standard = "standard.csv",
+                _DateWiseDirectory = "./import/",
+                _TemplateDirectory = "./templates/",
+                _ExportDirectory = string.Format("./export/", DateTime.Now),
+                _Separator = "|",
+                _Shift = 35//20.08.17
+            };
             //result.Restrictions.Add(QueryType.Q1, QueryRestrictor.Parse("v1,t1,n1"));
-            result._Shift = 34;//19.08.17
             return result;
         }
         internal static Settings Parse(string[] args)
         {
-            Settings result = new Settings();
-            result._Standard = "";
-            result._DateWiseDirectory = "";
-            result._TemplateDirectory = "./templates/";
-            result._ExportDirectory = string.Format("./export/", DateTime.Now);
-            result._Separator = "|";
-            result._Shift = 0;
+            Settings result = new Settings()
+            {
+                _Standard = "",
+                _DateWiseDirectory = "",
+                _TemplateDirectory = "./templates/",
+                _ExportDirectory = string.Format("./export/", DateTime.Now),
+                _Separator = "|",
+                _Shift = 0
+            };
             bool help = false;
-
             Parser parser = new Parser(args);
-
             parser.Parse(ref result._Standard, ref result._DateWiseDirectory, ref result._TemplateDirectory, ref result._ExportDirectory, ref result._Separator, ref help, ref result._Shift, result._Restrictions);
-
             if (help) Settings.PrintHelp();
-
             return result;
         }
         private static void PrintHelp()

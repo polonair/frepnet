@@ -4,7 +4,7 @@ using System.Text;
 
 namespace frep2.Queries
 {
-    class Query06: Query
+    class Query06 : Query
     {
         public Query06(Settings settings, DataBase database) : base(settings, database) { this._QueryType = QueryType.Q6; }
         public override IEnumerable<QueryResult> GetResult()
@@ -25,18 +25,14 @@ namespace frep2.Queries
 
             foreach (string category in byCategory.Keys)
             {
-                //this._DataBase.Category = category;
                 List<string> keys = new List<string>(byCategory[category]);
-                //this.CalculateRanks(keys);
-                keys.Sort(new Comparison<string>(delegate(string a, string b)
+                keys.Sort(new Comparison<string>(delegate (string a, string b)
                 {
                     double x = this._DataBase.Data[a].daysSinceLaunch;
                     double y = this._DataBase.Data[b].daysSinceLaunch;
                     return x.CompareTo(y);
-                    //return y.CompareTo(x);
                 }));
                 result.Add(new QueryResult(QueryType.Q6, category, keys));
-                //this._DataBase.Category = "All";
             }
 
             return result;

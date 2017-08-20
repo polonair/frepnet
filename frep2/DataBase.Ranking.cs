@@ -16,9 +16,7 @@ namespace frep2
         }
         private void _CalculatePerformanceScoreRank()
         {
-            Dictionary<string, List<string>> keys = new Dictionary<string, List<string>>();
-            keys.Add("All", new List<string>());
-
+            Dictionary<string, List<string>> keys = new Dictionary<string, List<string>> { { "All", new List<string>() } };
             foreach (string key in this.Data.Keys)
             {
                 if (this.Data[key].IsConsidered(this._Settings, QueryType.Q3))
@@ -37,25 +35,22 @@ namespace frep2
 
             foreach (string category in keys.Keys)
             {
-                keys[category].Sort(new Comparison<string>(delegate(string a, string b)
+                keys[category].Sort(new Comparison<string>(delegate (string a, string b)
                 {
                     double x = this.Data[a].performanceScore;
                     double y = this.Data[b].performanceScore;
-                    //return x.CompareTo(y);
-                    return y.CompareTo(x);// 
+                    return y.CompareTo(x);
                 }));
                 int i = 1;
                 foreach (string id in keys[category])
                 {
-                    this.Data[id].SetPerformanceScoreRank(i++, category);
+                    this.Data[id].performanceScoreRank[category] = i++;
                 }
             }
         }
         private void _CalculatePerformanceImprovementPercentageRank()
         {
-            Dictionary<string, List<string>> keys = new Dictionary<string, List<string>>();
-            keys.Add("All", new List<string>());
-
+            Dictionary<string, List<string>> keys = new Dictionary<string, List<string>> { { "All", new List<string>() } };
             foreach (string key in this.Data.Keys)
             {
                 if (this.Data[key].IsConsidered(this._Settings, QueryType.Q4))
@@ -74,25 +69,22 @@ namespace frep2
 
             foreach (string category in keys.Keys)
             {
-                keys[category].Sort(new Comparison<string>(delegate(string a, string b)
+                keys[category].Sort(new Comparison<string>(delegate (string a, string b)
                 {
                     double x = this.Data[a].performanceImprovementPercentage;
                     double y = this.Data[b].performanceImprovementPercentage;
-                    //return x.CompareTo(y);
-                    return y.CompareTo(x);// 
+                    return y.CompareTo(x);
                 }));
                 int i = 1;
                 foreach (string id in keys[category])
                 {
-                    this.Data[id].SetPerformanceImprovementPercentageRank(i++, category);
+                    this.Data[id].performanceImprovementPercentageRank[category] = i++;
                 }
             }
         }
         private void _CalculateHighestRatingRank()
         {
-            Dictionary<string, List<string>> keys = new Dictionary<string, List<string>>();
-            keys.Add("All", new List<string>());
-
+            Dictionary<string, List<string>> keys = new Dictionary<string, List<string>> { { "All", new List<string>() } };
             foreach (string key in this.Data.Keys)
             {
                 if (this.Data[key].IsConsidered(this._Settings, QueryType.Q5))
@@ -111,7 +103,7 @@ namespace frep2
 
             foreach (string category in keys.Keys)
             {
-                keys[category].Sort(new Comparison<string>(delegate(string a, string b)
+                keys[category].Sort(new Comparison<string>(delegate (string a, string b)
                 {
                     double x = this.Data[a].valueResearchRating;
                     double y = this.Data[b].valueResearchRating;
@@ -129,15 +121,13 @@ namespace frep2
                 int i = 1;
                 foreach (string id in keys[category])
                 {
-                    this.Data[id].SetHighestRatingRank(i++, category);
+                    this.Data[id].highestRatingRank[category] = i++;
                 }
             }
         }
         private void _CalculateOverallScore()
         {
-            Dictionary<string, List<string>> keys = new Dictionary<string, List<string>>();
-            keys.Add("All", new List<string>());
-
+            Dictionary<string, List<string>> keys = new Dictionary<string, List<string>> { { "All", new List<string>() } };
             foreach (string key in this.Data.Keys)
             {
                 if (this.Data[key].IsConsidered(this._Settings, QueryType.Q3) &&
@@ -162,23 +152,18 @@ namespace frep2
 
             foreach (string category in keys.Keys)
             {
-                //this.Category = category;
                 foreach (string id in keys[category])
                 {
-                    this.Data[id].SetOverallScore(
-                        this.Data[id].performanceImprovementPercentageRank[category] + 
-                        this.Data[id].performanceScoreRank[category] + 
-                        this.Data[id].highestRatingRank[category],
-                        category);
+                    this.Data[id].overallScore[category] =
+                        this.Data[id].performanceImprovementPercentageRank[category] +
+                        this.Data[id].performanceScoreRank[category] +
+                        this.Data[id].highestRatingRank[category];
                 }
-                //this.Category = "All";
             }
         }
         private void _CalculateOverallScoreRank()
         {
-            Dictionary<string, List<string>> keys = new Dictionary<string, List<string>>();
-            keys.Add("All", new List<string>());
-
+            Dictionary<string, List<string>> keys = new Dictionary<string, List<string>> { { "All", new List<string>() } };
             foreach (string key in this.Data.Keys)
             {
                 if (this.Data[key].IsConsidered(this._Settings, QueryType.Q3) &&
@@ -203,19 +188,16 @@ namespace frep2
 
             foreach (string category in keys.Keys)
             {
-                //this.Category = category;
-                keys[category].Sort(new Comparison<string>(delegate(string a, string b)
+                keys[category].Sort(new Comparison<string>(delegate (string a, string b)
                 {
                     double x = this.Data[a].overallScore[category];
                     double y = this.Data[b].overallScore[category];
                     return x.CompareTo(y);
-                    //return y.CompareTo(x);// 
                 }));
-                //this.Category = "All";
                 int i = 1;
                 foreach (string id in keys[category])
                 {
-                    this.Data[id].SetOverallScoreRank(i++, category);
+                    this.Data[id].overallScoreRank[category] = i++;
                 }
             }
         }
