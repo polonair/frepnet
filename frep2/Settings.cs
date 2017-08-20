@@ -24,7 +24,8 @@ namespace frep2
                 ref string separator,
                 ref bool help,
                 ref int shift,
-                QueryRestrictions restrictors)
+                QueryRestrictions restrictors,
+                ref ReferenceMap references)
             {
                 string[] args = this._Arguments.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < args.Length; i++)
@@ -45,7 +46,8 @@ namespace frep2
                     }
                     if (!this._Parsed.ContainsKey(key)) this._Parsed.Add(key, val);
                 }
-
+                if (this._Parsed.ContainsKey("--reference-info")) references = ReferenceMap.LoadFrom(this._Parsed["--reference-info"]);
+                if (this._Parsed.ContainsKey("-r")) references = ReferenceMap.LoadFrom(this._Parsed["-r"]);
                 if (this._Parsed.ContainsKey("--standard-info")) standard = this._Parsed["--standard-info"];
                 if (this._Parsed.ContainsKey("-s")) standard = this._Parsed["-s"];
                 if (this._Parsed.ContainsKey("--date-wise-dir")) date = this._Parsed["--date-wise-dir"];
@@ -89,6 +91,7 @@ namespace frep2
         private string _Date;
         private int _Shift;
         private QueryRestrictions _Restrictions = new QueryRestrictions();
+        private ReferenceMap _ReferenceMap;
 
         public string Standard { get { return Path.Combine(this._CurrentDirectory, this._Standard); } }
         public string DateWiseDirectory { get { return Path.Combine(this._CurrentDirectory, this._DateWiseDirectory); } }
@@ -97,6 +100,7 @@ namespace frep2
         public string Separator { get { return this._Separator; } }
         public int Shift { get { return this._Shift; } }
         public QueryRestrictions Restrictions { get { return this._Restrictions; } }
+        public ReferenceMap ReferenceMap { get { return this._ReferenceMap; } }
 
         private Settings()
         {
@@ -112,7 +116,9 @@ namespace frep2
                 _TemplateDirectory = "./templates/",
                 _ExportDirectory = string.Format("./export/", DateTime.Now),
                 _Separator = "|",
-                _Shift = 35//20.08.17
+                //_ReferenceMap = ReferenceMap.CreateEmpty(),
+                _ReferenceMap = ReferenceMap.LoadFrom("refs.txt"),
+                _Shift = 36//21.08.17
             };
             //result.Restrictions.Add(QueryType.Q1, QueryRestrictor.Parse("v1,t1,n1"));
             return result;
@@ -126,11 +132,12 @@ namespace frep2
                 _TemplateDirectory = "./templates/",
                 _ExportDirectory = string.Format("./export/", DateTime.Now),
                 _Separator = "|",
+                _ReferenceMap = ReferenceMap.CreateEmpty(),
                 _Shift = 0
             };
             bool help = false;
             Parser parser = new Parser(args);
-            parser.Parse(ref result._Standard, ref result._DateWiseDirectory, ref result._TemplateDirectory, ref result._ExportDirectory, ref result._Separator, ref help, ref result._Shift, result._Restrictions);
+            parser.Parse(ref result._Standard, ref result._DateWiseDirectory, ref result._TemplateDirectory, ref result._ExportDirectory, ref result._Separator, ref help, ref result._Shift, result._Restrictions, ref result._ReferenceMap);
             if (help) Settings.PrintHelp();
             return result;
         }

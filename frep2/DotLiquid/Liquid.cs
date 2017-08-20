@@ -17,7 +17,7 @@ namespace DotLiquid
         public static readonly string TagStart = R.Q(@"\{\%");
         public static readonly string TagEnd = R.Q(@"\%\}");
         public static readonly string VariableSignature = R.Q(@"\(?[\w\-\.\[\]]\)?");
-        public static readonly string VariableSegment = R.Q(@"[\w\-]");
+        public static readonly string VariableSegment = R.Q(@"[\w\-@]");
         public static readonly string VariableStart = R.Q(@"\{\{");
         public static readonly string VariableEnd = R.Q(@"\}\}");
         public static readonly string VariableIncompleteEnd = R.Q(@"\}\}?");

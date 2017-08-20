@@ -4,6 +4,7 @@
 </head>
 <body>
 	<h1>Results for: {{fundCategory}}</h1>
+	<p>example for req4: '1' = "{{fundCategory@1}}", '5' = "{{fundCategory@5}}", </p>
 	<table border = 1 >
 		<tr>
 			<th> Note 1</th>

@@ -77,7 +77,9 @@ namespace frep2
                             { "datestamp", DateTime.Now },
                             { "timestamp", string.Format("{0:hh.mm tt }", DateTime.Now) }
                         };
-                        string content = template.Render(DotLiquid.Hash.FromDictionary(env));
+                        DotLiquid.Hash h = DotLiquid.Hash.FromDictionary(env);
+                        settings.ReferenceMap.Fill(category, h);
+                        string content = template.Render(h);
 
                         if (!Directory.Exists(settings.ExportDirectory)) Directory.CreateDirectory(settings.ExportDirectory);
                         File.WriteAllText(string.Format("{0}/{1}", settings.ExportDirectory, fn), content);
