@@ -115,8 +115,16 @@ namespace frep2
                 {
                     double x = this.Data[a].valueResearchRating;
                     double y = this.Data[b].valueResearchRating;
-                    //return x.CompareTo(y);
-                    return y.CompareTo(x);// 
+                    int r = y.CompareTo(x);
+                    if (r != 0) return r;
+                    x = this.Data[a].totalBondSales;
+                    y = this.Data[b].totalBondSales;
+                    r = y.CompareTo(x);
+                    if (r != 0) return r;
+                    x = this.Data[a].daysSinceLaunch;
+                    y = this.Data[b].daysSinceLaunch;
+                    r = x.CompareTo(y);
+                    return r;
                 }));
                 int i = 1;
                 foreach (string id in keys[category])
