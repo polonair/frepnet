@@ -3,26 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DotLiquid;
 
 namespace frep2
 {
-    class RankType : DotLiquid.ILiquidizable
+    class RankType : DotLiquid.ILiquidizableWithContext
     {
-        private int _Value;
+        private Dictionary<string, int> _Values = new Dictionary<string, int>();
 
-        public static readonly RankType NA = new RankType(0);
-
-        public int Value { get { return this._Value; } }
-        
-        private RankType(int value) { this._Value = value; }
-        internal static RankType FromInt(int v) { return new RankType(v); }
-        public override string ToString()
+        public int this[string category]
         {
-            return (this._Value > 0) ? (this._Value.ToString()) : ("NA");
+            get
+            {
+                if (this._Values.ContainsKey(category)) return this._Values[category];
+                else return 0;
+            }
+            set
+            {
+                if (this._Values.ContainsKey(category)) this._Values[category] = value;
+                else this._Values.Add(category, value);
+            }
         }
-        public object ToLiquid()
+
+        public RankType() { }
+        public object ToLiquid(Context ctx)
         {
-            return this.ToString();
+            if (ctx.Environments.Count > 0 && ctx.Environments[0].ContainsKey("fundCategory"))
+            {
+                string key = ctx.Environments[0]["fundCategory"].ToString();
+                if (this._Values.ContainsKey(key)) return this._Values[key].ToString();
+            }
+            else
+            {
+                string key = string.Empty;
+                foreach (Hash h in ctx.Scopes)
+                {
+                    if (h.ContainsKey("fundCategory"))
+                    {
+                        key = h["fundCategory"].ToString();
+                        if (this._Values.ContainsKey(key))
+                            return this._Values[key].ToString();
+                    }
+                }
+            }
+            return "NA";
         }
     }
 }

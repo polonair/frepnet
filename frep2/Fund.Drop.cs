@@ -11,7 +11,9 @@ namespace frep2
         private double _YesterdayNav = double.NaN;
         private double _TodayNav = double.NaN;
         private double _ChangeInNAV = double.NaN;
+        private double _ChangeInNAVNew = double.NaN;
         private double _PercentageChangeInNAV = double.NaN;
+        private double _PercentageChangeInNAVNew = double.NaN;
         private double _PerformanceScore = double.NaN;
         private double _PerformanceScore20 = double.NaN;
         private double _ValueResearchRating20 = double.NaN;
@@ -19,14 +21,10 @@ namespace frep2
         private double _PerformanceImprovementPercentage = double.NaN;
         private double _PreviousNav = double.NaN;
         private double _LowestNAV = double.NaN;
+        private double _LowestNAVNew = double.NaN;
         private double _HighestNAV = double.NaN;
         private double _ChangeInNavLong = double.NaN;
         private double _PercentageChangeInNAVLong = double.NaN;
-        /*private int _PerformanceScoreRank = 0;
-        private int _PerformanceImprovementPercentageRank = 0;
-        private int _HighestRatingRank = 0;
-        private int _OverallScore = 0;
-        private int _OverallScoreRank = 0;*/
 
         public string note1 { get { return this._Notes[0]; } }
         public string note2 { get { return this._Notes[1]; } }
@@ -35,13 +33,16 @@ namespace frep2
         public string note5 { get { return this._Notes[4]; } }
         public string note6 { get { return this._Notes[5]; } }
         public string note7 { get { return this._Notes[6]; } }
+        public string[] categories { get { return this._Categories.ToArray(); } }
         public DateTime fundLaunchDate { get { return this._LaunchDate; } }
         public string fundName { get { return this._Name; } }
         public double totalBondSales { get { return this._TotalBondSales; } }
         public double yesterdayNAV { get { return this._YesterdayNav; } }
         public double todayNAV { get { return this._TodayNav; } }
         public double changeInNAV { get { return this._ChangeInNAV; } }
+        public double changeInNAVNew { get { return this._ChangeInNAVNew; } }
         public double percentageChangeInNAV { get { return this._PercentageChangeInNAV; } }
+        public double percentageChangeInNAVNew { get { return this._PercentageChangeInNAVNew; } }
         public double performanceScore { get { return this._PerformanceScore; } }
         public double valueResearchRating { get { return this._ValueResearchRating; } }
         public double todayRating { get { return this._ValueResearchRating; } }
@@ -52,73 +53,21 @@ namespace frep2
         public double performanceImprovementPercentage { get { return this._PerformanceImprovementPercentage; } }
         public double previousNAV { get { return this._PreviousNav; } }
         public double lowestNAV { get { return this._LowestNAV; } }
+        public double lowestNAVNew { get { return this._LowestNAVNew; } }
         public double highestNAV { get { return this._HighestNAV; } }
         public double navChange { get { return this._ChangeInNAV; } }
+        public double navChangeNew { get { return this._ChangeInNAVNew; } }
         public double navChangePercentage { get { return this._PercentageChangeInNAV; } }
+        public double navChangePercentageNew { get { return this._PercentageChangeInNAVNew; } }
         public double navChangeLong { get { return this._ChangeInNavLong; } }
         public double navChangeLongPercentage { get { return this._PercentageChangeInNAVLong; } }
 
-        public RankType overallScoreRank
-        {
-            get
-            {
-                if (this._OverallScoreRanks.ContainsKey(this._DataBase.Category))
-                    return RankType.FromInt(this._OverallScoreRanks[this._DataBase.Category]);
-                else
-                    return RankType.NA;                
-            }
-        }
-        public RankType performanceScoreRank
-        {
-            get
-            {
-                if (this._PerformanceScoreRanks.ContainsKey(this._DataBase.Category))
-                    return RankType.FromInt(this._PerformanceScoreRanks[this._DataBase.Category]);
-                else
-                    return RankType.NA;                
-            }
-        }
-        public RankType highestRatingRank
-        {
-            get
-            {
-                if (this._HighestRatingRanks.ContainsKey(this._DataBase.Category))
-                    return RankType.FromInt(this._HighestRatingRanks[this._DataBase.Category]);
-                else
-                    return RankType.NA;                
-            }
-        }
-        public RankType performanceImprovementPercentageRank
-        {
-            get
-            {
-                if (this._PerformanceImprovementPercentageRanks.ContainsKey(this._DataBase.Category))
-                    return RankType.FromInt(this._PerformanceImprovementPercentageRanks[this._DataBase.Category]);
-                else
-                    return RankType.NA;                
-            }
-        }
-        public RankType valueResearchRatingRank
-        {
-            get
-            {
-                if (this._HighestRatingRanks.ContainsKey(this._DataBase.Category))
-                    return RankType.FromInt(this._HighestRatingRanks[this._DataBase.Category]);
-                else
-                    return RankType.NA;                
-            }
-        }
-        public RankType overallScore
-        {
-            get
-            {
-                if (this._OverallScores.ContainsKey(this._DataBase.Category))
-                    return RankType.FromInt(this._OverallScores[this._DataBase.Category]);
-                else
-                    return RankType.NA;
-            }
-        }
-
+        public RankType overallScoreRank { get { return this._OverallScoreRanks; } }
+        public RankType performanceScoreRank { get { return this._PerformanceScoreRanks; } }
+        public RankType highestRatingRank { get { return this._HighestRatingRanks; } }
+        public RankType performanceImprovementPercentageRank { get { return this._PerformanceImprovementPercentageRanks; } }
+        public RankType valueResearchRatingRank { get { return this._HighestRatingRanks; } }
+        public RankType overallScore { get { return this._OverallScores; } }
 
         public string FundID { get { return this._Id; } }
         public string FundName { get { return this._Name; } }

@@ -17,14 +17,15 @@ namespace frep2
                 this._Arguments = Environment.CommandLine.Substring(Environment.CommandLine.IndexOf(args[0]));
             }
             internal void Parse(
-                ref string standard, 
-                ref string date, 
-                ref string template, 
-                ref string export, 
-                ref string separator, 
-                ref bool help, 
+                ref string standard,
+                ref string date,
+                ref string template,
+                ref string export,
+                ref string separator,
+                ref bool help,
                 ref int shift,
-                QueryRestrictions restrictors)
+                QueryRestrictions restrictors,
+                ref ReferenceMap references)
             {
                 string[] args = this._Arguments.Split(" ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < args.Length; i++)
@@ -45,7 +46,8 @@ namespace frep2
                     }
                     if (!this._Parsed.ContainsKey(key)) this._Parsed.Add(key, val);
                 }
-
+                if (this._Parsed.ContainsKey("--reference-info")) references = ReferenceMap.LoadFrom(this._Parsed["--reference-info"]);
+                if (this._Parsed.ContainsKey("-r")) references = ReferenceMap.LoadFrom(this._Parsed["-r"]);
                 if (this._Parsed.ContainsKey("--standard-info")) standard = this._Parsed["--standard-info"];
                 if (this._Parsed.ContainsKey("-s")) standard = this._Parsed["-s"];
                 if (this._Parsed.ContainsKey("--date-wise-dir")) date = this._Parsed["--date-wise-dir"];
@@ -66,12 +68,11 @@ namespace frep2
                 }
                 if (this._Parsed.ContainsKey("--help")) help = true;
                 if (this._Parsed.ContainsKey("-h")) help = true;
-                foreach(string key in this._Parsed.Keys)
+                foreach (string key in this._Parsed.Keys)
                 {
                     if (key.StartsWith("-q") && key.Length > 2)
                     {
-                        int q = 0;
-                        if (int.TryParse(key.Substring(2), out q) && (q>=1 && q<=20))
+                        if (int.TryParse(key.Substring(2), out int q) && (q >= 1 && q <= 20))
                         {
                             QueryRestrictor r = QueryRestrictor.Parse(this._Parsed[key]);
                             if (r != null) restrictors.Add((QueryType)q, r);
@@ -90,6 +91,7 @@ namespace frep2
         private string _Date;
         private int _Shift;
         private QueryRestrictions _Restrictions = new QueryRestrictions();
+        private ReferenceMap _ReferenceMap;
 
         public string Standard { get { return Path.Combine(this._CurrentDirectory, this._Standard); } }
         public string DateWiseDirectory { get { return Path.Combine(this._CurrentDirectory, this._DateWiseDirectory); } }
@@ -98,6 +100,7 @@ namespace frep2
         public string Separator { get { return this._Separator; } }
         public int Shift { get { return this._Shift; } }
         public QueryRestrictions Restrictions { get { return this._Restrictions; } }
+        public ReferenceMap ReferenceMap { get { return this._ReferenceMap; } }
 
         private Settings()
         {
@@ -106,66 +109,70 @@ namespace frep2
         }
         internal static Settings DummyParse()
         {
-            Settings result = new Settings();
-            result._Standard = "standard.csv";
-            result._DateWiseDirectory = "./import/";
-            result._TemplateDirectory = "./templates/";
-            result._ExportDirectory = string.Format("./export/", DateTime.Now);
-            result._Separator = "|";
-
-            //result.Restrictions.Add(QueryType.Q1, QueryRestrictor.Parse("v1,t1"));
-            result._Shift = 26;//11.08.17
+            Settings result = new Settings()
+            {
+                _Standard = "standard.csv",
+                _DateWiseDirectory = "./import/",
+                _TemplateDirectory = "./templates/",
+                _ExportDirectory = string.Format("./export/", DateTime.Now),
+                _Separator = "|",
+                //_ReferenceMap = ReferenceMap.CreateEmpty(),
+                _ReferenceMap = ReferenceMap.LoadFrom("refs.txt"),
+                _Shift = 36//21.08.17
+            };
+            //result.Restrictions.Add(QueryType.Q1, QueryRestrictor.Parse("v1,t1,n1"));
             return result;
         }
         internal static Settings Parse(string[] args)
         {
-            Settings result = new Settings();
-            result._Standard = "";
-            result._DateWiseDirectory = "";
-            result._TemplateDirectory = "./templates/";
-            result._ExportDirectory = string.Format("./export/", DateTime.Now);
-            result._Separator = "|";
-            result._Shift = 0;
+            Settings result = new Settings()
+            {
+                _Standard = "",
+                _DateWiseDirectory = "",
+                _TemplateDirectory = "./templates/",
+                _ExportDirectory = string.Format("./export/", DateTime.Now),
+                _Separator = "|",
+                _ReferenceMap = ReferenceMap.CreateEmpty(),
+                _Shift = 0
+            };
             bool help = false;
-
             Parser parser = new Parser(args);
-
-            parser.Parse(ref result._Standard, ref result._DateWiseDirectory, ref result._TemplateDirectory, ref result._ExportDirectory, ref result._Separator, ref help, ref result._Shift, result._Restrictions);
-
+            parser.Parse(ref result._Standard, ref result._DateWiseDirectory, ref result._TemplateDirectory, ref result._ExportDirectory, ref result._Separator, ref help, ref result._Shift, result._Restrictions, ref result._ReferenceMap);
             if (help) Settings.PrintHelp();
-
             return result;
         }
         private static void PrintHelp()
         {
             Console.WriteLine(
 @"
-Fund Reporter 2.0.7 (by fixnim specially for srinivas555)
+Fund Reporter 2.1 (by fixnim specially for srinivas555)
 
 Usage: frep.exe --standard-info=STANDARD_INFO_FILE | -s STANDARD_INFO_FILE 
                 --date-wise-dir=DATE_INFO_DIR | -d DATE_INFO_DIR 
                 [--template-dir=TEMPLATE_DIR | -t TEMPLATE_DIR] 
                 [--export-dir=EXPORT_DIR | -x EXPORT_DIR]
                 [--csv-separator=SEPARATOR | -c SEPARATOR]
-                [-q(1..20)=QUERY_RESTRICTION ]
+                [--reference-info=REFERENCE | -r REFERENCE]
+                [-q(1..22)=QUERY_RESTRICTION ]
 
     STANDARD_INFO_FILE - csv-file with standard fund information;
     DATE_INFO_DIR      - directory with date-wise csv-files;
     TEMPLATE_DIR       - directory with templates (optional, default value './template/');
     EXPORT_DIR         - directory where to export reports (optional, default value './export/');
     SEPARATOR          - symbol used to separate values in csv (optional, default value '|');
+    REFERENCE          - txt file with reference map (optional, default value is empty);
     QUERY_RESTRICTION  - restrictions for query.
 
 Restriction format:
-    [[v|t]VALUE][,[t|v]VALUE], for example: v200,t54 means that if fund vrr <= 200 and tbs <= 54 
-    then it will be ignored for query.
+    [[v|t|n]VALUE][,[t|v|n]VALUE][,[n|t|v]VALUE], for example: v200,t54,n20 means that if
+    fund vrr <= 200 or tbs <= 54 or today nav <= 20 then it will be ignored for query.
 
 Examples:
     frep.exe -s Standard.csv -d ./import
     frep.exe -s Standard.csv -d ./import -c ;
     frep.exe --standard-info=Standard.csv --date-wise-dir=./import --csv-separator=;
     frep.exe -s Standard.csv -d ./import -t ./templates -x ./export -c |
-    frep.exe -s Standard.csv -d ./import -q1 v100,t5 -q2 v5,t2
+    frep.exe -s Standard.csv -d ./import -q1 v100,t5 -q2 v5,t2,n1
 
 Note:
     - do not use directories with spaces in its' names;

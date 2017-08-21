@@ -1,12 +1,14 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace frep2.Queries
 {
-    class Query01 : Query
+    class Query21 : Query
     {
-        public Query01(Settings settings, DataBase database) : base(settings, database) { this._QueryType = QueryType.Q1; }
+        public Query21(Settings settings, DataBase database) : base(settings, database) { this._QueryType = QueryType.Q21; }
         public override IEnumerable<QueryResult> GetResult()
         {
             Dictionary<string, List<string>> byCategory = new Dictionary<string, List<string>>();
@@ -28,11 +30,11 @@ namespace frep2.Queries
                 List<string> keys = new List<string>(byCategory[category]);
                 keys.Sort(new Comparison<string>(delegate (string a, string b)
                 {
-                    double x = this._DataBase.Data[a].percentageChangeInNAV;
-                    double y = this._DataBase.Data[b].percentageChangeInNAV;
+                    double x = this._DataBase.Data[a].percentageChangeInNAVNew;
+                    double y = this._DataBase.Data[b].percentageChangeInNAVNew;
                     return y.CompareTo(x);
                 }));
-                result.Add(new QueryResult(QueryType.Q1, category, keys));
+                result.Add(new QueryResult(QueryType.Q21, category, keys));
             }
 
             return result;
