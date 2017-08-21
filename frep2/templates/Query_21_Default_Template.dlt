@@ -4,6 +4,7 @@
 </head>
 <body>
 	<h1>Results for: {{fundCategory}}</h1>
+	<p>example for req4: '1' = "{{fundCategory@1}}", '5' = "{{fundCategory@5}}", </p>
 	<table border = 1 >
 		<tr>
 			<th> Note 1</th>
@@ -14,8 +15,8 @@
 			<th>Yesterday NAV</th>
 			<th>Today's NAV</th>
 			<th>Note 2</th>
-			<th>Change in NAV</th>
-			<th>% Change in NAV</th>
+			<th>Change in NAV <b>NEW</b></th>
+			<th>% Change in NAV <b>NEW</b></th>
 		</tr>
 		{% for currentFund in mutualFunds -%}
 		<tr>
@@ -27,8 +28,8 @@
 			<td>{{ currentFund.yesterdayNAV|FrepNavFormat }}</td>
 			<td>{{ currentFund.todayNAV|FrepNavFormat }}</td>
 			<td>{{ currentFund.note2 }}</td>
-			<td>{{ currentFund.changeInNAV|Round:0 }}</td>
-			<td>{{ currentFund.percentageChangeInNAV|Round:2 }}</td>
+			<td>{{ currentFund.changeInNAVNew|Round:0 }}</td>
+			<td>{{ currentFund.percentageChangeInNAVNew|Round:2 }}</td>
 		</tr>
 		{% endfor -%}
 	</table>

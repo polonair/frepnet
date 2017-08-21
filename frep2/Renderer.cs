@@ -14,7 +14,7 @@ namespace frep2
         {
             this._DataBase = database;
             this._Settings = settings;
-            this._Templates = new List<Template> { new IndividualTemplate(this._Settings) };
+            this._Templates = new List<Template> { /*new IndividualTemplate(this._Settings)*/ };
             this._Templates.AddRange(Template.LoadTemplates(this._Settings));
         }
         internal void Export()

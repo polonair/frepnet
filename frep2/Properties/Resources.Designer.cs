@@ -324,26 +324,18 @@ namespace frep2.Properties {
         /// <summary>
         ///   Ищет локализованную строку, похожую на &lt;html&gt;
         ///&lt;head&gt;
-        ///	&lt;title&gt;&lt;/title&gt;
+        ///        &lt;title&gt;&lt;/title&gt;
         ///&lt;/head&gt;
         ///&lt;body&gt;
-        ///	&lt;h1&gt;Results for: {{fundCategory}}&lt;/h1&gt;
-        ///	&lt;table border = 1 &gt;
-        ///		&lt;tr&gt;
-        ///			&lt;th&gt; Note 1&lt;/th&gt;
-        ///			&lt;th&gt;Fund Name&lt;/th&gt;
-        ///			&lt;th&gt;Value Research Rating as on Today&lt;/th&gt;
-        ///			&lt;th&gt;Total Bond Sales in Rs (Crores) as on 3.30pm Today&lt;/th&gt;
-        ///			&lt;th&gt;Performance Score Rank&lt;/th&gt;
-        ///			&lt;th&gt;Yesterday NAV&lt;/th&gt;
-        ///			&lt;th&gt;Today&apos;s NAV&lt;/th&gt;
-        ///			&lt;th&gt;Note 2&lt;/th&gt;
-        ///			&lt;th&gt;Change in NAV&lt;/th&gt;
-        ///			&lt;th&gt;% Change in NAV&lt;/th&gt;
-        ///		&lt;/tr&gt;
-        ///		{% for currentFund in mutualFunds -%}
-        ///		&lt;tr&gt;
-        ///			&lt;td&gt;{{ cur [остаток строки не уместился]&quot;;.
+        ///        &lt;h1&gt;#{{ currentFund.FundID }} &quot;{{ currentFund.fundName }}&quot;&lt;/h1&gt;
+        ///        &lt;p&gt;note1 : {{ currentFund.note1 }}&lt;/p&gt;
+        ///        &lt;p&gt;note2 : {{ currentFund.note2 }}&lt;/p&gt;
+        ///        &lt;p&gt;note3 : {{ currentFund.note3 }}&lt;/p&gt;
+        ///        &lt;p&gt;note4 : {{ currentFund.note4 }}&lt;/p&gt;
+        ///        &lt;p&gt;note5 : {{ currentFund.note5 }}&lt;/p&gt;
+        ///        &lt;p&gt;note6 : {{ currentFund.note6 }}&lt;/p&gt;
+        ///        &lt;p&gt;note7 : {{ currentFund.note7 }}&lt;/p&gt;
+        ///        &lt;p&gt;fundLaunchDate : {{ currentFund.fu [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string Individual_Query_Default_Template {
             get {
@@ -385,6 +377,7 @@ namespace frep2.Properties {
         ///&lt;/head&gt;
         ///&lt;body&gt;
         ///	&lt;h1&gt;Results for: {{fundCategory}}&lt;/h1&gt;
+        ///	&lt;p&gt;example for req4: &apos;1&apos; = &quot;{{fundCategory@1}}&quot;, &apos;5&apos; = &quot;{{fundCategory@5}}&quot;, &lt;/p&gt;
         ///	&lt;table border = 1 &gt;
         ///		&lt;tr&gt;
         ///			&lt;th&gt; Note 1&lt;/th&gt;
@@ -396,11 +389,7 @@ namespace frep2.Properties {
         ///			&lt;th&gt;Today&apos;s NAV&lt;/th&gt;
         ///			&lt;th&gt;Note 2&lt;/th&gt;
         ///			&lt;th&gt;Change in NAV&lt;/th&gt;
-        ///			&lt;th&gt;% Change in NAV&lt;/th&gt;
-        ///		&lt;/tr&gt;
-        ///		{% for currentFund in mutualFunds -%}
-        ///		&lt;tr&gt;
-        ///			&lt;td&gt;{{ cur [остаток строки не уместился]&quot;;.
+        ///			&lt;th&gt;% Change  [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string Query_1_Default_Template {
             get {
@@ -457,8 +446,7 @@ namespace frep2.Properties {
         ///			&lt;th&gt;% Performance Improvement&lt;/th&gt;
         ///			&lt;th&gt;NAV as of today&lt;/th&gt;
         ///			&lt;th&gt;Note 2&lt;/th&gt;
-        ///		&lt;/tr&gt;
-        /// [остаток строки не уместился]&quot;;.
+        ///		&lt;/tr&gt;        /// [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string Query_11_Default_Template {
             get {
@@ -766,6 +754,61 @@ namespace frep2.Properties {
         ///&lt;/head&gt;
         ///&lt;body&gt;
         ///	&lt;h1&gt;Results for: {{fundCategory}}&lt;/h1&gt;
+        ///	&lt;p&gt;example for req4: &apos;1&apos; = &quot;{{fundCategory@1}}&quot;, &apos;5&apos; = &quot;{{fundCategory@5}}&quot;, &lt;/p&gt;
+        ///	&lt;table border = 1 &gt;
+        ///		&lt;tr&gt;
+        ///			&lt;th&gt; Note 1&lt;/th&gt;
+        ///			&lt;th&gt;Fund Name&lt;/th&gt;
+        ///			&lt;th&gt;Value Research Rating as on Today&lt;/th&gt;
+        ///			&lt;th&gt;Total Bond Sales in Rs (Crores) as on 3.30pm Today&lt;/th&gt;
+        ///			&lt;th&gt;Performance Score Rank&lt;/th&gt;
+        ///			&lt;th&gt;Yesterday NAV&lt;/th&gt;
+        ///			&lt;th&gt;Today&apos;s NAV&lt;/th&gt;
+        ///			&lt;th&gt;Note 2&lt;/th&gt;
+        ///			&lt;th&gt;Change in NAV&lt;/th&gt;
+        ///			&lt;th&gt;% Change  [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string Query_21_Default_Template {
+            get {
+                return ResourceManager.GetString("Query_21_Default_Template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;html&gt;
+        ///&lt;head&gt;
+        ///	&lt;title&gt;&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///	&lt;h1&gt;Results for: {{fundCategory}}&lt;/h1&gt;
+        ///	&lt;table border=1&gt;
+        ///		&lt;tr&gt;
+        ///			&lt;th&gt;Note 1&lt;/th&gt;
+        ///			&lt;th&gt;Fund Name&lt;/th&gt;
+        ///			&lt;th&gt;Value Research Rating as on Today&lt;/th&gt;
+        ///			&lt;th&gt;Total Bond Sales in Rs (Crores) as on 3.30pm Today&lt;/th&gt;
+        ///			&lt;th&gt;Fund Launch Date&lt;/th&gt;
+        ///			&lt;th&gt;No. Of Days Since Launch&lt;/th&gt;
+        ///			&lt;th&gt;Performance Score&lt;/th&gt;
+        ///			&lt;th&gt;Performance Improvement % Rank&lt;/th&gt;
+        ///			&lt;th&gt;% Performance Improvement&lt;/th&gt;
+        ///			&lt;th&gt;NAV as of today&lt;/th&gt;
+        ///			&lt;th&gt;Note 2&lt;/th&gt;
+        ///		&lt;/tr&gt;        /// [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string Query_22_Default_Template {
+            get {
+                return ResourceManager.GetString("Query_22_Default_Template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;html&gt;
+        ///&lt;head&gt;
+        ///	&lt;title&gt;&lt;/title&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///	&lt;h1&gt;Results for: {{fundCategory}}&lt;/h1&gt;
         ///	&lt;table border=1&gt;
         ///		&lt;tr&gt;
         ///			&lt;th&gt;Note 1&lt;/th&gt;
@@ -808,8 +851,7 @@ namespace frep2.Properties {
         ///			&lt;th&gt;% Performance Improvement&lt;/th&gt;
         ///			&lt;th&gt;NAV as of today&lt;/th&gt;
         ///			&lt;th&gt;Note 2&lt;/th&gt;
-        ///		&lt;/tr&gt;
-        /// [остаток строки не уместился]&quot;;.
+        ///		&lt;/tr&gt;        /// [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string Query_4_Default_Template {
             get {

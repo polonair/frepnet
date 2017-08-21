@@ -57,6 +57,22 @@ namespace frep2
             if (cnt < 1) result = double.NaN;
             this._LowestNAV = result;
         }
+        private void calculateLowestNavNew()
+        {
+            double result = double.MaxValue;
+            int cnt = 0;
+            int countTo = Math.Min(this.History.Length, 20);
+            for (int i = 1; i < countTo; i++)
+            {
+                if (this.History[i] != null && !double.IsNaN(this.History[i].Nav))
+                {
+                    cnt++;
+                    if (this.History[i].Nav < result) result = this.History[i].Nav;
+                }
+            }
+            if (cnt < 1) result = double.NaN;
+            this._LowestNAVNew = result;
+        }
         private void calculatePreviousNav()
         {
             double result = double.NaN;
@@ -138,10 +154,23 @@ namespace frep2
             else result = 100 * this.changeInNAV / this.yesterdayNAV;
             this._PercentageChangeInNAV = result;
         }
+        private void calculatePercentageChangeInNAVNew()
+        {
+            double result = double.NaN;
+            if (double.IsNaN(this.changeInNAVNew)) result = double.NaN;
+            else if (this.lowestNAVNew == 0) result = double.NaN;
+            else result = 100 * this.changeInNAVNew / this.lowestNAVNew;
+            this._PercentageChangeInNAVNew = result;
+        }
         private void calculateChangeInNav()
         {
             double result = this.yesterdayNAV - this.todayNAV;
             this._ChangeInNAV = result;
+        }
+        private void calculateChangeInNavNew()
+        {
+            double result = this.lowestNAVNew - this.todayNAV;
+            this._ChangeInNAVNew = result;
         }
         private void calculateTodayNav()
         {

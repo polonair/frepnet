@@ -145,25 +145,27 @@ namespace frep2
         {
             Console.WriteLine(
 @"
-Fund Reporter 2.0.7 (by fixnim specially for srinivas555)
+Fund Reporter 2.1 (by fixnim specially for srinivas555)
 
 Usage: frep.exe --standard-info=STANDARD_INFO_FILE | -s STANDARD_INFO_FILE 
                 --date-wise-dir=DATE_INFO_DIR | -d DATE_INFO_DIR 
                 [--template-dir=TEMPLATE_DIR | -t TEMPLATE_DIR] 
                 [--export-dir=EXPORT_DIR | -x EXPORT_DIR]
                 [--csv-separator=SEPARATOR | -c SEPARATOR]
-                [-q(1..20)=QUERY_RESTRICTION ]
+                [--reference-info=REFERENCE | -r REFERENCE]
+                [-q(1..22)=QUERY_RESTRICTION ]
 
     STANDARD_INFO_FILE - csv-file with standard fund information;
     DATE_INFO_DIR      - directory with date-wise csv-files;
     TEMPLATE_DIR       - directory with templates (optional, default value './template/');
     EXPORT_DIR         - directory where to export reports (optional, default value './export/');
     SEPARATOR          - symbol used to separate values in csv (optional, default value '|');
+    REFERENCE          - txt file with reference map (optional, default value is empty);
     QUERY_RESTRICTION  - restrictions for query.
 
 Restriction format:
     [[v|t|n]VALUE][,[t|v|n]VALUE][,[n|t|v]VALUE], for example: v200,t54,n20 means that if
-    fund vrr <= 200 and tbs <= 54 and today nav <= 20 then it will be ignored for query.
+    fund vrr <= 200 or tbs <= 54 or today nav <= 20 then it will be ignored for query.
 
 Examples:
     frep.exe -s Standard.csv -d ./import

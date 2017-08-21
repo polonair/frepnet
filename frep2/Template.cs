@@ -23,7 +23,7 @@ namespace frep2
         {
             RemoveDirectory(settings.TemplateDirectory);
             List<Template> result = new List<Template>();
-            for (int i = 1; i <= 20; i++)
+            for (int i = 1; i <= 22; i++)
             {
                 Template t = _Load(settings, (QueryType)i);
                 if (t != null) result.Add(t);
@@ -85,6 +85,10 @@ namespace frep2
                     return _LoadQX(settings, "Query_19_Default_Template.dlt", Resources.Query_19_Default_Template, queryType);
                 case QueryType.Q20:
                     return _LoadQX(settings, "Query_20_Default_Template.dlt", Resources.Query_20_Default_Template, queryType);
+                case QueryType.Q21:
+                    return _LoadQX(settings, "Query_21_Default_Template.dlt", Resources.Query_21_Default_Template, queryType);
+                case QueryType.Q22:
+                    return _LoadQX(settings, "Query_22_Default_Template.dlt", Resources.Query_22_Default_Template, queryType);
                 default: return null;
             }
         }

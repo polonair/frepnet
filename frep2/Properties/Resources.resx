@@ -292,4 +292,10 @@
   <data name="Individual_Query_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\templates\Individual_Query_Default_Template.dlt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="Query_21_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\templates\Query_21_Default_Template.dlt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Query_22_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\templates\Query_22_Default_Template.dtl;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

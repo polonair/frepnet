@@ -11,7 +11,9 @@ namespace frep2
         private double _YesterdayNav = double.NaN;
         private double _TodayNav = double.NaN;
         private double _ChangeInNAV = double.NaN;
+        private double _ChangeInNAVNew = double.NaN;
         private double _PercentageChangeInNAV = double.NaN;
+        private double _PercentageChangeInNAVNew = double.NaN;
         private double _PerformanceScore = double.NaN;
         private double _PerformanceScore20 = double.NaN;
         private double _ValueResearchRating20 = double.NaN;
@@ -19,6 +21,7 @@ namespace frep2
         private double _PerformanceImprovementPercentage = double.NaN;
         private double _PreviousNav = double.NaN;
         private double _LowestNAV = double.NaN;
+        private double _LowestNAVNew = double.NaN;
         private double _HighestNAV = double.NaN;
         private double _ChangeInNavLong = double.NaN;
         private double _PercentageChangeInNAVLong = double.NaN;
@@ -37,7 +40,9 @@ namespace frep2
         public double yesterdayNAV { get { return this._YesterdayNav; } }
         public double todayNAV { get { return this._TodayNav; } }
         public double changeInNAV { get { return this._ChangeInNAV; } }
+        public double changeInNAVNew { get { return this._ChangeInNAVNew; } }
         public double percentageChangeInNAV { get { return this._PercentageChangeInNAV; } }
+        public double percentageChangeInNAVNew { get { return this._PercentageChangeInNAVNew; } }
         public double performanceScore { get { return this._PerformanceScore; } }
         public double valueResearchRating { get { return this._ValueResearchRating; } }
         public double todayRating { get { return this._ValueResearchRating; } }
@@ -48,9 +53,12 @@ namespace frep2
         public double performanceImprovementPercentage { get { return this._PerformanceImprovementPercentage; } }
         public double previousNAV { get { return this._PreviousNav; } }
         public double lowestNAV { get { return this._LowestNAV; } }
+        public double lowestNAVNew { get { return this._LowestNAVNew; } }
         public double highestNAV { get { return this._HighestNAV; } }
         public double navChange { get { return this._ChangeInNAV; } }
+        public double navChangeNew { get { return this._ChangeInNAVNew; } }
         public double navChangePercentage { get { return this._PercentageChangeInNAV; } }
+        public double navChangePercentageNew { get { return this._PercentageChangeInNAVNew; } }
         public double navChangeLong { get { return this._ChangeInNavLong; } }
         public double navChangeLongPercentage { get { return this._PercentageChangeInNAVLong; } }
 

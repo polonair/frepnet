@@ -58,16 +58,19 @@ namespace frep2
             this.calculateValueResearchRating20();
             this.calculateYesterdayNav();
             this.calculateTodayNav();
-            this.calculateChangeInNav();
-            this.calculatePercentageChangeInNAV();
             this.calculatePerformanceScore();
             this.calculatePerformanceScore20();
             this.calculatePerformanceImprovementPercentage();
             this.calculatePreviousNav();
             this.calculateLowestNav();
+            this.calculateLowestNavNew();
             this.calculateHighestNav();
             this.calculateChangeInNavLong();
             this.calculatePercentageChangeInNAVLong();
+            this.calculateChangeInNav();
+            this.calculateChangeInNavNew();
+            this.calculatePercentageChangeInNAV();
+            this.calculatePercentageChangeInNAVNew();
         }
         internal bool IncludedIn(QueryType queryType)
         {

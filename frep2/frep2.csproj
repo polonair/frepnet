@@ -172,6 +172,8 @@
     <Compile Include="Queries\Query18.cs" />
     <Compile Include="Queries\Query19.cs" />
     <Compile Include="Queries\Query20.cs" />
+    <Compile Include="Queries\Query21.cs" />
+    <Compile Include="Queries\Query22.cs" />
     <Compile Include="QueryRestrictions.cs" />
     <Compile Include="QueryRestrictor.cs" />
     <Compile Include="QueryResult.cs" />
@@ -207,6 +209,8 @@
     <None Include="templates\Query_19_Default_Template.dtl" />
     <None Include="templates\Query_1_Default_Template.dlt" />
     <None Include="templates\Query_20_Default_Template.dtl" />
+    <None Include="templates\Query_21_Default_Template.dlt" />
+    <None Include="templates\Query_22_Default_Template.dtl" />
     <None Include="templates\Query_2_Default_Template.dtl" />
     <None Include="templates\Query_3_Default_Template.dtl" />
     <None Include="templates\Query_4_Default_Template.dtl" />

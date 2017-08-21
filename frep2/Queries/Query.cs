@@ -35,6 +35,8 @@ namespace frep2
                 case QueryType.Q18: return new Query18(settings, database);
                 case QueryType.Q19: return new Query19(settings, database);
                 case QueryType.Q20: return new Query20(settings, database);
+                case QueryType.Q21: return new Query21(settings, database);
+                case QueryType.Q22: return new Query22(settings, database);
                 default: throw new ArgumentException();
             }
         }

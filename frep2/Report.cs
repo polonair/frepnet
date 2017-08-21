@@ -55,6 +55,8 @@ namespace frep2
                             case QueryType.Q19: replace = "cheapest-mutual-funds-on-bse"; break;
                             case QueryType.Q10:
                             case QueryType.Q20: replace = "trending-new-funds-on-bse"; break;
+                            case QueryType.Q21:
+                            case QueryType.Q22: replace = "query21-22-suggest-your-title"; break;
                         }
 #if DEBUG
                         string fn = string.Format("{3}-{0}-{1}-page{2}.html", category, replace, i + 1, data.Type);
