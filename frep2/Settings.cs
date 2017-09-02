@@ -118,7 +118,7 @@ namespace frep2
                 _Separator = "|",
                 //_ReferenceMap = ReferenceMap.CreateEmpty(),
                 _ReferenceMap = ReferenceMap.LoadFrom("refs.txt"),
-                _Shift = 36//21.08.17
+                _Shift = 49//03.09.17
             };
             //result.Restrictions.Add(QueryType.Q1, QueryRestrictor.Parse("v1,t1,n1"));
             return result;
@@ -145,7 +145,7 @@ namespace frep2
         {
             Console.WriteLine(
 @"
-Fund Reporter 2.1 (by fixnim specially for srinivas555)
+Fund Reporter 2.1.1 (by fixnim specially for srinivas555)
 
 Usage: frep.exe --standard-info=STANDARD_INFO_FILE | -s STANDARD_INFO_FILE 
                 --date-wise-dir=DATE_INFO_DIR | -d DATE_INFO_DIR 
