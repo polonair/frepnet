@@ -14,7 +14,8 @@ namespace frep2
             public Parser(string[] args)
             {
                 if (args.Length < 1) Settings.PrintHelp();
-                this._Arguments = Environment.CommandLine.Substring(Environment.CommandLine.IndexOf(args[0]));
+                this._Arguments = string.Join(" ", args);
+                //this._Arguments = Environment.CommandLine.Substring(Environment.CommandLine.IndexOf(args[0]));
             }
             internal void Parse(
                 ref string standard,
@@ -104,7 +105,7 @@ namespace frep2
 
         private Settings()
         {
-            this._CurrentDirectory = Environment.CurrentDirectory;
+            this._CurrentDirectory = Directory.GetCurrentDirectory()+"/";
             this._Date = string.Format("{0:dd-MM-yy}", DateTime.Now);
         }
         internal static Settings DummyParse()

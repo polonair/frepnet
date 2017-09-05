@@ -1,8 +1,0 @@
-C:\Users\fixni\my\projects\freelance\srinivas555\frepnet\src\bin\Debug\netcoreapp1.1\src.deps.json
-C:\Users\fixni\my\projects\freelance\srinivas555\frepnet\src\bin\Debug\netcoreapp1.1\src.runtimeconfig.json
-C:\Users\fixni\my\projects\freelance\srinivas555\frepnet\src\bin\Debug\netcoreapp1.1\src.runtimeconfig.dev.json
-C:\Users\fixni\my\projects\freelance\srinivas555\frepnet\src\bin\Debug\netcoreapp1.1\src.dll
-C:\Users\fixni\my\projects\freelance\srinivas555\frepnet\src\bin\Debug\netcoreapp1.1\src.pdb
-C:\Users\fixni\my\projects\freelance\srinivas555\frepnet\src\obj\Debug\netcoreapp1.1\src.AssemblyInfo.cs
-C:\Users\fixni\my\projects\freelance\srinivas555\frepnet\src\obj\Debug\netcoreapp1.1\src.dll
-C:\Users\fixni\my\projects\freelance\srinivas555\frepnet\src\obj\Debug\netcoreapp1.1\src.pdb

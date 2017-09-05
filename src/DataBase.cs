@@ -41,7 +41,7 @@ namespace frep2
                 foreach (string file in files)
                 {
                     string d = file
-                        .Substring(file.IndexOf("Input_", StringComparison.InvariantCulture))
+                        .Substring(file.IndexOf("Input_"))
                         .Replace("Input_", "")
                         .Replace(".csv", "")
                         .Replace("_", " ");

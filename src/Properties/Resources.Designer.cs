@@ -39,7 +39,7 @@ namespace frep2.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("frep2.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("frep2.Properties.Resources", System.Reflection.Assembly.GetEntryAssembly());
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -446,7 +446,7 @@ namespace frep2.Properties {
         ///			&lt;th&gt;% Performance Improvement&lt;/th&gt;
         ///			&lt;th&gt;NAV as of today&lt;/th&gt;
         ///			&lt;th&gt;Note 2&lt;/th&gt;
-        ///		&lt;/tr&gt;        /// [остаток строки не уместился]&quot;;.
+        ///		&lt;/tr&gt;        /// [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string Query_11_Default_Template {
             get {
@@ -794,7 +794,7 @@ namespace frep2.Properties {
         ///			&lt;th&gt;% Performance Improvement&lt;/th&gt;
         ///			&lt;th&gt;NAV as of today&lt;/th&gt;
         ///			&lt;th&gt;Note 2&lt;/th&gt;
-        ///		&lt;/tr&gt;        /// [остаток строки не уместился]&quot;;.
+        ///		&lt;/tr&gt;        /// [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string Query_22_Default_Template {
             get {
@@ -851,7 +851,7 @@ namespace frep2.Properties {
         ///			&lt;th&gt;% Performance Improvement&lt;/th&gt;
         ///			&lt;th&gt;NAV as of today&lt;/th&gt;
         ///			&lt;th&gt;Note 2&lt;/th&gt;
-        ///		&lt;/tr&gt;        /// [остаток строки не уместился]&quot;;.
+        ///		&lt;/tr&gt;        /// [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string Query_4_Default_Template {
             get {
