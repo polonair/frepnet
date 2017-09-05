@@ -119,7 +119,7 @@ namespace frep2
                 _Separator = "|",
                 //_ReferenceMap = ReferenceMap.CreateEmpty(),
                 _ReferenceMap = ReferenceMap.LoadFrom("refs.txt"),
-                _Shift = 49//03.09.17
+                _Shift = 51//05.09.17
             };
             //result.Restrictions.Add(QueryType.Q1, QueryRestrictor.Parse("v1,t1,n1"));
             return result;
