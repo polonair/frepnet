@@ -7,7 +7,7 @@
     <ApplicationIcon />
     <OutputTypeEx>exe</OutputTypeEx>
     <StartupObject />
-    <PackageId>frep2nc</PackageId>
+    <PackageId>frep</PackageId>
     <Version>3.0.0.0</Version>
   </PropertyGroup>
 
