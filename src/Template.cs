@@ -46,49 +46,49 @@ namespace frep2
             switch (queryType)
             {
                 case QueryType.Q1:
-                    return _LoadQX(settings, "Query_1_Default_Template.dlt", Resources.Query_1_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_1_Default_Template.dlt", TemplateFile.Query_1_Default_Template, queryType);
                 case QueryType.Q2:
-                    return _LoadQX(settings, "Query_2_Default_Template.dlt", Resources.Query_2_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_2_Default_Template.dlt", TemplateFile.Query_2_Default_Template, queryType);
                 case QueryType.Q3:
-                    return _LoadQX(settings, "Query_3_Default_Template.dlt", Resources.Query_3_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_3_Default_Template.dlt", TemplateFile.Query_3_Default_Template, queryType);
                 case QueryType.Q4:
-                    return _LoadQX(settings, "Query_4_Default_Template.dlt", Resources.Query_4_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_4_Default_Template.dlt", TemplateFile.Query_4_Default_Template, queryType);
                 case QueryType.Q5:
-                    return _LoadQX(settings, "Query_5_Default_Template.dlt", Resources.Query_5_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_5_Default_Template.dlt", TemplateFile.Query_5_Default_Template, queryType);
                 case QueryType.Q6:
-                    return _LoadQX(settings, "Query_6_Default_Template.dlt", Resources.Query_6_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_6_Default_Template.dlt", TemplateFile.Query_6_Default_Template, queryType);
                 case QueryType.Q7:
-                    return _LoadQX(settings, "Query_7_Default_Template.dlt", Resources.Query_7_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_7_Default_Template.dlt", TemplateFile.Query_7_Default_Template, queryType);
                 case QueryType.Q8:
-                    return _LoadQX(settings, "Query_8_Default_Template.dlt", Resources.Query_8_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_8_Default_Template.dlt", TemplateFile.Query_8_Default_Template, queryType);
                 case QueryType.Q9:
-                    return _LoadQX(settings, "Query_9_Default_Template.dlt", Resources.Query_9_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_9_Default_Template.dlt", TemplateFile.Query_9_Default_Template, queryType);
                 case QueryType.Q10:
-                    return _LoadQX(settings, "Query_10_Default_Template.dlt", Resources.Query_10_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_10_Default_Template.dlt", TemplateFile.Query_10_Default_Template, queryType);
                 case QueryType.Q11:
-                    return _LoadQX(settings, "Query_11_Default_Template.dlt", Resources.Query_11_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_11_Default_Template.dlt", TemplateFile.Query_11_Default_Template, queryType);
                 case QueryType.Q12:
-                    return _LoadQX(settings, "Query_12_Default_Template.dlt", Resources.Query_12_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_12_Default_Template.dlt", TemplateFile.Query_12_Default_Template, queryType);
                 case QueryType.Q13:
-                    return _LoadQX(settings, "Query_13_Default_Template.dlt", Resources.Query_13_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_13_Default_Template.dlt", TemplateFile.Query_13_Default_Template, queryType);
                 case QueryType.Q14:
-                    return _LoadQX(settings, "Query_14_Default_Template.dlt", Resources.Query_14_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_14_Default_Template.dlt", TemplateFile.Query_14_Default_Template, queryType);
                 case QueryType.Q15:
-                    return _LoadQX(settings, "Query_15_Default_Template.dlt", Resources.Query_15_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_15_Default_Template.dlt", TemplateFile.Query_15_Default_Template, queryType);
                 case QueryType.Q16:
-                    return _LoadQX(settings, "Query_16_Default_Template.dlt", Resources.Query_16_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_16_Default_Template.dlt", TemplateFile.Query_16_Default_Template, queryType);
                 case QueryType.Q17:
-                    return _LoadQX(settings, "Query_17_Default_Template.dlt", Resources.Query_17_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_17_Default_Template.dlt", TemplateFile.Query_17_Default_Template, queryType);
                 case QueryType.Q18:
-                    return _LoadQX(settings, "Query_18_Default_Template.dlt", Resources.Query_18_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_18_Default_Template.dlt", TemplateFile.Query_18_Default_Template, queryType);
                 case QueryType.Q19:
-                    return _LoadQX(settings, "Query_19_Default_Template.dlt", Resources.Query_19_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_19_Default_Template.dlt", TemplateFile.Query_19_Default_Template, queryType);
                 case QueryType.Q20:
-                    return _LoadQX(settings, "Query_20_Default_Template.dlt", Resources.Query_20_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_20_Default_Template.dlt", TemplateFile.Query_20_Default_Template, queryType);
                 case QueryType.Q21:
-                    return _LoadQX(settings, "Query_21_Default_Template.dlt", Resources.Query_21_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_21_Default_Template.dlt", TemplateFile.Query_21_Default_Template, queryType);
                 case QueryType.Q22:
-                    return _LoadQX(settings, "Query_22_Default_Template.dlt", Resources.Query_22_Default_Template, queryType);
+                    return _LoadQX(settings, "Query_22_Default_Template.dlt", TemplateFile.Query_22_Default_Template, queryType);
                 default: return null;
             }
         }
