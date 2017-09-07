@@ -33,8 +33,19 @@ namespace frep2
             if (result._Name.Length < 1) return null;
             if (data[2].Trim().Length < 1) return null;
             result._Categories = new List<string>(new string[] { data[2].Trim() });
-            try { result._LaunchDate = DateTime.Parse(data[3].Trim()); }
-            catch { return null; }
+            string[] splitted = data[3].Trim().Split("-".ToCharArray(), StringSplitOptions.None);
+            if (splitted.Length == 3)
+            {
+                int y, m, d;
+                if (int.TryParse(splitted[0], out d) &&
+                    int.TryParse(splitted[1], out m) &&
+                    int.TryParse(splitted[2], out y))
+                {
+                    result._LaunchDate = new DateTime(y, m, d);
+                }
+                else return null;
+            }
+            else return null;
             result._Notes = new string[7];
             for (int i = 0; i < 7; i++) result._Notes[i] = data[i + 4].Trim();
             result._IncludeIn = new bool[20];

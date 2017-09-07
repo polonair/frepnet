@@ -9,7 +9,7 @@ namespace frep2
             RemoveDirectory(settings.TemplateDirectory);
             if (!Directory.Exists(settings.TemplateDirectory)) Directory.CreateDirectory(settings.TemplateDirectory);
             string fileName = string.Format("{0}/Individual_Query_Default_Template.dlt", settings.TemplateDirectory);
-            if (!File.Exists(fileName)) File.WriteAllText(fileName, frep2.Properties.Resources.Individual_Query_Default_Template);
+            if (!File.Exists(fileName)) File.WriteAllText(fileName, TemplateFile.Individual_Query_Default_Template);
             this._Content = File.ReadAllText(fileName);
         }
         internal override Report Query(DataBase dataBase)
