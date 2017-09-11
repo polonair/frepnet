@@ -25,7 +25,7 @@ namespace frep2
                 foreach (QueryResult data in this._Datas)
                 {
                     int length = data.Funds.Count;
-                    if (length < 1) continue;
+                    //if (length < 1) continue;
                     int pages = Math.Min((length / 50) + 1, 3);
 
                     for (int i = 0; i < pages; i++)
@@ -65,11 +65,13 @@ namespace frep2
 #endif
 
                         fn = this.EscapeFileName(fn);
+                        VirtualFundList mfs = data.GetSlice(this._DataBase, i * 50, 50);
                         Dictionary<string, object> env = new Dictionary<string, object>
                         {
                             { "fundCategory", category },
                             { "FundCategory", category },
-                            { "mutualFunds", data.GetSlice(this._DataBase, i * 50, 50) },
+                            { "mutualFunds", mfs },
+                            { "size", mfs.Count },
                             { "currentPage", i + 1 },
                             { "currentPageNumber", i + 1 },
                             { "nextPage", ((i + 1) >= pages) ? (1) : (i + 2) },

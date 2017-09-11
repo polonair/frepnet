@@ -46,5 +46,24 @@ namespace frep2
             this._DataBase = database;
         }
         public abstract IEnumerable<QueryResult> GetResult();
+        protected virtual bool IsConsidered(string id) 
+        {
+            return this._DataBase.Data[id].IsConsidered(this._Settings, this._QueryType);
+        }
+        protected Dictionary<string, List<string>> SplitByCategories()
+        {
+            Dictionary<string, List<string>> byCategory = new Dictionary<string, List<string>>();
+            foreach (string id in this._DataBase.Data.Keys)
+            {
+                foreach(string category in this._DataBase.Data[id].Categories)
+                {
+                    if (!byCategory.ContainsKey(category)) 
+                        byCategory.Add(category, new List<string>());
+                    if (this.IsConsidered(id)) 
+                        byCategory[category].Add(id);
+                }
+            }
+            return byCategory;
+        }
     }
 }
