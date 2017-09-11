@@ -122,61 +122,61 @@
     <value>..\templates\Query_1_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_10_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_10_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_10_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_11_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_11_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_11_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_12_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_12_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_12_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_13_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_13_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_13_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_14_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_14_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_14_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_15_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_15_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_15_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_16_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_16_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_16_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_17_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_17_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_17_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_18_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_18_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_18_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_19_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_19_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_19_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_2_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_2_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_2_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_20_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_20_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_20_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_3_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_3_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_3_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_4_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_4_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_4_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_5_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_5_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_5_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_6_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_6_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_6_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_7_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_7_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_7_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_8_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_8_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_8_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_9_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_9_Default_Template.dtl;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_9_Default_Template.dlt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="AssignTagSyntaxException" xml:space="preserve">
     <value>Syntax Error in 'assign' tag - Valid syntax: assign [var] = [source]</value>
@@ -296,6 +296,6 @@
     <value>..\templates\Query_21_Default_Template.dlt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Query_22_Default_Template" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\templates\Query_22_Default_Template.dtl;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\templates\Query_22_Default_Template.dlt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

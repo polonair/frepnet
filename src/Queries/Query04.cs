@@ -9,18 +9,7 @@ namespace frep2.Queries
         public Query04(Settings settings, DataBase database) : base(settings, database) { this._QueryType = QueryType.Q4; }
         public override IEnumerable<QueryResult> GetResult()
         {
-            Dictionary<string, List<string>> byCategory = new Dictionary<string, List<string>>();
-            foreach (string id in this._DataBase.Data.Keys)
-            {
-                if (this._DataBase.Data[id].IsConsidered(this._Settings, this._QueryType))
-                {
-                    foreach (string category in this._DataBase.Data[id].Categories)
-                    {
-                        if (byCategory.ContainsKey(category)) byCategory[category].Add(id);
-                        else byCategory.Add(category, new List<string>(new string[] { id }));
-                    }
-                }
-            }
+            Dictionary<string, List<string>> byCategory = this.SplitByCategories();
             List<QueryResult> result = new List<QueryResult>();
 
             foreach (string category in byCategory.Keys)

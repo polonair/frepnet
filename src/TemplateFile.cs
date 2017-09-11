@@ -97,6 +97,9 @@ return @"
 </head>
 <body>
     <h1>Results for: {{fundCategory}}</h1>
+    {% if size < 1 -%}
+        <p>Sorry, no results available</p>
+    {% else -%}
     <table border = 1 >
         <tr>
             <th> Note 1</th>
@@ -125,6 +128,7 @@ return @"
         </tr>
         {% endfor -%}
     </table>
+    {% endif -%}
     <p>Page {{ currentPage }} of {{ totalPages }}</p>
     <p>Generated on {{ date|Date:""d MMMM yyyy"" }}</p>
 </body>
@@ -140,6 +144,9 @@ return @"
 </head>
 <body>
     <h1>Results for: {{fundCategory}}</h1>
+    {% if size < 1 -%}
+        <p>Sorry, no results available</p>
+    {% else -%}
     <table border=1>
         <tr>
             <th>Note 1</th>
@@ -168,6 +175,7 @@ return @"
         {% endfor %}
         </tr>
     </table>
+    {% endif -%}
     <p>Page {{currentPage}} of {{totalPages}}</p>
     <p>Generated on {{date|Date:""d MMMM yyyy""}}</p>
 </body>
@@ -183,6 +191,9 @@ return @"
 </head>
 <body>
     <h1>Results for: {{fundCategory}}</h1>
+    {% if size < 1 -%}
+        <p>Sorry, no results available</p>
+    {% else -%}
     <table border=1>
         <tr>
             <th>Note 1</th>
@@ -213,6 +224,7 @@ return @"
         </tr>
         {% endfor %}
     </table>
+    {% endif -%}
     <p>Page {{currentPage}} of {{totalPages}}</p>
     <p>Generated on {{date|Date:""d MMMM yyyy""}}</p>
 </body>
@@ -228,6 +240,9 @@ return @"
 </head>
 <body>
     <h1>Results for: {{fundCategory}}</h1>
+    {% if size < 1 -%}
+        <p>Sorry, no results available</p>
+    {% else -%}
     <table border=1>
         <tr>
             <th>Note 1</th>
@@ -258,6 +273,7 @@ return @"
         {% endfor %}
         </tr>
     </table>
+    {% endif -%}
     <p>Page {{currentPage}} of {{totalPages}}</p>
     <p>Generated on {{date|Date:""d MMMM yyyy""}}</p>
 </body>
@@ -273,6 +289,9 @@ return @"
 </head>
 <body>
     <h1>Results for: {{fundCategory}}</h1>
+    {% if size < 1 -%}
+        <p>Sorry, no results available</p>
+    {% else -%}
     <table border=1>
         <tr>
             <th>Note 1</th>
@@ -300,6 +319,7 @@ return @"
         {% endfor %}
         </tr>
     </table>
+    {% endif -%}
     <p>Page {{currentPage}} of {{totalPages}}</p>
     <p>Generated on {{date|Date:""d MMMM yyyy""}}</p>
 </body>
@@ -314,6 +334,9 @@ return @"<html>
 </head>
 <body>
     <h1>Results for: {{fundCategory}}</h1>
+    {% if size < 1 -%}
+        <p>Sorry, no results available</p>
+    {% else -%}
     <table border=1>
         <tr>
             <th>Note 1</th>
@@ -338,6 +361,7 @@ return @"<html>
         {% endfor %}
         </tr>
     </table>
+    {% endif -%}
     <p>Page {{currentPage}} of {{totalPages}}</p>
     <p>Generated on {{date|Date:""d MMMM yyyy""}}</p>
 </body>
@@ -352,6 +376,9 @@ return @"<html>
 </head>
 <body>
     <h1>Results for: {{fundCategory}}</h1>
+    {% if size < 1 -%}
+        <p>Sorry, no results available</p>
+    {% else -%}
     <table border=1>
         <tr>
             <th>Note 1</th>
@@ -384,6 +411,7 @@ return @"<html>
         {% endfor %}
         </tr>
     </table>
+    {% endif -%}
     <p>Page {{currentPage}} of {{totalPages}}</p>
     <p>Generated on {{date|Date:""d MMMM yyyy""}}</p>
 </body>
@@ -398,6 +426,9 @@ return @"<html>
 </head>
 <body>
     <h1>Results for: {{fundCategory}}</h1>
+    {% if size < 1 -%}
+        <p>Sorry, no results available</p>
+    {% else -%}
     <table border=1>
         <tr>
             <th>Note 1</th>
@@ -426,6 +457,7 @@ return @"<html>
         {% endfor %}
         </tr>
     </table>
+    {% endif -%}
     <p>Page {{currentPage}} of {{totalPages}}</p>
     <p>Generated on {{date|Date:""d MMMM yyyy""}}</p>
 </body>
@@ -440,6 +472,9 @@ return @"<html>
 </head>
 <body>
     <h1>Results for: {{fundCategory}}</h1>
+    {% if size < 1 -%}
+        <p>Sorry, no results available</p>
+    {% else -%}
     <table border=1>
         <tr>
             <th>Note 1</th>
@@ -468,6 +503,7 @@ return @"<html>
         {% endfor %}
         </tr>
     </table>
+    {% endif -%}
     <p>Page {{currentPage}} of {{totalPages}}</p>
     <p>Generated on {{date|Date:""d MMMM yyyy""}}</p>
 </body>
@@ -482,6 +518,9 @@ return @"<html>
 </head>
 <body>
     <h1>Results for: {{fundCategory}}</h1>
+    {% if size < 1 -%}
+        <p>Sorry, no results available</p>
+    {% else -%}
     <table border=1>
         <tr>
             <th>Note 1</th>
@@ -512,6 +551,7 @@ return @"<html>
         {% endfor %}
         </tr>
     </table>
+    {% endif -%}
     <p>Page {{currentPage}} of {{totalPages}}</p>
     <p>Generated on {{date|Date:""d MMMM yyyy""}}</p>
 </body>
@@ -949,6 +989,9 @@ return @"<html>
 <body>
     <h1>Results for: {{fundCategory}}</h1>
     <p>example for req4: '1' = '{{fundCategory@1}}', '5' = '{{fundCategory@5}}', </p>
+    {% if size < 1 -%}
+        <p>Sorry, no results available</p>
+    {% else -%}
     <table border = 1 >
         <tr>
             <th> Note 1</th>
@@ -977,6 +1020,7 @@ return @"<html>
         </tr>
         {% endfor -%}
     </table>
+    {% endif -%}
     <p>Page {{ currentPage }} of {{ totalPages }}</p>
     <p>Generated on {{ date|Date:""d MMMM yyyy"" }}</p>
 </body>

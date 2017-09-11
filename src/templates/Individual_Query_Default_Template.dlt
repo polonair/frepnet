@@ -1,9 +1,10 @@
+
 <html>
 <head>
         <title></title>
 </head>
 <body>
-        <h1>#{{ currentFund.FundID }} "{{ currentFund.fundName }}"</h1>
+        <h1>#{{ currentFund.FundID }} '{{ currentFund.fundName }}'</h1>
         <p>note1 : {{ currentFund.note1 }}</p>
         <p>note2 : {{ currentFund.note2 }}</p>
         <p>note3 : {{ currentFund.note3 }}</p>
@@ -55,25 +56,25 @@
         <p>day19NAV : {{ currentFund.day19NAV }}</p>
         <p>day20NAV : {{ currentFund.day20NAV }}</p>
 <HR>
-		<h2>By Category</h2>
-		{% for category in currentFund.Categories %}
-			<h3>{{ category }}</h3>
-			{% capture fundCategory %}{{ category }}{% endcapture %}
-			<p>overallScoreRank : {{ currentFund.overallScoreRank }}</p>
-			<p>performanceScoreRank : {{ currentFund.performanceScoreRank }}</p>
-			<p>highestRatingRank : {{ currentFund.highestRatingRank }}</p>
-			<p>performanceImprovementPercentageRank : {{ currentFund.performanceImprovementPercentageRank }}</p>
-			<p>valueResearchRatingRank : {{ currentFund.valueResearchRatingRank }}</p>
-			<p>overallScore : {{ currentFund.overallScore }}</p>
-		{% endfor %}
-			<h3>All</h3>
-			{% capture fundCategory %}All{% endcapture %}
-			<p>overallScoreRank : {{ currentFund.overallScoreRank }}</p>
-			<p>performanceScoreRank : {{ currentFund.performanceScoreRank }}</p>
-			<p>highestRatingRank : {{ currentFund.highestRatingRank }}</p>
-			<p>performanceImprovementPercentageRank : {{ currentFund.performanceImprovementPercentageRank }}</p>
-			<p>valueResearchRatingRank : {{ currentFund.valueResearchRatingRank }}</p>
-			<p>overallScore : {{ currentFund.overallScore }}</p>
+        <h2>By Category</h2>
+        {% for category in currentFund.Categories %}
+            <h3>{{ category }}</h3>
+            {% capture fundCategory %}{{ category }}{% endcapture %}
+            <p>overallScoreRank : {{ currentFund.overallScoreRank }}</p>
+            <p>performanceScoreRank : {{ currentFund.performanceScoreRank }}</p>
+            <p>highestRatingRank : {{ currentFund.highestRatingRank }}</p>
+            <p>performanceImprovementPercentageRank : {{ currentFund.performanceImprovementPercentageRank }}</p>
+            <p>valueResearchRatingRank : {{ currentFund.valueResearchRatingRank }}</p>
+            <p>overallScore : {{ currentFund.overallScore }}</p>
+        {% endfor %}
+            <h3>All</h3>
+            {% capture fundCategory %}All{% endcapture %}
+            <p>overallScoreRank : {{ currentFund.overallScoreRank }}</p>
+            <p>performanceScoreRank : {{ currentFund.performanceScoreRank }}</p>
+            <p>highestRatingRank : {{ currentFund.highestRatingRank }}</p>
+            <p>performanceImprovementPercentageRank : {{ currentFund.performanceImprovementPercentageRank }}</p>
+            <p>valueResearchRatingRank : {{ currentFund.valueResearchRatingRank }}</p>
+            <p>overallScore : {{ currentFund.overallScore }}</p>
 <HR>
         <p>Generated on {{ date|Date:"d MMMM yyyy" }}</p>
 </body>
