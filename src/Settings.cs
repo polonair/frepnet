@@ -73,7 +73,7 @@ namespace frep2
                 {
                     if (key.StartsWith("-q") && key.Length > 2)
                     {
-                        if (int.TryParse(key.Substring(2), out int q) && (q >= 1 && q <= 20))
+                        if (int.TryParse(key.Substring(2), out int q) && (q >= 1 && q <= 22))
                         {
                             QueryRestrictor r = QueryRestrictor.Parse(this._Parsed[key]);
                             if (r != null) restrictors.Add((QueryType)q, r);
@@ -146,7 +146,7 @@ namespace frep2
         {
             Console.WriteLine(
 @"
-Fund Reporter 3.0.1 (by fixnim specially for srinivas555)
+Fund Reporter 3.0.2 (by fixnim specially for srinivas555)
 
 Usage: frep.exe --standard-info=STANDARD_INFO_FILE | -s STANDARD_INFO_FILE 
                 --date-wise-dir=DATE_INFO_DIR | -d DATE_INFO_DIR 
