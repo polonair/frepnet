@@ -36,27 +36,27 @@ namespace frep2
                         switch (data.Type)
                         {
                             case QueryType.Q1:
-                            case QueryType.Q11: replace = "loss-makers-today-on-bse"; break;
+                            case QueryType.Q11: replace = "ignore-this-old-top-price-drops-today"; break;
                             case QueryType.Q2:
-                            case QueryType.Q12: replace = "loss-makers-last-20-days-on-bse"; break;
+                            case QueryType.Q12: replace = "best-price-drops-in-last-20days-on-amazon"; break;
                             case QueryType.Q3:
-                            case QueryType.Q13: replace = "popular-funds-on-bse"; break;
+                            case QueryType.Q13: replace = "highest-selling-on-amazon"; break;
                             case QueryType.Q4:
-                            case QueryType.Q14: replace = "trending-funds-on-bse"; break;
+                            case QueryType.Q14: replace = "fast-raisers-on-amazon"; break;
                             case QueryType.Q5:
-                            case QueryType.Q15: replace = "highest-rated-funds-on-bse"; break;
+                            case QueryType.Q15: replace = "highest-rated-on-amazon"; break;
                             case QueryType.Q6:
-                            case QueryType.Q16: replace = "newly-launched-funds-on-bse"; break;
+                            case QueryType.Q16: replace = "newest-launches-on-amazon"; break;
                             case QueryType.Q7:
-                            case QueryType.Q17: replace = "overall-best-funds-on-bse"; break;
+                            case QueryType.Q17: replace = "overall-best-on-amazon"; break;
                             case QueryType.Q8:
-                            case QueryType.Q18: replace = "most-expensive-mutual-funds-on-bse"; break;
+                            case QueryType.Q18: replace = "costliest-on-amazon"; break;
                             case QueryType.Q9:
-                            case QueryType.Q19: replace = "cheapest-mutual-funds-on-bse"; break;
+                            case QueryType.Q19: replace = "cheapest-on-amazon"; break;
                             case QueryType.Q10:
-                            case QueryType.Q20: replace = "trending-new-funds-on-bse"; break;
+                            case QueryType.Q20: replace = "trending-new-launches-on-amazon"; break;
                             case QueryType.Q21:
-                            case QueryType.Q22: replace = "query21-22-suggest-your-title"; break;
+                            case QueryType.Q22: replace = "real-price-drops-today-on-amazon"; break;
                         }
 #if DEBUG
                         string fn = string.Format("{3}-{0}-{1}-page{2}.html", category, replace, i + 1, data.Type);

@@ -146,7 +146,7 @@ namespace frep2
         {
             Console.WriteLine(
 @"
-Fund Reporter 3.0.3 (by fixnim specially for srinivas555)
+Fund Reporter 3.0.4 (by fixnim specially for srinivas555)
 
 Usage: frep.exe --standard-info=STANDARD_INFO_FILE | -s STANDARD_INFO_FILE 
                 --date-wise-dir=DATE_INFO_DIR | -d DATE_INFO_DIR 

@@ -49,7 +49,7 @@ namespace frep2
                     try { date = UTIL.ParseOrdinalDateTime(d); }
                     catch { continue; }
 
-                    if (DateTime.Now.Subtract(date).Days < (31 + this._Settings.Shift))
+                    if (DateTime.Now.Subtract(date).Days < (60 + this._Settings.Shift))
                     {
                         string[] content = File.ReadAllLines(file);
                         string header = content[0];

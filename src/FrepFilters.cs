@@ -15,6 +15,13 @@ namespace frep2
             if (double.TryParse(value, out double v)) return string.Format("Rs {0:F2}", v);
             return "NA";
         }
+        public static string FrepNavRoundFormat(object input)
+        {
+            string value = input.ToString();
+            if (value == double.NaN.ToString()) return "NA";
+            if (double.TryParse(value, out double v)) return string.Format("Rs {0:F0}", v);
+            return "NA";
+        }
         public static string FrepFnEscape(object input)
         {
             string value = input.ToString().Trim();
