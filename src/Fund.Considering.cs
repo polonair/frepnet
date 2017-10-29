@@ -158,14 +158,14 @@ namespace frep2
                     break;
                 case QueryType.Q21:
                     if ((this.percentageChangeInNAVNew <= 0) ||
-                        //(!this.IncludedIn(QueryType.Q21)) ||
+                        (!this.IncludedIn(QueryType.Q21)) ||
                         double.IsNaN(this.percentageChangeInNAVNew) ||
                         double.IsNaN(f.todayNAV))
                         return false;
                     break;
                 case QueryType.Q22:
                     if ((f.percentageChangeInNAVNew <= 0) ||
-                        //(!this.IncludedIn(QueryType.Q22)) ||
+                        (!this.IncludedIn(QueryType.Q22)) ||
                         double.IsNaN(f.percentageChangeInNAVNew) ||
                         double.IsNaN(f.todayNAV))
                         return false;

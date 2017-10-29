@@ -48,8 +48,14 @@ namespace frep2
             else return null;
             result._Notes = new string[7];
             for (int i = 0; i < 7; i++) result._Notes[i] = data[i + 4].Trim();
-            result._IncludeIn = new bool[20];
-            for (int i = 0; i < 20; i++) result._IncludeIn[i] = (data[i + 11].ToUpperInvariant().Trim() == "YES");
+            result._IncludeIn = new bool[22];
+            for (int i = 0; i < 22; i++) 
+            {
+                if (data.Length > (i + 11))
+                    result._IncludeIn[i] = (data[i + 11].ToUpperInvariant().Trim() == "YES");
+                else 
+                    result._IncludeIn[i] = true;
+            }            
             return result;
         }
         internal void AddHistory(History history, int shift)
