@@ -142,8 +142,14 @@ namespace frep2
         private void calculatePerformanceScore()
         {
             double result = double.NaN;
-            if (this.daysSinceLaunch == 0) result = 0;
-            else result = (this.valueResearchRating * this.totalBondSales) / this.daysSinceLaunch;
+            for (int i = 10; i > 0; i++)
+            {
+                if (!double.IsNaN(this.History[i].TotalBondSales))
+                {
+                    result = (this.valueResearchRating * (this.totalBondSales - this.History[i].TotalBondSales)) / i;
+                    break;
+                }
+            }
             this._PerformanceScore = result;
         }
         private void calculatePercentageChangeInNAV()
