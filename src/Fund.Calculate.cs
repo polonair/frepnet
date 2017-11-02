@@ -106,19 +106,6 @@ namespace frep2
             if (ps20 != 0 && !double.IsNaN(ps20)) result = 100 * this.performanceScore / ps20;
             this._PerformanceImprovementPercentage = result;
         }
-        private void calculateTotalBondSales20()
-        {
-            double result = 0;
-            for (int i = 20; i < this.History.Length; i++)
-            {
-                if (this.History[i] != null && !double.IsNaN(this.History[i].TotalBondSales))
-                {
-                    result = this.History[i].TotalBondSales;
-                    break;
-                }
-            }
-            this._TotalBondSales20 = result;
-        }
         private void calculateValueResearchRating20()
         {
             double result = 0;
@@ -135,18 +122,26 @@ namespace frep2
         private void calculatePerformanceScore20()
         {
             double result = double.NaN;
-            if (this.daysSinceLaunch == 0) result = 0;
-            else result = (this.valueResearchRating20 * this.totalBondSales20) / this.daysSinceLaunch20;
+            for (int i = 40; i > 20; i--)
+            {
+                if ((i >= this.History.Length) || (this.History[i] == null)) continue;
+                if (!double.IsNaN(this.History[i].TotalBondSales))
+                {
+                    result = (this.valueResearchRating * (this.totalBondSales20 - this.History[i].TotalBondSales)) / 20;
+                    break;
+                }
+            }
             this._PerformanceScore20 = result;
         }
         private void calculatePerformanceScore()
         {
             double result = double.NaN;
-            for (int i = 10; i > 0; i++)
+            for (int i = 20; i > 0; i--)
             {
+                if ((i >= this.History.Length) || (this.History[i] == null)) continue;
                 if (!double.IsNaN(this.History[i].TotalBondSales))
                 {
-                    result = (this.valueResearchRating * (this.totalBondSales - this.History[i].TotalBondSales)) / i;
+                    result = (this.valueResearchRating * (this.totalBondSales - this.History[i].TotalBondSales)) / 20;
                     break;
                 }
             }
@@ -248,6 +243,19 @@ namespace frep2
                 }
             }
             this._TotalBondSales = result;
+        }
+        private void calculateTotalBondSales20()
+        {
+            double result = 0;
+            for (int i = 20; i < this.History.Length; i++)
+            {
+                if (this.History[i] != null && !double.IsNaN(this.History[i].TotalBondSales))
+                {
+                    result = this.History[i].TotalBondSales;
+                    break;
+                }
+            }
+            this._TotalBondSales20 = result;
         }
         private void calculateValueResearchRating()
         {
