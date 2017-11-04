@@ -17,7 +17,7 @@ namespace frep2
             double result = double.NaN;
             if (double.IsNaN(this.navChangeLong)) result = double.NaN;
             else if (this.previousNAV == 0) result = double.NaN;
-            else result = 100 * this.navChangeLong / this.previousNAV;
+            else result = (100 * this.navChangeLong / this.previousNAV) - 100;
             this._PercentageChangeInNAVLong = result;
         }
         private void calculateChangeInNavLong()
@@ -103,7 +103,7 @@ namespace frep2
         {
             double result = double.NaN;
             double ps20 = this.performanceScore20;
-            if (ps20 != 0 && !double.IsNaN(ps20)) result = 100 * this.performanceScore / ps20;
+            if (ps20 != 0 && !double.IsNaN(ps20)) result = (100 * this.performanceScore / ps20) - 100;
             this._PerformanceImprovementPercentage = result;
         }
         private void calculateValueResearchRating20()
@@ -152,7 +152,7 @@ namespace frep2
             double result = double.NaN;
             if (double.IsNaN(this.changeInNAV)) result = double.NaN;
             else if (this.yesterdayNAV == 0) result = double.NaN;
-            else result = 100 * this.changeInNAV / this.yesterdayNAV;
+            else result = (100 * this.changeInNAV / this.yesterdayNAV) - 100;
             this._PercentageChangeInNAV = result;
         }
         private void calculatePercentageChangeInNAVNew()
@@ -160,7 +160,7 @@ namespace frep2
             double result = double.NaN;
             if (double.IsNaN(this.changeInNAVNew)) result = double.NaN;
             else if (this.lowestNAVNew == 0) result = double.NaN;
-            else result = 100 * this.changeInNAVNew / this.lowestNAVNew;
+            else result = (100 * this.changeInNAVNew / this.lowestNAVNew) - 100;
             this._PercentageChangeInNAVNew = result;
         }
         private void calculateChangeInNav()
