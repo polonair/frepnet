@@ -1,6 +1,6 @@
 Fund Reporter
 =============
-_version 3.0.6_
+_version 3.0.7_
 
 Build application this way:
 
