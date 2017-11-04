@@ -24,7 +24,7 @@ namespace frep2
                     if ((this.History.Length < 1) ||
                         (double.IsNaN(this.yesterdayNAV)) ||
                         (!this.IncludedIn(QueryType.Q1)) ||
-                        //(this.percentageChangeInNAV <= 0) ||
+                        (this.percentageChangeInNAV <= 0) ||
                         double.IsNaN(this.percentageChangeInNAV) ||
                         (
                             (this.History.Length > 0) &&
@@ -35,7 +35,7 @@ namespace frep2
                 case QueryType.Q2:
                     if ((f.History.Length < 1) ||
                         (!f.IncludedIn(QueryType.Q2)) ||
-                        //(f.navChangeLongPercentage <= 0) ||
+                        (f.navChangeLongPercentage <= 0) ||
                         double.IsNaN(f.navChangeLongPercentage) ||
                         (
                             (f.History.Length > 1) &&
@@ -94,7 +94,7 @@ namespace frep2
                 case QueryType.Q11:
                     if ((f.History.Length < 1) ||
                         (!f.IncludedIn(QueryType.Q11)) ||
-                        //(f.percentageChangeInNAV <= 0) ||
+                        (f.percentageChangeInNAV <= 0) ||
                         double.IsNaN(f.percentageChangeInNAV) ||
                         (
                             (f.History.Length > 0) &&
@@ -105,7 +105,7 @@ namespace frep2
                 case QueryType.Q12:
                     if ((f.History.Length < 1) ||
                         (!f.IncludedIn(QueryType.Q12)) ||
-                        //(f.percentageChangeInNAV <= 0) ||
+                        (f.percentageChangeInNAV <= 0) ||
                         double.IsNaN(f.percentageChangeInNAV) ||
                         (
                             (f.History.Length > 1) &&
@@ -157,14 +157,14 @@ namespace frep2
                         return false;
                     break;
                 case QueryType.Q21:
-                    if (//(this.percentageChangeInNAVNew <= 0) ||
+                    if ((this.percentageChangeInNAVNew <= 0) ||
                         (!this.IncludedIn(QueryType.Q21)) ||
                         double.IsNaN(this.percentageChangeInNAVNew) ||
                         double.IsNaN(f.todayNAV))
                         return false;
                     break;
                 case QueryType.Q22:
-                    if (//(f.percentageChangeInNAVNew <= 0) ||
+                    if ((f.percentageChangeInNAVNew <= 0) ||
                         (!this.IncludedIn(QueryType.Q22)) ||
                         double.IsNaN(f.percentageChangeInNAVNew) ||
                         double.IsNaN(f.todayNAV))
