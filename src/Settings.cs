@@ -112,16 +112,25 @@ namespace frep2
         {
             Settings result = new Settings()
             {
-                _Standard = "standard.csv",
+                _Standard = "lateststandard6.csv",
                 _DateWiseDirectory = "./import/",
                 _TemplateDirectory = "./templates/",
                 _ExportDirectory = string.Format("./export/", DateTime.Now),
                 _Separator = "|",
                 //_ReferenceMap = ReferenceMap.CreateEmpty(),
                 _ReferenceMap = ReferenceMap.LoadFrom("refs.txt"),
-                _Shift = 57//07.09.17
+                _Shift = 1
             };
             //result.Restrictions.Add(QueryType.Q1, QueryRestrictor.Parse("v1,t1,n1"));
+            result.Restrictions.Add(QueryType.Q3, QueryRestrictor.Parse("v0,t20"));
+            result.Restrictions.Add(QueryType.Q4, QueryRestrictor.Parse("v3.3,t20"));
+            result.Restrictions.Add(QueryType.Q5, QueryRestrictor.Parse("v0,t20"));
+            result.Restrictions.Add(QueryType.Q7, QueryRestrictor.Parse("v3.3,t20"));
+            result.Restrictions.Add(QueryType.Q12, QueryRestrictor.Parse("v3.6,t25"));
+            result.Restrictions.Add(QueryType.Q14, QueryRestrictor.Parse("v3.6,t50"));
+            result.Restrictions.Add(QueryType.Q15, QueryRestrictor.Parse("v0,t50"));
+            result.Restrictions.Add(QueryType.Q17, QueryRestrictor.Parse("v4,t50"));
+            result.Restrictions.Add(QueryType.Q22, QueryRestrictor.Parse("v3.6,t25"));
             return result;
         }
         internal static Settings Parse(string[] args)

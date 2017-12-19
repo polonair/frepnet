@@ -76,6 +76,7 @@ namespace frep2
                             { "currentPageNumber", i + 1 },
                             { "nextPage", ((i + 1) >= pages) ? (1) : (i + 2) },
                             { "nextPageNumber", ((i + 1) >= pages) ? (1) : (i + 2) },
+                            { "nextPageName", ((i + 1) >= pages) ? ("No more results") : ("See Next Page") },
                             { "totalPages", pages },
                             { "date", DateTime.Now },
                             { "datestamp", DateTime.Now },
