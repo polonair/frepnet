@@ -30,12 +30,12 @@ namespace frep2
             }
             return result;
         }
-#if DEBUG
+#if DEBUG_
         static bool _Removed = false;
 #endif
         protected static void RemoveDirectory(string templateDirectory)
         {
-#if DEBUG
+#if DEBUG_
             if (!_Removed && Directory.Exists(templateDirectory)) Directory.Delete(templateDirectory, true);
             _Removed = true;
 #endif

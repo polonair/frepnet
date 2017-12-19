@@ -2,3 +2,5 @@
 /src/obj/
 /src/bin/
 /src/testdata/*
+.vs
+*.sln
